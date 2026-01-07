@@ -20,71 +20,119 @@
             .group {
                 margin: 20px 0;
             }
+            .group-title {
+                cursor: pointer;
+                user-select: none;
+            }
+            .group-links {
+                display: none;
+                padding-left: 4px;
+            }
+            .group.open .group-links {
+                display: block;
+            }
         </style>
     </head>
     <body>
         <h1>Design Drafts</h1>
 
         <div class="group">
-            <h2>입장코드</h2>
-            <a href="./입장코드/패밀리세일백업pc.html">패밀리세일 백업 PC</a>
-            <a href="./입장코드/패밀리세일백업mb.html">패밀리세일 백업 MB</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">입장코드</h2>
+            <div class="group-links">
+                <a href="./입장코드/패밀리세일백업pc.html">패밀리세일 백업 PC</a>
+                <a href="./입장코드/패밀리세일백업mb.html">패밀리세일 백업 MB</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>Champion Mockup</h2>
-            <a href="./champion_mokup/champion_re_01.html">champion_re_01</a>
-            <a href="./champion_mokup/champion_re_02.html">champion_re_02</a>
-            <a href="./champion_mokup/champion_re_03.html">champion_re_03</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">Champion Mockup</h2>
+            <div class="group-links">
+                <a href="./champion_mokup/champion_re_01.html">champion_re_01</a>
+                <a href="./champion_mokup/champion_re_02.html">champion_re_02</a>
+                <a href="./champion_mokup/champion_re_03.html">champion_re_03</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>Y3</h2>
-            <a href="./y3/ver_1-2.html">ver_1-2</a>
-            <a href="./y3/ver_2-2.html">ver_2-2</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">Y3</h2>
+            <div class="group-links">
+                <a href="./y3/ver_1-2.html">ver_1-2</a>
+                <a href="./y3/ver_2-2.html">ver_2-2</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>Schedule</h2>
-            <a href="./schedule/design.html">design</a>
-            <a href="./schedule/content.html">content</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">Schedule</h2>
+            <div class="group-links">
+                <a href="./schedule/design.html">design</a>
+                <a href="./schedule/content.html">content</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>Champion Promotion</h2>
-            <a href="./champion_promotion/new_ver.html">new_ver</a>
-            <a href="./champion_promotion/new_ver_01.html">new_ver_01</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">Champion Promotion</h2>
+            <div class="group-links">
+                <a href="./champion_promotion/new_ver.html">new_ver</a>
+                <a href="./champion_promotion/new_ver_01.html">new_ver_01</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>Champion Promotion ETC</h2>
-            <a href="./champion_promotion/etc/pc_ver.html">pc_ver</a>
-            <a href="./champion_promotion/etc/mo_ver.html">mo_ver</a>
-            <a href="./champion_promotion/etc/new_ver.html">new_ver</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">Champion Promotion ETC</h2>
+            <div class="group-links">
+                <a href="./champion_promotion/etc/pc_ver.html">pc_ver</a>
+                <a href="./champion_promotion/etc/mo_ver.html">mo_ver</a>
+                <a href="./champion_promotion/etc/new_ver.html">new_ver</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>Champion Promotion Font</h2>
-            <a href="./champion_promotion/font/demo.html">demo</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">Champion Promotion Font</h2>
+            <div class="group-links">
+                <a href="./champion_promotion/font/demo.html">demo</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>ETC</h2>
-            <a href="./etc/champion_order.html">champion_order</a>
-            <a href="./etc/고도몰_상세_백업.html">고도몰 상세 백업</a>
-            <a href="./etc/챔피온메인백업.html">챔피온 메인 백업</a>
-            <a href="./etc/챔피온모바일상세_20251125.html">챔피온 모바일 상세 20251125</a>
-            <a href="./etc/챔피온_주문서_토스페이.html">챔피온 주문서 토스페이</a>
-            <a href="./etc/챔피온_주문서_토스페이_모바일.html">챔피온 주문서 토스페이 모바일</a>
-            <a href="./etc/개인정보처리방침_디키즈.html">개인정보처리방침 디키즈</a>
-            <a href="./etc/개인정보처리방침_디키즈_원본.html">개인정보처리방침 디키즈 원본</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">ETC</h2>
+            <div class="group-links">
+                <a href="./etc/champion_order.html">champion_order</a>
+                <a href="./etc/고도몰_상세_백업.html">고도몰 상세 백업</a>
+                <a href="./etc/챔피온메인백업.html">챔피온 메인 백업</a>
+                <a href="./etc/챔피온모바일상세_20251125.html">챔피온 모바일 상세 20251125</a>
+                <a href="./etc/챔피온_주문서_토스페이.html">챔피온 주문서 토스페이</a>
+                <a href="./etc/챔피온_주문서_토스페이_모바일.html">챔피온 주문서 토스페이 모바일</a>
+                <a href="./etc/개인정보처리방침_디키즈.html">개인정보처리방침 디키즈</a>
+                <a href="./etc/개인정보처리방침_디키즈_원본.html">개인정보처리방침 디키즈 원본</a>
+            </div>
         </div>
 
         <div class="group">
-            <h2>챔피온리뉴얼백업자료</h2>
-            <a href="./챔피온리뉴얼백업자료/header.html">header</a>
-            <a href="./챔피온리뉴얼백업자료/header_standard.html">header_standard</a>
-            <a href="./챔피온리뉴얼백업자료/main.html">main</a>
+            <h2 class="group-title" tabindex="0" aria-expanded="false">챔피온리뉴얼백업자료</h2>
+            <div class="group-links">
+                <a href="./챔피온리뉴얼백업자료/header.html">header</a>
+                <a href="./챔피온리뉴얼백업자료/header_standard.html">header_standard</a>
+                <a href="./챔피온리뉴얼백업자료/main.html">main</a>
+            </div>
         </div>
+        <script>
+            (function() {
+                var titles = document.querySelectorAll('.group-title');
+                titles.forEach(function(title) {
+                    var group = title.parentElement;
+                    function toggle() {
+                        var isOpen = group.classList.toggle('open');
+                        title.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    }
+                    title.addEventListener('click', toggle);
+                    title.addEventListener('keydown', function(event) {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            toggle();
+                        }
+                    });
+                });
+            })();
+        </script>
     </body>
 </html>
