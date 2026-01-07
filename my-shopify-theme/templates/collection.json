@@ -1,0 +1,69 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "40e4cbd5-0224-4f3b-854a-e66e9ba0b7cf": {
+          "type": "side_filter",
+          "settings": {
+            "two_column_labels": false,
+            "scroll_long_lists": true,
+            "show_filter_count": true,
+            "filter_color_swatches": "text_only",
+            "swatch_size": "icon",
+            "crop_swatch_image": false
+          }
+        }
+      },
+      "block_order": [
+        "40e4cbd5-0224-4f3b-854a-e66e9ba0b7cf"
+      ],
+      "custom_css": [
+        "img {object-fit: contain !important;}"
+      ],
+      "settings": {
+        "grid": 4,
+        "mobile_grid": "2",
+        "products_per_page": 32,
+        "infinite_scroll": true,
+        "description_position": "top_description",
+        "show_subcollections": false,
+        "subcollection_linklist": "",
+        "is_sticky": true,
+        "sort_by": true
+      }
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "settings": {}
+    },
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "shogun-above",
+    "main",
+    "shogun-below",
+    "shogun-optimizer"
+  ]
+}

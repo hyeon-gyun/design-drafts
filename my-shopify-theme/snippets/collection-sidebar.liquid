@@ -1,0 +1,212 @@
+{% comment %}
+snippets/collection-sidebar.liquid
+
+Collection sidebar.
+Includes blocks:
+- Collection image
+- Filters
+- Menu
+- Text note
+- Image
+
+Accepts:
+
+  - collection: {Object} collection
+  - block: {Object} section block
+  - unique_id: {String} A unique identifier used to make the inputs unique
+
+Usage:
+
+{%
+  render 'collection-sidebar',
+  collection: collection,
+  block: sidebar_block,
+  unique_id: 'collection-sidebar-mobile'
+%}
+
+ToDos
+- Switch main loop to use case/when instead of if
+{% endcomment %}
+{% liquid
+  assign unique_id = section.id | slice: -7, 7
+%}
+<div id="sidebar" class="collection__sidebar--wrapper sidebar">
+  <form id="CollectionSidebarFiltersForm">
+    <div class="collection__sidebar--sidebar__inner-wrapper{% if section.settings.is_sticky %} is_sticky{% endif %}">
+
+      {% if collection.current_vendor or collection.current_type %}
+        <input type="hidden" name="q" value="{{ collection.current_vendor }}{{ collection.current_type }}">
+      {% endif %}
+
+        {% comment %}
+        Include block settings for collection template to add sidebar menus
+        {% endcomment %}
+
+      {% for block in section.blocks %}
+
+        <div class="collection__sidebar-block" {{ block.shopify_attributes }}>
+
+          {% liquid
+            assign loading = 'lazy'
+            assign fetch_priority = 'auto'
+            if section.index == 1 and forloop.first
+              assign loading = 'eager'
+              assign fetch_priority = 'high'
+            endif
+          %}
+
+              {% if block.type == 'sidebar_collection_image' %}
+
+                {% if collection.image %}
+                  {% render 'basic-responsive-image', type: collection, width: 400, loading: loading, fetchpriority: fetch_priority %}
+                {% endif %}
+
+              {% elsif block.type == 'side_filter' %}
+
+                  {% assign color_swatch_options = settings.swatch_option_names | replace: ' ,', ',' | replace: ', ', ',' | split: ',' | downcase %}
+                  {%- for filter in collection.filters -%}
+
+                    {% liquid
+                      assign accordion_content_class = 'c-accordion__panel--'
+                      assign accordion_content_id = accordion_content_class | append: unique_id | append: '-' | append: forloop.index
+                    %}
+
+                    {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+
+                    <div
+                      class="js-accordion c-accordion c-accordion--{{ unique_id }} c-accordion--custom-page"
+                      id="c-accordion--{{ unique_id }}"
+                      data-accordion-allow-multiple
+                    >
+
+                      <button
+                        class="button-as-link js-accordion-header c-accordion__header js-accordion-is-open"
+                        aria-expanded="true"
+                        aria-controls="{{ accordion_content_id }}"
+                        data-toggle="accordion"
+                      >
+                        <h4>{{ filter.label | escape }} {% if filter.operator == 'AND' %}<small>(Match All)</small>{% endif %}</h4>
+                        <span class="dropdown-arrow">
+                          {% render 'snip-icons',
+                            wrapper: '.accordion__section-content .c-accordion__header',
+                            type: 'apollo',
+                            icon: 'down-carrot',
+                            classes: 'c-accordion__header--icon vib-center',
+                            size: '6px',
+                            fill: 'var(--text-color)',
+                            hover: 'var(--text-color)'
+                          %}
+                        </span>
+                      </button>
+
+                      <div
+                        class="clearfix filter c-accordion__panel is-active {{ accordion_content_id }}"
+                        id="{{ accordion_content_id }}"
+                        data-parent="#c-accordion--{{ unique_id }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        <div class="c-accordion__inner">
+
+                          {% case filter.type %}
+
+                            <!-- List -->
+                            {% when 'list' %}
+                              {%
+                                render 'sidebar-list-filter',
+                                filter: filter,
+                                block: block,
+                                unique_id: unique_id,
+                                color_swatch_options: color_swatch_options
+                              %}
+
+                            <!-- Price range -->
+                            {% when 'price_range' %}
+                              {%
+                                render 'sidebar-price-range-filter',
+                                filter: filter,
+                                block: block,
+                                unique_id: unique_id,
+                                cart: cart,
+                                forloop: forloop
+                              %}
+
+                          {% endcase %}
+
+                        </div>
+                      </div>
+                    </div>
+
+                  {%- endfor -%}
+              {% elsif block.type == 'menu' %}
+
+                  {% liquid
+
+                    assign unique_id = 'menu-' | append: forloop.index
+                    assign accordion_content_class = 'c-accordion__panel--'
+                    assign accordion_content_id = accordion_content_class | append: unique_id | append: '-' | append: forloop.index
+
+                  %}
+
+                  <div
+                    class="js-accordion c-accordion c-accordion--{{ unique_id }} c-accordion--custom-page"
+                    id="c-accordion--{{ unique_id }}"
+                    data-accordion-allow-multiple
+                  >
+
+                    <button
+                      class="button-as-link js-accordion-header c-accordion__header js-accordion-is-open"
+                      aria-expanded="true"
+                      aria-controls="{{ accordion_content_id }}"
+                      data-toggle="accordion"
+                    >
+                      <h4>{{ block.settings.title }}</h4>
+                      <span class="dropdown-arrow">
+                        {% render 'snip-icons',
+                          wrapper: '.accordion__section-content .c-accordion__header',
+                          type: 'apollo',
+                          icon: 'down-carrot',
+                          classes: 'c-accordion__header--icon vib-center',
+                          size: '6px',
+                          fill: 'var(--text-color)',
+                          hover: 'var(--text-color)'
+                        %}
+                      </span>
+                    </button>
+
+                    <div
+                      class="clearfix filter c-accordion__panel is-active {{ accordion_content_id }}"
+                      id="{{ accordion_content_id }}"
+                      data-parent="#c-accordion--{{ unique_id }}"
+                      {{ block.shopify_attributes }}
+                    >
+                      <div class="c-accordion__inner">
+
+                        {%
+                          render: 'sidebar-menu',
+                          block: block
+                        %}
+
+                      </div>
+                    </div>
+                  </div>
+
+              {% elsif block.type == 'image' %}
+                {%
+                  render 'sidebar-image',
+                  block: block,
+                  forloop: forloop,
+                  loading: loading,
+                  fetchpriority: fetch_priority
+                %}
+              {% elsif block.type == 'text_note' %}
+                {%
+                  render 'sidebar-text',
+                  block: block
+                %}
+              {% endif %}
+
+         </div>
+      {% endfor %}
+    </div>
+  </form>
+</div>

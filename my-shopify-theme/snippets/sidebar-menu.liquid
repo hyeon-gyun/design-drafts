@@ -1,0 +1,61 @@
+{% comment %}
+snippets/sidebar-menu.liquid
+
+Renders a menu in the sidebar.
+
+Accepts:
+
+Block {Object} - Section block.
+
+Usage:
+
+{%
+  render: 'sidebar-menu',
+  block: block
+%}
+{% endcomment %}
+  <ul class="collection__sidebar-menu sidebar-menu">
+    {% for link in linklists[block.settings.side_nav].links %}
+      {% if link.links != blank %}
+        <li class="js-parent-menu{% if link.current %} open{% endif %}">
+          <span class="parent_item">
+            <a href="{{ link.url }}" class="js-collection-sidemenu-toggle" aria-expanded="{% if link.current %}true{% else %}false{% endif %}">{{ link.title }}
+            {% render 'snip-icons',
+              type: 'apollo',
+              wrapper: '.js-parent-menu',
+              icon: 'down-carrot',
+              size: '4px',
+              fill: 'var(--text-color)' %}
+            </a>
+          </span>
+          <ul class="nested{% if link.current %} open{% endif %}">
+            {% for sub_link in link.links %}
+              {% if sub_link.links != blank %}
+                <li class="js-parent-menu{% if sub_link.current %} open{% endif %}">
+                  <span class="parent_item">
+                    <a href="{{ sub_link.url }}" class="js-collection-sidemenu-toggle" aria-expanded="{% if sub_link.current %}true{% else %}false{% endif %}">{{ sub_link.title }}
+                    {% render 'snip-icons',
+                      type: 'apollo',
+                      wrapper: '.js-parent-menu',
+                      icon: 'down-carrot',
+                      size: '4px',
+                      fill: 'var(--text-color)' %}
+                    </a>
+                    </span>
+                  <ul class="nested{% if sub_link.current %} open{% endif %}">
+                    {% for sub_sub_link in sub_link.links %}
+                      <li><a href="{{ sub_sub_link.url }}" {% if sub_sub_link.current %} class="current"{% endif %}>{{ sub_sub_link.title }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li><a href="{{ sub_link.url }}" {% if sub_link.current %} class="current"{% endif %}>{{ sub_link.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        <li><a href="{{ link.url }}" {% if link.current %} class="current"{% endif %}>{{ link.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>

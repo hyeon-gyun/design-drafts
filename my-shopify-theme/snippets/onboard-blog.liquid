@@ -1,0 +1,73 @@
+{% for i in (1..post_limit) %}
+{% capture articleCycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+<div class="single-article {% if articleCycle == 'even' %}even{% elsif articleCycle == 'odd' %}odd{% endif %}{% if template contains 'article' %}odd{% endif %}"
+  data-aos="{{ settings.scroll_animation }}"
+  data-aos-delay="{{ forloop.index | times: 100 }}">
+  {% capture articleImage %}
+    <div class="article-image"
+      data-aos="{{ settings.scroll_animation }}"
+      data-aos-delay="{{ forloop.index | times: 100 }}">
+      {% capture placeholderCycle %}{% cycle 'collection-1', 'collection-2', 'collection-3' %}{% endcapture %}
+      <div class="onboard">
+        {{ placeholderCycle | placeholder_svg_tag }}
+      </div>
+    </div>
+  {% endcapture %}
+
+   {% if section.settings.blog_layout_grid %}
+    {{ articleImage }}
+   {% endif %}
+
+  {% unless section.settings.blog_layout_grid %}
+    {% if articleCycle == 'odd' %}
+      {{ articleImage }}
+    {% endif %}
+  {% endunless %}
+
+  <div class="article-body"
+    data-aos="{{ settings.scroll_animation }}"
+    data-aos-delay="{{ forloop.index | times: 100 }}">
+    <h3>
+      <a href="#" title="{{ 'sections.featured_blog.placeholder.title' | t: index: forloop.index }}">
+        {{ 'sections.featured_blog.placeholder.title' | t: index: forloop.index }}
+      </a>
+    </h3>
+    <div class="clear"></div>
+    <div class="rte">
+      <p>
+        {{ 'sections.featured_blog.placeholder.excerpt' | t }}
+      </p>
+    </div>
+    <div class="clear"></div>
+    <div class="post_meta">
+        <span class="posted">
+          {{ 'now' | date: "%a, %b %d, %y" }}
+        </span>
+        {% if section.settings.show_author %}
+          <span class="posted_by">
+            {{ 'sections.featured_blog.placeholder.byline' | t }}
+          </span>
+        {% endif %}
+        {% if section.settings.post_tags %}
+          <ul>
+              <li class="tags">
+                <a href="#" title="{{ 'sections.featured_blog.placeholder.tag' | t: index: "1" }}">
+                  {{ 'sections.featured_blog.placeholder.tag' | t: index: "1" }}
+                </a>
+              </li>
+              <li class="tags">
+                <a href="#" title="{{ 'sections.featured_blog.placeholder.tag' | t: index: "2" }}">
+                  {{ 'sections.featured_blog.placeholder.tag' | t: index: "2" }}
+                </a>
+              </li>
+          </ul>
+        {% endif %}
+    </div>
+  </div>
+
+  {% if articleCycle == 'even' and section.settings.blog_layout_grid == false %}
+  {{ articleImage }}
+  {% endif %}
+
+</div>
+{% endfor %}

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%0A%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%2728%27%20fill%3D%27%23ffdd4a%27/%3E%0A%3Ccircle%20cx%3D%2722%27%20cy%3D%2726%27%20r%3D%274%27%20fill%3D%27%235b4200%27/%3E%0A%3Ccircle%20cx%3D%2742%27%20cy%3D%2726%27%20r%3D%274%27%20fill%3D%27%235b4200%27/%3E%0A%3Cpath%20d%3D%27M20%2038c4%206%2020%206%2024%200%27%20stroke%3D%27%235b4200%27%20stroke-width%3D%274%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27/%3E%0A%3C/svg%3E">
+  <title>콘텐츠본부 스케쥴</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .wrapper {
+      width: 100%;
+      padding: clamp(24px, 4vw, 60px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      padding-right: 140px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 50px;
+      width: auto;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: #0f172a;
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    p.subcopy {
+      font-size: 18px;
+      color: #475569;
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .subscribe-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      width: fit-content;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .subscribe-btn:hover {
+      background: #000;
+      transform: translateY(-1px);
+    }
+
+    .subscribe-btn:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 3px;
+    }
+
+    .calendar-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .calendar-filters label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .calendar-filters input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #0f172a;
+      cursor: pointer;
+    }
+
+    .calendar {
+      width: 100%;
+      flex: 1;
+      min-height: 600px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding-right: 0;
+      }
+
+      .logo {
+        position: static;
+        align-self: flex-start;
+        height: 30px;
+        margin-bottom: 8px;
+      }
+
+      p.subcopy {
+        font-size: 16px;
+      }
+
+      .calendar {
+        min-height: 480px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <header>
+      <img class="logo" src="https://musinsatrading.com/web/musinsa_trading/img/musinsa_tradings_blk.png" alt="무신사트레이딩 로고">
+      <h1>콘텐츠본부 통합 스케쥴</h1>
+      <p class="subcopy">실시간 본부 통합 스케쥴 현황입니다.<br>
+      업무요청시 일정 참고 부탁드립니다</p>
+      <div class="action-buttons">
+        <a
+          class="subscribe-btn"
+          href="https://calendar.google.com/calendar/u/0/r?cid=c_1a5fd8f16373922edc816bf802059f7e1c63018176b274826c4ef9a6fa5a67c6@group.calendar.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="플랫폼 디자인팀 구글 캘린더 구독하기">
+          디자인팀 구독
+        </a>
+        <a
+          class="subscribe-btn"
+          href="https://calendar.google.com/calendar/u/0/r?cid=team.studio@musinsatrading.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="촬영팀 구글 캘린더 구독하기">
+          촬영팀 구독
+        </a>
+        <a
+          class="subscribe-btn"
+          href="https://calendar.google.com/calendar/u/0/r?cid=c_0f4b93e47242be9e7cde9e831ae370194a393b81f8d30063a31072b42efb3193@group.calendar.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="VMD 캘린더 구독하기">
+          VMD 구독
+        </a>
+      </div>
+      <div class="calendar-filters" role="group" aria-label="캘린더 보기 선택">
+        <label>
+          <input
+            class="calendar-filter"
+            type="checkbox"
+            data-src="c_1a5fd8f16373922edc816bf802059f7e1c63018176b274826c4ef9a6fa5a67c6@group.calendar.google.com"
+            data-color="#2563eb"
+            checked>
+          플랫폼 디자인팀 보기
+        </label>
+        <label>
+          <input
+            class="calendar-filter"
+            type="checkbox"
+            data-src="team.studio@musinsatrading.com"
+            data-color="#f97316"
+            checked>
+          촬영팀 보기
+        </label>
+        <label>
+          <input
+            class="calendar-filter"
+            type="checkbox"
+            data-src="c_0f4b93e47242be9e7cde9e831ae370194a393b81f8d30063a31072b42efb3193@group.calendar.google.com"
+            data-color="#10b981"
+            checked>
+          VMD팀 보기
+        </label>
+      </div>
+    </header>
+    <section class="calendar" aria-label="플랫폼 디자인팀 일정 캘린더">
+      <iframe
+        src="https://calendar.google.com/calendar/u/0/embed?ctz=Asia%2FSeoul&amp;src=c_1a5fd8f16373922edc816bf802059f7e1c63018176b274826c4ef9a6fa5a67c6@group.calendar.google.com&amp;color=%232563eb&amp;src=team.studio%40musinsatrading.com&amp;color=%23f97316&amp;src=c_0f4b93e47242be9e7cde9e831ae370194a393b81f8d30063a31072b42efb3193@group.calendar.google.com&amp;color=%2310b981"
+        frameborder="0"
+        scrolling="no"
+        title="플랫폼디자인팀 스케쥴 캘린더">
+      </iframe>
+    </section>
+  </main>
+  <script>
+    (function () {
+      const iframe = document.querySelector('.calendar iframe');
+      const checkboxes = document.querySelectorAll('.calendar-filter');
+      if (!iframe || !checkboxes.length) return;
+
+      const baseUrl = 'https://calendar.google.com/calendar/u/0/embed';
+      const timezoneParam = 'ctz=Asia%2FSeoul';
+      const fallbackUrl = `${baseUrl}?${timezoneParam}`;
+
+      const buildCalendarParams = () => Array.from(checkboxes)
+        .filter((checkbox) => checkbox.checked && checkbox.dataset.src)
+        .map((checkbox) => {
+          const params = [`src=${encodeURIComponent(checkbox.dataset.src)}`];
+          if (checkbox.dataset.color) {
+            params.push(`color=${encodeURIComponent(checkbox.dataset.color)}`);
+          }
+          return params.join('&');
+        })
+        .join('&');
+
+      const updateCalendar = () => {
+        const selected = buildCalendarParams();
+
+        if (!selected) {
+          iframe.src = fallbackUrl;
+          return;
+        }
+
+        iframe.src = `${fallbackUrl}&${selected}`;
+      };
+
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', updateCalendar);
+      });
+
+      updateCalendar();
+    })();
+  </script>
+</body>
+</html>

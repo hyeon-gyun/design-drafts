@@ -1,0 +1,40 @@
+{%- liquid
+
+  if block.settings.video_url.type == 'youtube' and block.settings.mp4_url == blank
+    assign slide_type = 'youtube'
+    assign video_class = 'youtube'
+  else
+    assign slide_type = 'video'
+    assign video_class = 'js-video'
+  endif
+
+-%}
+
+
+<div id="slide--{{ block.id }}"
+  class="slide--{{ block.id }} slideshow__slide video {{ video_class }} {{ slide_type }}"
+  data-slide-type="{{ slide_type }}"
+  {% if slide_type == 'youtube' %}
+  data-video-id="{{ block.settings.video_url.id }}"
+  {% endif %}
+  data-video-audio="{{ section.settings.video_audio }}"
+  data-block-id="{{ block.id }}"
+  data-slider-index="{{ forloop.index0 }}"
+  data-sizes="auto" {{ block.shopify_attributes }}>
+
+    {%- if block.settings.video_url.type == 'youtube' and block.settings.mp4_url == blank -%}
+      <iframe id="Video{{ block.settings.video_url.id }}" class="js-embed-player slide-media js-video" width="980" height="520" src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?enablejsapi=1&controls=0&fs=0&iv_load_policy=3&rel=0&showinfo=0&loop=1" frameborder="0" allowfullscreen></iframe>
+    {%- elsif block.settings.video_url.type == 'vimeo' and block.settings.mp4_url == blank -%}
+      <iframe class="js-embed-player slide-media js-video" src="//player.vimeo.com/video/{{ block.settings.video_url.id }}?byline=0&portrait=0&badge=0" width="980" height="520" frameborder="0" allowfullscreen></iframe>
+    {%- elsif block.settings.video_url_mp4 != blank -%}
+      {{ block.settings.video_url_mp4 | video_tag: image_size: '2000x', controls: true, playsinline: true, preload: 'metadata', class: 'slide-video slide-media js-video' }}
+    {%- endif -%}
+
+    {% if index == 0 %}
+      {% style %}
+        #shopify-section-{{ section.id }} {
+          --slide-image-ratio: 56.25%;
+        }
+      {% endstyle %}
+    {% endif %}
+</div>

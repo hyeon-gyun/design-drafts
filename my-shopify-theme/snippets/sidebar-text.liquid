@@ -1,0 +1,24 @@
+{% comment %}
+snippets/sidebar-text.liquid
+
+Renders text in the sidebar.
+
+Accepts:
+
+Block {Object} - Section block.
+
+Usage:
+
+{%
+  render: 'sidebar-text',
+  block: block
+%}
+{% endcomment %}
+<div class="collection__sidebar--textnote-wrapper collection__sidebar-block textnote_container" {{ block.shopify_attributes }}>
+  {% if block.settings.textbox_heading != blank %}<h4>{{ block.settings.textbox_heading }}</h4>{% endif %}
+  {% if block.settings.textbox_subheading != blank %}
+    <div class="subheading{% if block.settings.subheading_align == 'center' %} center{% endif %} rte">
+      {{ block.settings.textbox_subheading }}
+    </div>
+  {% endif %}
+</div>

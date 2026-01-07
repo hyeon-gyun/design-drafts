@@ -1,0 +1,44 @@
+<div class="pagination desktop-12 mobile-3 span-12 auto"
+  data-aos="{{ settings.scroll_animation }}">
+  <span class="count">
+    {% if template != 'list-collections' %}
+    {{ 'general.pagination.showing_items' | t }}{% endif %} {{ paginate.current_offset | plus: 1 }}-{% if paginate.next %}{{ paginate.current_offset | plus: paginate.page_size }}{% else %}{{ paginate.items }}{% endif %} {{ 'general.pagination.of' | t }} {{ paginate.items }}.
+  </span>
+  {%- if paginate.previous -%}
+    <a href="{{ paginate.previous.url }}" class="paginate_prev" aria-label="{{ 'general.pagination.previous' | t }}">
+      {% render 'snip-icons',
+         wrapper: '.pagination',
+         type: 'apollo',
+         icon: 'left-carrot',
+         classes: 'pagination--icon vib-center',
+         size: '10px',
+         fill: 'var(--text-color)',
+         hover: 'var(--text-color)' %}
+    </a>
+  {%- endif -%}
+  {%- for part in paginate.parts -%}
+    {%- if part.is_link -%}
+      <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t }} {{ part.title }}">{{ part.title }}</a>
+    {%- else -%}
+      {%- if part.title == '...' -%}
+        <span class="pagination__ellipsis" aria-hidden="true">{{ part.title }}</span>
+      {%- elsif paginate.current_page == part.title -%}
+        <span class="pagination__current" aria-current="{{ 'general.pagination.page' | t }} {{ part.title }}">{{ part.title }}</span>
+      {%- else -%}
+        <span class="pagination__link">{{ part.title }}</span>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if paginate.next -%}
+    <a href="{{ paginate.next.url }}" class="paginate_next" aria-label="{{ 'general.pagination.next' | t }}">
+      {% render 'snip-icons',
+       wrapper: '.pagination',
+       type: 'apollo',
+       icon: 'right-carrot',
+       classes: 'pagination--icon vib-center',
+       size: '10px',
+       fill: 'var(--text-color)',
+       hover: 'var(--text-color)' %}
+    </a>
+  {%- endif -%}
+</div>

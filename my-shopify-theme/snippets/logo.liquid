@@ -1,0 +1,38 @@
+{% comment %}
+  Renders the store's logo.
+
+  Accepts:
+  - logo_width: {String} assigned width class for the logo.
+  - logo_image: {Object} Section setting for the store's logo.
+  - alt_logo_image: {Object} Section setting for the store's optional alt logo.
+  - logo_position: {Object} assigned position class for the logo.
+
+  Usage:
+  {% render 'logo',
+    logo_width: logo_width,
+    logo_image: section.settings.logo,
+    alt_logo_image: section.settings.logo_alt,
+    logo_position: section.settings.logo_position
+  %}
+
+{% endcomment %}
+
+
+<div class="shop--logo sm-span-6 md-span-8 auto {{ logo_width }} {{ logo_position }} {% if alt_logo_image %} has--alt-logo{% endif %}">
+  {% if logo_image %}
+    <div class="first_logo">
+      <a href="{{ routes.root_url }}">
+        {{ logo_image | image_url: width: 500 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'pt10 pb10' }}
+      </a>
+    </div>
+    {% if alt_logo_image %}
+      <div class="second_logo">
+        <a href="{{ routes.root_url }}">
+          {{ alt_logo_image | image_url: width: 500 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'pt10 pb10' }}
+        </a>
+      </div>
+    {% endif %}
+  {% else %}
+    <a href="{{ routes.root_url }}">{{ shop.name }}</a>
+  {% endif %}
+</div>

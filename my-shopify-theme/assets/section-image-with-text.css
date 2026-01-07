@@ -1,0 +1,146 @@
+/* Images */
+.image--with-text .section--image {
+  position: relative;
+  width: 100%;
+}
+
+/* Natural height */
+.image--with-text .section--image .box-ratio {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fixed height */
+.image--with-text .section--image.size--fixed_height .box-ratio img {
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(1.1);
+  -ms-transform: translate(-50%, -50%) scale(1.1);
+  -moz-transform: translate(-50%, -50%) scale(1.1);
+  -o-transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
+  transition: transform 2s cubic-bezier(0.41, 0.85, 0.6, 0.97);
+  height: 100%;
+}
+
+.image--with-text .section--image.size--fixed_height {
+  height: var(--desktop-section-height);
+}
+
+.image--with-text .section--image.size--fixed_height .box-ratio {
+  padding-bottom:var(--desktop-section-height) !important;
+  position: relative;
+}
+
+.image--with-text .section--image.size--fixed_height .onboard {
+  height: var(--desktop-section-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Media queries for images */
+@media screen and ( max-width: 740px ) {
+  .image--with-text .section--image.size--fixed_height,
+  .image--with-text .section--image.size--fixed_height .box-ratio img {
+    height: var(--mobile-section-height);
+  }
+  .image--with-text .section--image.size--fixed_height .box-ratio {
+    padding-bottom:var(--mobile-section-height) !important;
+    position: relative;
+  }
+}
+
+/* onboarding */
+.image--with-text .section--image .onboard {
+  position: relative;
+  z-index: 1;
+}
+@media screen and ( max-width: 740px ) {
+  .image--with-text .section--image.size--fixed_height .onboard {
+    height: var(--mobile-section-height);
+  }
+}
+
+/* caption */
+.image--with-text .section--caption {
+  padding: 30px;
+  background: var(--background);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.image--with-text .section--caption.vai-start {
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+
+.image--with-text .section--caption.vai-center {
+  justify-content: center;
+  align-self: center;
+}
+
+.image--with-text .section--caption.vai-end {
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.image--with-text .section--caption.h100 {
+  align-self: unset;
+  height: 100%;
+}
+
+.image--with-text .section--caption.a-left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.image--with-text .section--caption.a-center {
+  text-align: center;
+  align-items: center;
+}
+
+.image--with-text .section--caption.a-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.image--with-text .section--caption.a-center .button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image--with-text .section--caption .button {
+  margin: 0;
+  width: auto;
+  display: flex;
+  padding: 0 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.image--with-text .section--caption h2,
+.image--with-text .section--caption .rte p {
+  margin: 0;
+}
+
+@media screen and ( max-width: 740px ) {
+  .image--with-text .section--caption {
+    padding: 1rem;
+  }
+  .image--with-text .section--caption {
+    grid-row: 2;
+  }
+  .image--with-text .section--caption.m-center {
+    text-align: center;
+    align-items: center;
+  }
+}

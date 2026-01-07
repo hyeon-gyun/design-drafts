@@ -1,0 +1,71 @@
+section.newsletter--section .social-icons__wrapper {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+
+section.newsletter--section p.form--success {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+section.newsletter--section .section-title {
+  text-align: center;
+}
+
+section.newsletter--section h2 {
+  border-color: var(--text-color);
+}
+
+section.newsletter--section .section-title:after {
+  background: var(--text-color);
+}
+
+section.newsletter--section .section-subheading p {
+  max-width: 60%;
+  margin: 0 auto !important;
+  padding-bottom: 20px !important;
+}
+
+section.newsletter--section .gdpr-text {
+  margin: 0;
+}
+
+section.newsletter--section .password__input-group
+.section-newsletter .password__input-group {
+  margin: 0 auto;
+}
+
+section.newsletter--section .newsletter__submit,
+.section-newsletter .newsletter__submit {
+  width: 30%;
+  float: left;
+  padding: 0 12px;
+  height: 48px;
+  transition: all .25s ease-in-out;
+}
+
+section.newsletter--section .newsletter__input,
+.section-newsletter .newsletter__input {
+  width: 70%;
+  float:left;
+  border-radius: 0;
+  background: transparent;
+  margin-bottom: 0;
+  height: 48px;
+  line-height: 48px;
+}
+
+@media screen and (max-width: 500px) {
+  section.newsletter--section p {
+    max-width: 100%;
+  }
+}
+
+section.newsletter--section .errors {
+  grid-column: 4 / 10;
+  text-align: center;
+}

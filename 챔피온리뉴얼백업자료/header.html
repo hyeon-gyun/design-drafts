@@ -1,0 +1,244 @@
+{*** 상단 레이아웃 | main/index.php ***}
+<!doctype html>
+<html lang="ko">
+<head>
+	<title>{=gMall.mallTitle}</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="{=gMall.mallAuthor}" />
+	<meta name="description" content="{=gMall.mallDescription}" />
+	<meta name="keywords" content="{=gMall.mallKeyword}" />
+	<meta name="csrf-token" content="{=token}" />
+	<meta name="viewport" content="user-scalable=yes,<!--{ ? gCurrentPageName != 'goods/goods_view' }--> initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,<!--{ / }--> width=device-width" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+	<!--{ ? is_array(gd_isset(headerMeta)) }-->
+	<!-- Add Meta : start -->
+	<!--{ @ headerMeta }-->
+	<!--{ .value_ }-->
+	<!--{ / }-->
+	<!-- Add Meta : end -->
+	<!--{ / }-->
+	
+	<!--{ @ snsShareMetaTag }-->
+	{.value_}
+	  <!-- 기획전 페이지 전용 OG:image -->
+	  <!--{? gCurrentPageName == "proc/members-week" }-->
+		<meta property="og:image" content="https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/editor/goods/common-content/1/7a17c9e9be49d54ce5f45965c631e25d.jpg">
+	  <!--{ / }-->
+	<!--{ / }-->
+
+	<!--{ ? gMall.mallFavicon }-->
+	<link rel="icon" href="/data/common/favicon.ico" type="image/x-icon" />
+	<!--{ / }-->
+
+	<!--{ ? isset(gMobile.mobileShopIcon) !== false }-->
+	<link rel="apple-touch-icon-precomposed" href="{=gMobile.mobileShopIcon}" />
+	<link rel="shortcut icon" href="{=gMobile.mobileShopIcon}">
+	<!--{ : }-->
+	<link rel="apple-touch-icon-precomposed" href="/data/commonimg/defaultShopIcon.png" />
+	<link rel="shortcut icon" href="/data/commonimg/defaultShopIcon.png">
+	<!--{ / }-->
+	<!--{ ? gMall.robotsFl == 'n' }-->
+	<meta name="robots" content="noindex, nofollow" />
+	<meta name="robots" content="noarchive" />
+	<!--{ / }-->
+	<!--<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/plugins/sidebarEffects.css')}">-->
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/plugins/modalEffects.css')}">
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/plugins/multiMenuEffects.css')}">
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/gd_reset.css')}" />
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/gd_layout.css')}" />
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/gd_common.css')}" />
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/gd_button.css')}" />
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/proc/proc.css')}" />
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache(c.PATH_MOBILE_SKIN+'css/'+gThisDirName+'/'+gThisDirName+'.css')}" />
+	<!--{ ? (gCurrentPageName == 'mypage/my_page') }-->
+	<!-- 회원정보입력 / 회원정보수정과 동일 CSS -->
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/member/member.css')}" />
+	<!--{ / }-->
+	<!--{ ? (gCurrentPageName == 'goods/goods_view') }-->
+	<!-- 상품상세 REVIEW/Q&A CSS -->
+	<link type="text/css" rel="stylesheet" href="{=setBrowserCache('../css/board/board.css')}" />
+	<!--{ / }-->
+
+	<!--{ ? is_array(gd_isset(headerStyle)) }-->
+	<!-- Add style : start -->
+	<!--{ @ headerStyle }-->
+	<link type="text/css" rel="stylesheet" href="{=.value_}" />
+	<!--{ / }-->
+	<!-- Add style : end -->
+	<!--{ / }-->
+
+	<script type="text/javascript">
+        <!--{=includeFile(gGlobal.languageJson)}-->
+	</script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/gd_gettext.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/vendor/modernizr.custom.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/vendor/underscore-min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/jquery/jquery.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/numeral/numeral.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/global/accounting.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/global/money.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/jquery/validation/jquery.validate.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/jquery/validation/additional-methods.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/copyclipboard/clipboard.min.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/iscroll/iscroll.js')}"></script>
+	<!-- Criteo 로더 파일 -->
+	<script type="text/javascript" src="//dynamic.criteo.com/js/ld/ld.js?a=YOUR_PARTNER_ID" async="true"></script>
+	<!-- END Criteo 로더 파일 -->
+	
+	<!-- google -->
+	<script>
+	  gtag('event', 'conversion', {
+		  'send_to': 'AW-404671112/h89HCPfbgfsBEIiV-8AB',
+		  'value': 1.0,
+		  'currency': 'KRW',
+		  'transaction_id': ''
+	  });
+	</script>
+	
+	<!-- Facebook -->
+	<script>
+	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	document,'script','https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '310042440735308'); // Insert your pixel ID here.
+	fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=310042440735308&ev=PageView&noscript=1"
+	/></noscript>
+	
+	<script type="text/javascript">
+        // 고도몰5 상점대표 도메인
+        var gdGlobalHomeUri = '{=c.URI_OVERSEAS_MOBILE}';
+
+        // 고도몰5 통화정책
+        var gdCurrencyDecimal = {gGlobalCurrency.decimal};
+        var gdCurrencyDecimalFormat = '{gGlobalCurrency.decimalFormat}';
+        var gdCurrencyCode = '{gGlobalCurrency.code}';
+        var gdCurrencyAddDecimal = {=gd_isset(gGlobalCurrency.addDecimal,0)};
+        var gdCurrencyAddDecimalFormat = '{gGlobalCurrency.addDecimalFormat}';
+        var gdCurrencyAddCode = '{gGlobalCurrency.addCode}';
+        var gdLocale = '{gGlobal.locale}';
+        var gdCurrencySymbol = '{=gd_global_currency_symbol()}';
+        var gdCurrencyString = '{=gd_global_currency_string()}';
+
+        // 환율변환 정책
+        fx.base = "KRW";
+        fx.settings = {
+            from : "KRW",
+            to : gdCurrencyCode
+        };
+        fx.rates = {
+            "KRW" : 1,
+            <!--{ @ gGlobalCurrency.perRate }-->
+            "{=.key_}" : {=.value_},
+        <!--{ / }-->
+        }
+	</script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/gd_common.js')}"></script>
+	<script type="text/javascript" src="{=setBrowserCache('../js/gd_ui.js')}"></script>
+	
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=xBFNeA_wkKH0uyBIy9Op&callback=initMap"></script>
+	<script src="../js/wm/cookie.js"></script>
+	<style type="text/css">
+		body {
+		<!--{ ? layout.outbg_img }-->background: url("{=layout.outbg_img}") repeat left top;<!--{ / }-->
+		<!--{ ? layout.outbg_color }-->background-color: #{=str_replace('#', '', layout.outbg_color)};<!--{ / }-->
+		}
+
+		/* body > #wrap > #top : 상단 영역 */
+		header .header_box{
+		<!--{ ? layout.outbg_color }-->background-color: #{=str_replace('#', '', layout.outbg_color)};<!--{ / }-->
+		<!--{ ? layout.topbg_img }-->background: url("{=layout.topbg_img}") repeat 0 0;<!--{ / }-->
+		}
+
+		/* body > #wrap > #container : 메인 영역 */
+		#container {
+		<!--{ ? layout.inbg_img }-->background: url("{=layout.inbg_img}") repeat 0 0;<!--{ / }-->
+		<!--{ ? layout.inbg_color }-->background-color: {=layout.inbg_color};<!--{ / }-->
+		}
+	</style>
+
+	{=customHeader}
+
+	<span itemscope="" itemtype="http://schema.org/Organization">
+	<link itemprop="url" href="https://www.championkorea.com">
+	<a itemprop="sameAs" href="https://www.facebook.com/championseoul"></a>
+	<a itemprop="sameAs" href="https://www.instagram.com/champion_korea"></a>
+	</span>
+	
+	<meta name="naver-site-verification" content="4fd39d4bafeed4fc4efa045c010f9e03b4bb5bb2" />
+</head>
+
+<body>
+<div id="wrap">
+	<script type="text/javascript">
+		var url = $(location).attr('href');
+		var list = url.indexOf('/goods_list.php');
+		var view = url.indexOf('/goods_view.php');
+
+		if (list === -1 && view === -1){
+			$.removeCookie('cateCd', { path: '/' }); // => true
+			// $.removeCookie('referrer', { path: '/' }); // => true
+		// } else if (view > 0){
+			// $.cookie('referrer', true);
+		}
+	</script>
+	
+	<!--{ ? gd_is_login() }-->
+	<!-- cre.ma / 고도몰 로그인 회원 정보 / 스크립트를 수정할 경우 연락주세요 (support@cre.ma) -->
+	<i id="crema-login-name" style="display: none;">{=gSess.memNm}</i>
+	<i id="crema-login-username" style="display: none;">{=gSess.memId}</i>
+	<!--{ / }-->
+	
+	<!-- 추후 변경 -->
+	<div class="top_area"></div>
+	<div class="st-container" id="stContainter">
+		<div class="ly_pop ly_srch" id="popupSearch">
+			<div class="ly_wrap">
+				<!-- 검색 폼 -->
+				{=includeWidget('proc/_header_search.html')}
+				<!-- 검색 폼 -->
+			</div>
+		</div>
+		<div class="ly_pop ly_effect_3" id="popupBoard"></div>
+		<div class="ly_pop ly_effect_3" id="popupBoardWrite"></div>
+		<div class="ly_pop ly_effect_3" id="popupBoardView"></div>
+		<div class="ly_pop ly_effect_3" id="popupOption"></div>
+		<div class="ly_pop ly_effect_3" id="popupCouponApply"></div>
+		<div class="ly_pop ly_effect_3" id="popupSelectGoods"></div><!--게시판 상품연동-->
+		<div class="ly_pop ly_effect_3" id="popupShippingGoodsSelect"></div>
+		<!--{ ? gCurrentPageName == 'goods/goods_view' }-->
+		<div class="ly_pop ly_effect_3" id="popupCoupon"></div>
+		<div class="ly_pop ly_effect_3" id="popupDetailInfo"></div>
+		<!--{ / }-->
+		<!--{ ? gCurrentPageName == 'mypage/order_list' ||  gCurrentPageName == 'mypage/order_view'}-->
+		<div class="ly_pop ly_effect_3" id="popupRefund"></div>
+		<div class="ly_pop ly_effect_3" id="popupBack"></div>
+		<div class="ly_pop ly_effect_3" id="popupExchange"></div>
+		<div class="ly_pop ly_effect_3" id="popupReason"></div>
+		<div class="ly_pop ly_effect_3" id="popupDeliveryMethod"></div>
+		<div class="ly_pop ly_effect_3" id="popupSettle"></div>
+		<!--{ / }-->
+		<!--{ ? gCurrentPageName == 'mypage/order_view'}-->
+		<div class="ly_pop ly_effect_3" id="popupCashReceiptRequest"></div>
+		<div class="ly_pop ly_effect_3" id="popupTaxInvoiceRequest"></div>
+		<!--{ / }-->
+		<!--{ ? gCurrentPageName == 'mypage/shipping' ||  gCurrentPageName == 'order/order'}-->
+		<div class="ly_pop ly_effect_3" id="popupShipping"></div>
+		<!--{ / }-->
+		<div class="ly_pop ly_effect_3" id="popupGhostDepositor"></div>
+		<div class="ly_pop ly_effect_3" id="popupAlikeSearch"></div>
+		<div class="ly_overlay"></div>
+
+		<!--{ ? tpls.header_inc }-->
+		{ # header_inc // 상단디자인 }
+		<!--{ / }-->
+
+		<!-- //추후 변경 -->

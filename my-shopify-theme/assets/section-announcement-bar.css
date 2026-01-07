@@ -1,0 +1,82 @@
+/* ---- Announcement bar section ---- */
+.announcement__bar-section {
+  font-family: var(--main-family);
+  font-weight: var(--main-weight);
+  font-style: var(--main-style);
+  background: var(--background);
+  color: var(--text-color);
+  z-index: 12;
+  animation: fadeIn;
+  animation-duration: 2s;
+}
+
+.announcement__bar-section .grid__wrapper {
+  align-self: center;
+}
+
+.announcement__bar-section p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* ---- Announcement bar menu content ---- */
+ul.announcement__bar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  list-style-type: none;
+}
+
+/* ---- Announcement bar carousel ---- */
+.js-announcement-carousel {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+.js-announcement-carousel.is-hidden {
+  display: none;
+}
+.js-announcement-carousel.flickity-enabled {
+  opacity: 1;
+}
+
+.announcement__carousel-item {
+  width: 100%;
+}
+
+.announcement__bar-section .flickity-button {
+  height: 20px;
+  width: 20px
+}
+
+.announcement__bar-section .flickity-button,
+.announcement__bar-section .flickity-button:hover {
+  background: transparent;
+}
+
+.announcement__bar-section svg {
+  fill:var(--text-color);
+}
+
+.no-js .js-announcement-carousel {
+  opacity: 0;
+  display: none;
+}
+
+.js-announcement-carousel {
+  opacity: 1;
+  display: block;
+}
+
+/* ---- Announcement bar social icons ---- */
+.announcement__bar-section ul.social-icons__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.announcement__bar-section ul.social-icons__wrapper li {
+  margin: 0;
+}

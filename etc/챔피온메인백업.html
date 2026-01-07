@@ -1,0 +1,226 @@
+{*** 쇼핑몰 메인본문 | main/index.php ***} { # header }
+<script type="text/javascript" src="../js/mo_js/main_script.js"></script>
+<!-- morenvy script -->
+
+<style>
+  #contents,
+  .goods_list {
+    padding-bottom: 0;
+  }
+	/* #main-top-slider {
+		max-width: 100% !important;
+		height: auto;
+	}
+	.body-main #wrap .slider-banner-3040312042 img {
+		max-width: none;
+		width: 100% !important;
+		height: 100%;
+		object-fit: cover;
+	}
+	.slider-wrap .slick-slide {
+		width: 11%;
+	} */
+	.sub_content {
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+  .brandp {
+    text-align: center;
+    font-size: 24px;
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 10px 0 120px;
+  }
+</style>
+
+<div class="main_floating move" style="display: none;">
+  <!-- 메인 플로팅팝업 수정하는곳 -->
+  <div class="swiper-container floating">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <a href="http://champion1.godomall.com/member/login.php"><img src="../img/mimg/mpop01.png" /></a>
+      </div>
+      <div class="swiper-slide">
+        <a href="http://champion1.godomall.com/goods/event_sale.php?sno=13"><img src="../img/mimg/mpop02.png" /></a>
+      </div>
+    </div>
+    <ul class="cboth floating_text">
+      <li class="swiper_over">회원가입 이벤트</li>
+      <li>온라인 단독 혜택</li>
+    </ul>
+    <div class="swiper-pagination swiper-pagination_floating"></div>
+    <div class="main_floating_close move">
+      <a href="#none"><img src="../img/mimg/pop_close.png" class="rotate" /></a>
+    </div>
+  </div>
+  <!-- //floating -->
+</div>`
+<div class="main_floating_btn is-open move" style="display: none;">
+  <a href="#none">팝업<br />열기</a>
+</div>
+
+<!-- 메인 상단 슬라이드 -->
+<div id="main-top-slider">
+  {=includeWidget('proc/_slider_banner.html', 'bannerCode', '3040312042')}
+  <div class="btn-wrap" style="display: none;">
+    <p class="btn-prev"><img src="/data/images/banners/icon/arrow-left.png" alt="이전버튼" /></p>
+    <p class="btn-next"><img src="/data/images/banners/icon/arrow-right.png" alt="다음버튼" /></p>
+  </div>
+</div>
+
+<div class="main_content">
+  <div class="main-prd">
+    <div class="main_title cboth">
+      <div class="title_t01">new product</div>
+    </div>
+    <div class="main_tab01">{=includeWidget('goods/_goods_display_main.html','sno','2')}</div>
+  </div>
+  <!-- //main-prd -->
+
+  <div class="event2" style="display: none;">
+    <!-- 메인타이틀 : CHAMPION NOW -->
+    <div class="main_title2 cboth">
+      <div class="title_t01">CHAMPION NOW</div>
+    </div>
+    <div class="main_event2 fleft">{=includeWidget('proc/_slider_banner.html', 'bannerCode', '511517418')}</div>
+    <div class="fright sp_product">{=includeWidget('goods/_goods_display_main.html','sno','3')}</div>
+  </div>
+  <!-- //event2 -->
+
+  <div class="br_product">
+    <!-- 메인타이틀 : MD'S PICK -->
+    <div class="main_title2 cboth">
+      <div class="title_t01">MD'S PICK</div>
+    </div>
+    <ul id="hot-keyword-bn">
+      <li>
+        <div class="pr_ban">
+          <div class="pr_txt01"></div>
+          <!--{ @dataBanner('735864301') }-->{.tag}<!--{ / }-->
+        </div>
+      </li>
+      <li>
+        <div class="pr_ban">
+          <div class="pr_txt01"></div>
+          <!--{ @dataBanner('3959528376') }-->{.tag}<!--{ / }-->
+        </div>
+      </li>
+      <li>
+        <div class="pr_ban">
+          <div class="pr_txt01"></div>
+          <!--{ @dataBanner('701821562') }-->{.tag}<!--{ / }-->
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- //br_product -->
+
+  <div class="main-prd">
+    <div class="grid3">{=includeWidget('goods/_goods_display_main.html','sno','1')}</div>
+    <div class="grid3">{=includeWidget('goods/_goods_display_main.html','sno','8')}</div>
+    <div class="grid3">{=includeWidget('goods/_goods_display_main.html','sno','9')}</div>
+  </div>
+  <!-- //main-prd -->
+</div>
+<!-- //main_content -->
+
+<!-- 룩북 배너 -->
+<div class="center_banner" style="display: none;">
+  <div class="center-bn-img">
+    <a href="">
+      <div class="text-area">
+        <p>lookbook</p>
+        <span>24'F/W COLLECTION </span>
+      </div>
+      <div class="lookbook-bg"><!--{ @dataBanner('4238483832') }-->{.tag}<!--{ / }--></div>
+    </a>
+    <ul class="lookbook-square-bn">
+      <li><!--{ @dataBanner('378864211') }-->{.tag}<!--{ / }--></li>
+      <li><!--{ @dataBanner('1317624213') }-->{.tag}<!--{ / }--></li>
+      <li><!--{ @dataBanner('2054885871') }-->{.tag}<!--{ / }--></li>
+      <li><!--{ @dataBanner('734981150') }-->{.tag}<!--{ / }--></li>
+    </ul>
+    <div class="btn-shop"><a href="/board/list.php?bdId=lookbook">MORE</a></div>
+  </div>
+</div>
+<!-- //center_ban -->
+
+<style>
+	.bottom_banner {width: 1280px; margin: 120px auto; text-align: center;}
+	.bottom_banner img {width: 100%}
+	.bottom_banner .tit01 {padding: 0;}
+	.bottom_banner .tit02 {font-size: 18px; padding: 20px 0;}
+</style>
+
+<div class="bottom_banner" style="display:none;">
+	<div class="tit01 title_t01">Champion BASIC ITEMS</div>
+	<div class="tit02">자주 손이 가는,<br>챔피온 베이직 아이템 라인업</div>
+	<!--{ @dataBanner('236971562') }-->{.tag}<!--{ / }-->
+</div>
+
+<div class="main_content">
+  <div class="brand">
+    <!-- 메인타이틀 : magazine -->
+     
+   <!--
+    <div class="main_title2 cboth">
+     <div class="title_t01">BRAND FILM</div>
+    </div>
+   
+   <div>
+     <iframe width="1680" height="768" src="https://www.youtube.com/embed/L42swlZsOmw?rel=" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p class="brandp">23’FW Cool Kids on the Block</p>
+   </div>
+   -->
+     
+    <!-- 이벤트 배너01 -->
+    <ul class="brand_issue cboth" style="display: none;">
+      <li>
+        <a href="#">
+          <!--{ @dataBanner('2659243489') }-->{.tag}<!--{ / }-->
+        <div class="t01">T1011 <span>티텐일레븐</span></div>
+          <div class="t02">US Heavy Weight Tee </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <!--{ @dataBanner('3739029828') }-->{.tag}<!--{ / }-->
+        <div class="t01">Champion <span>라인업 완벽정리</span></div>
+          <div class="t02">US vs EU vs ASIA 챔피온의 다양한 라인과 스타일</div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <!--{ @dataBanner('2838517793') }-->{.tag}<!--{ / }-->
+          <div class="t01">BE HEALTHY</div>
+          <div class="t02">C VAPOR® 아이템과 함께 건강해지기</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- <div class="instagram">
+    <div class="main_title2">
+      <div class="title_t01">
+        instargram
+        <div class="insta-id"><a href="https://www.instagram.com/champion_korea" target="_blank">@champion_korea</a></div>
+      </div>
+    </div>
+    <div class="insta-feed">{=includeWidget('proc/_insgov2.html', 'sno', '1')}</div>  
+  </div> -->
+</div>
+<!-- //main_content -->
+
+
+<!-- cre.ma / 리뷰 팝업 / 스크립트를 수정할 경우 연락주세요 (support@cre.ma) -->
+<div class="crema-popup"></div>
+
+<!-- cre.ma / 타이틀 -->
+<!--
+<script>$(function(){$(".insta-feed").append('<div class="main_title2"><div class="title_t01">STYLING</div></div>'),$(".insta-feed").children(".main_title2").css({"margin-bottom":"-54px"})});</script>
+-->
+
+<!-- cre.ma / init 스크립트 (PC) / 스크립트를 수정할 경우 연락주세요 (support@cre.ma) -->
+<!--
+<script>(function(i,s,o,g,r,a,m){if(s.getElementById(g)){return};a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.id=g;a.async=1;a.src=r;m.parentNode.insertBefore(a,m)})(window,document,'script','crema-jssdk','//widgets.cre.ma/championkorea.com/init.js');</script>
+-->
+{ # footer }

@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "16281163190f900135": {
+      "type": "image-with-text-overlay",
+      "disabled": true,
+      "settings": {
+        "desktop_height": 500,
+        "mobile_height": 400,
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "scale": 2,
+        "link": "",
+        "title": "Heading",
+        "subheading": "<p>Add a sentence of overlay text to your image</p>",
+        "button_text": "Button",
+        "text_align": "center",
+        "heading_size": 22,
+        "text_size": 14,
+        "text_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_color": "#000000",
+        "button_color_hover": "#000000",
+        "background": "rgba(0,0,0,0)",
+        "caption_horizontal": 50,
+        "caption_vertical": 50,
+        "section_padding": "bottom"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "page_size": "thin",
+        "sidebar_positon": "right"
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "title": "Contact Us",
+        "width": 50
+      }
+    },
+    "1628116181ed38b1a0": {
+      "type": "editorial-columns",
+      "blocks": {
+        "1628116181ed38b1a0-0": {
+          "type": "image",
+          "settings": {
+            "heading": "Heading",
+            "rich_text": "<p>Editorial content</p>",
+            "button": "Button",
+            "link": ""
+          }
+        },
+        "1628116181ed38b1a0-1": {
+          "type": "image",
+          "settings": {
+            "heading": "Heading",
+            "rich_text": "<p>Editorial content</p>",
+            "button": "Button",
+            "link": ""
+          }
+        },
+        "1628116181ed38b1a0-2": {
+          "type": "image",
+          "settings": {
+            "heading": "Heading",
+            "rich_text": "<p>Editorial content</p>",
+            "button": "Button",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1628116181ed38b1a0-0",
+        "1628116181ed38b1a0-1",
+        "1628116181ed38b1a0-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": false,
+        "title": "Welcome",
+        "image_size": "natural",
+        "desktop_image_height": 500,
+        "mobile_image_height": 400,
+        "mobile_swipe": true,
+        "text_align": "center",
+        "color_scheme": "none",
+        "section_padding": "both"
+      }
+    },
+    "16281162861b62e38b": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "title": "Subscribe to our newsletter",
+        "newsletter_subheading": "<p>Use overlay text to give your Join our mailing list - no spam!</p>",
+        "mail_gdpr_text": "<p>*You're signing up to receive our emails and can unsubscribe at any time.</p>",
+        "show_social_icons": false,
+        "color_scheme": "cs1",
+        "section_padding": "both"
+      }
+    }
+  },
+  "order": [
+    "16281163190f900135",
+    "main",
+    "form",
+    "1628116181ed38b1a0",
+    "16281162861b62e38b"
+  ]
+}

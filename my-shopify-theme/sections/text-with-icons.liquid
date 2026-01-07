@@ -1,0 +1,391 @@
+{%- liquid
+
+  for block in section.blocks
+    case section.blocks.size
+      when 1
+        assign grid = 'span-4'
+        assign spacer = 'span-4'
+      when 2
+        assign grid = 'span-4'
+        assign spacer = 'span-2'
+      when 3
+        assign grid = 'span-4'
+      when 4
+        assign grid = 'span-3 md-span-4'
+    endcase
+  endfor
+
+-%}
+
+{% unless section.settings.color_scheme == 'none' %}
+  {% style %}
+    section.text__icons-{{ section.id }} {
+      background: var(--{{ section.settings.color_scheme }}-background) !important;
+    }
+    .text__icons-{{ section.id }} p,
+    .text__icons-{{ section.id }} h3,
+    .text__icons-{{ section.id }} svg {
+      color: var(--{{ section.settings.color_scheme }}-color) !important;
+    }
+    .text__icons-{{ section.id }} svg,
+    .text__icons-{{ section.id }} svg g {
+      fill: var(--{{ section.settings.color_scheme }}-color) !important;
+    }
+  {% endstyle %}
+{% endunless %}
+
+{% capture slideshow_config %}{
+  "wrapAround":false,
+  "cellAlign": "center",
+  "dragThreshold":"5",
+  "contain": true,
+  "freeScroll": false,
+  "prevNextButtons": false,
+  "pageDots": true,
+  "watchCSS": true,
+  "cellSelector": ".text-with-icon__content"
+  }{% endcapture %}
+
+<section class="text__icons-{{ section.id }} global__section global__section--padding flickity__section"
+  data-section-id="{{ section.id }}"
+  data-aos="{{ settings.scroll_animation }}"
+  data-section-type="carousel-section">
+
+  <div class="row grid__wrapper rg0 md-rg6 text-with-icon__container flickity-section js-carousel" data-flickity='{{ slideshow_config }}'>
+
+    {% if section.blocks.size <= 2 %}
+      <div class="spacer {{ spacer }} auto sm-hide">
+      </div>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      <div class="text-with-icon__content center {{ grid }} md-span-6 auto" 
+        data-aos="{{ settings.scroll_animation }}"
+        data-aos-delay="{{ forloop.index | times: 100 }}"
+        {{ block.shopify_attributes }}>
+        <div class="text-with-icon__icon">
+          {% unless block.settings.icon == 'none' %}
+            {% case block.settings.icon %}
+              {% when 'checkmark' or 'home' or 'plus' or 'sale-tag' or 'secure' or 'share' or 'ship-truck' or 'user-square' or 'user-circle' or 'wish' or 'wish-focus' %}
+                {% assign icon_collection_type = 'apollo' %}
+              {% else %}
+                {% assign icon_collection_type = 'icon-theme' %}
+            {% endcase %}
+            {% render 'snip-icons',
+               wrapper: '.selected__icon',
+               type: icon_collection_type,
+               icon: block.settings.icon,
+               size: '20px',
+               fill: 'var(--text-color)',
+               hover: 'var(--text-color)' %}
+          {% endunless %}
+        </div>
+        <div class="text-with-icon__text">
+          {% if block.settings.heading != blank %}
+            <h3>{{ block.settings.heading }}</h3>
+          {% endif %}
+          {% if block.settings.rich_text != blank %}
+            {{ block.settings.rich_text }}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+<div class="clear"></div>
+
+
+{% schema %}
+{
+  "name": "Text with icons",
+  "max_blocks": 4,
+  "settings":
+  [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "cs1",
+          "label": "1"
+        },
+        {
+          "value": "cs2",
+          "label": "2"
+        },
+        {
+          "value": "cs3",
+          "label": "3"
+        }
+      ],
+      "default": "none"
+    }
+  ],
+  "blocks":
+  [
+    {
+      "type": "text_with_icons",
+      "name": "Text with icons",
+      "settings":
+      [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "label": "Bag",
+              "value": "bag"
+            },
+            {
+              "label": "Calendar",
+              "value": "calendar"
+            },
+            {
+              "label": "Cart",
+              "value": "cart"
+            },
+            {
+              "label": "Checkmark",
+              "value": "checkmark"
+            },
+            {
+              "label": "Clean hands",
+              "value": "clean-hands"
+            },
+            {
+              "label": "Clock",
+              "value": "clock"
+            },
+            {
+              "label": "Cookie",
+              "value": "cookie"
+            },
+            {
+              "label": "Credit card",
+              "value": "credit-card"
+            },
+            {
+              "label": "Cruelty free",
+              "value": "cruelty-free"
+            },
+            {
+              "label": "Diamond",
+              "value": "diamond"
+            },
+            {
+              "label": "Eco",
+              "value": "eco"
+            },
+            {
+              "label": "Finger print",
+              "value": "fingerprint"
+            },
+            {
+              "label": "Flower",
+              "value": "flower"
+            },
+            {
+              "label": "Forest",
+              "value": "forest"
+            },
+            {
+              "label": "Gift",
+              "value": "gift"
+            },
+            {
+              "label": "Globe",
+              "value": "globe"
+            },
+            {
+              "label": "Handshake",
+              "value": "handshake"
+            },
+            {
+              "label": "Health",
+              "value": "health"
+            },
+            {
+              "label": "Home",
+              "value": "home"
+            },
+            {
+              "label": "Laundry",
+              "value": "laundry"
+            },
+            {
+              "label": "Lightning",
+              "value": "lightning"
+            },
+            {
+              "label": "Map",
+              "value": "map"
+            },
+            {
+              "label": "Mail",
+              "value": "mail"
+            },
+            {
+              "label": "Messages",
+              "value": "messages"
+            },
+            {
+              "label": "Nature",
+              "value": "nature"
+            },
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Notification",
+              "value": "notification"
+            },
+            {
+              "label": "Payment",
+              "value": "payment"
+            },
+            {
+              "label": "Pets",
+              "value": "pets"
+            },
+            {
+              "label": "Phone",
+              "value": "phone"
+            },
+            {
+              "label": "Pin drop",
+              "value": "pin-drop"
+            },
+            {
+              "label": "Plus",
+              "value": "plus"
+            },
+            {
+              "label": "Product care",
+              "value": "product-care"
+            },
+            {
+              "label": "Recycle",
+              "value": "recycle"
+            },
+            {
+              "label": "Restaurant",
+              "value": "restaurant"
+            },
+            {
+              "label": "Returns",
+              "value": "returns"
+            },
+            {
+              "label": "Ruler",
+              "value": "ruler"
+            },
+            {
+              "label": "Sale tag",
+              "value": "sale-tag"
+            },
+            {
+              "label": "Sanitize",
+              "value": "sanitize"
+            },
+            {
+              "label": "Search",
+              "value": "search"
+            },
+            {
+              "label": "Secure",
+              "value": "secure"
+            },
+            {
+              "label": "Share",
+              "value": "share"
+            },
+            {
+              "label": "Ship truck",
+              "value": "ship-truck"
+            },
+            {
+              "label": "Smile emoji",
+              "value": "smile-emoji"
+            },
+            {
+              "label": "Star",
+              "value": "star"
+            },
+            {
+              "label": "Star outline",
+              "value": "star-outline"
+            },
+            {
+              "label": "User circle",
+              "value": "user-circle"
+            },
+            {
+              "label": "User square",
+              "value": "user-square"
+            },
+            {
+              "label": "Verified",
+              "value": "verified"
+            },
+            {
+              "label": "Wish",
+              "value": "wish"
+            },
+            {
+              "label": "Wish focus",
+              "value": "wish-focus"
+            },
+            {
+              "label": "World",
+              "value": "world"
+            }
+          ],
+          "default": "plus"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "rich_text",
+          "label": "Text",
+          "default": "<p>Pair a short piece of text with an icon</p>"
+        }
+      ]
+    }
+  ],
+  "presets":
+  [
+    {
+      "name": "Text with icons",
+      "blocks":
+      [
+        {
+          "type": "text_with_icons"
+        },
+        {
+          "type": "text_with_icons"
+        },
+        {
+          "type": "text_with_icons"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups":
+    ["header"]
+  }
+}
+{% endschema %}

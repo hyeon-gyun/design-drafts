@@ -1,0 +1,142 @@
+.parallax--section {
+  overflow: hidden;
+  position: relative;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  height: var(--desktop-section-height);
+  min-height: var(--desktop-section-height);
+}
+
+/* ---- Images ---- */
+.parallax--section .section--image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.section--image:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content:"";
+  background: var(--section-overlay-color);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section--image.mobile--image-true .mobile--image {
+  display: none;
+}
+
+@media screen and (max-width: 740px) {
+  .section--image.mobile--image-true .mobile--image {
+    display: block;
+  }
+  .section--image.mobile--image-true .desktop--image {
+    display: none;
+  }
+}
+
+.parallax--section .simpleParallax.simple-parallax-initialized {
+  height: var(--desktop-section-height);
+}
+
+.parallax--section .simpleParallax.simple-parallax-initialized img {
+  object-fit: cover;
+  height: 100%;
+}
+
+@media screen and ( max-width: 740px ) {
+  .parallax--section,
+  .parallax--section article {
+    height: var(--mobile-section-height);
+    min-height: var(--mobile-section-height);
+  }
+  .parallax--section article .box-ratio {
+    padding-bottom: var(--mobile-section-height) !important;
+  }
+  .parallax--section .simpleParallax.simple-parallax-initialized {
+    height: var(--mobile-section-height);
+  }
+  .parallax--section .simpleParallax.simple-parallax-initialized img {
+    height: 100%;
+  }
+}
+
+/* ---- Caption ---- */
+.parallax--section .section--caption {
+  top: var(--caption-vertical);
+  left: var(--caption-horizontal);
+  --webkit-transform: translate(var(--caption-horizontal-negative), var(--caption-vertical-negative));
+  --ms-transform: translate(var(--caption-horizontal-negative), var(--caption-vertical-negative));
+  --moz-transform: translate(var(--caption-horizontal-negative), var(--caption-vertical-negative));
+  --o-transform: translate(var(--caption-horizontal-negative), var(--caption-vertical-negative));
+  transform: translate(var(--caption-horizontal-negative), var(--caption-vertical-negative));
+}
+
+.parallax--section .section--caption {
+  max-width:  90%;
+  width: max-content;
+  position: absolute;
+  z-index: 2;
+  background: var(--background);
+  padding: 30px;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  -ms-align-content: center;
+  align-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+/* ---- Add bottom margin to 2nd rte element to help with line height offset ---- */
+.section--caption .rte:nth-child(2n) {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 740px) {
+  .parallax--section .section--caption {
+    padding: 1rem;
+  }
+}
+
+.parallax--section .section--caption.a-left {
+  align-items: flex-start;
+}
+
+.parallax--section .section--caption.a-right {
+  align-items: flex-end;
+}
+
+.parallax--section .section--caption h1,
+.parallax--section .section--caption h2,
+.parallax--section .section--caption .rte > *,
+.parallax--section .section--caption .button {
+  margin: 0;
+}
+
+.parallax--section .section--caption a.button {
+  width: auto;
+  padding: 0 15px;
+  font-size: var(--base-font-size);
+}
+
+/* ---- Onboarding ---- */
+.parallax--image-placeholder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.parallax--image-placeholder svg {
+  height: 100%;
+  width: 100%;
+}

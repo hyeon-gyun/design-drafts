@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css" />
+<link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet" />
+<title>레이아웃 샘플 3</title>
+<style>
+  :root{
+    --bg:#0a0a0a;           /* 페이지 배경 */
+    --fg:#ffffff;           /* 본문 전경 */
+    --text:#222;            /* 본문 텍스트 */
+    --muted:#8b8b8b;        /* 보조 텍스트 */
+    --brand:#bd161c;        /* Primary */
+    --secondary-dark:#000000;
+    --secondary-light:#ffffff;
+    --secondary-accent:#232d64;
+    --light:#ececec;        /* 이미지 자리(옅은 회색) */
+    --card:#ffffff;
+    --announcement-h:32px;  /* 상단 띠 높이 */
+    --header-h:72px;         /* 헤더 높이 */
+    --hero-offset:calc(var(--announcement-h) + var(--header-h));
+    --search-h:80px;         /* 검색 영역 높이 */
+    --max:1280px;
+    --iphone17-w:393px;
+    --iphone17-h:852px;
+    --iphone17-aspect:393 / 852;
+  }
+
+  /* Helvetica Neue full weight set */
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:normal;
+    font-weight:100;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-Thin.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:italic;
+    font-weight:100;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-ThinItalic.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:normal;
+    font-weight:300;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-Light.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:italic;
+    font-weight:300;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeueLightItalic.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:normal;
+    font-weight:400;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-Roman.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:italic;
+    font-weight:400;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeueItalic.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:normal;
+    font-weight:500;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-Medium.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:italic;
+    font-weight:500;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-MediumCondObl.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:normal;
+    font-weight:700;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeueBold.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:italic;
+    font-weight:700;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeueBoldItalic.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:normal;
+    font-weight:900;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaNeue-Black.woff') format('woff');
+  }
+  @font-face{
+    font-family:'Helvetica Neue';
+    font-style:italic;
+    font-weight:900;
+    src:url('https://fonts.cdnfonts.com/s/14188/HelveticaBlkIt.woff') format('woff');
+  }
+
+  *{box-sizing:border-box}
+  html{font-size:14px; background:#fff}
+  html,body{margin:0}
+  body{
+    font:14px/1.6 'Helvetica Neue','Pretendard',system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif;
+    color:var(--text);
+    background:#fff;
+    word-break:keep-all;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    min-height:var(--iphone17-h);
+    padding:20px 0;
+    overflow-y:auto;
+  }
+
+  .mobile-frame{
+    width:var(--iphone17-w);
+    max-width:var(--iphone17-w);
+    background:var(--fg);
+    border-radius:24px;
+    box-shadow:0 30px 80px rgba(0,0,0,.18);
+    overflow:hidden;
+  }
+
+  body.force-mobile .menu{display:none}
+  body.force-mobile .wrap{max-width:100%; padding:0 16px}
+  body.force-mobile section{margin:100px 0}
+  body.force-mobile .hero{margin:0}
+  body.force-mobile .hero.wrap{padding:0}
+  body.force-mobile .hero .banner{
+    background-image:url('https://championstore.jp/media/wysiwyg/parts/25fw/st/ch_25fwstd_l1.jpg');
+    padding:0;
+    text-align:center;
+  }
+  body.force-mobile .lookbook-preview,
+  body.force-mobile .grid-3,
+  body.force-mobile .grid-2{grid-template-columns:1fr}
+  body.force-mobile .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body.force-mobile .banner-tiles__grid{grid-template-columns:1fr}
+  body.force-mobile .hero__title{font-size:2rem}
+  body.force-mobile .hero__description{font-size:1rem; margin:0 auto 24px}
+  body.force-mobile .video-band .inner{padding:0}
+  body.force-mobile .video-band .section-title{text-align:center}
+  body.force-mobile .mp4-container{display:none}
+  body.force-mobile .mp4-container-mobile{display:block}
+  body.force-mobile .mp4-container-mobile video{aspect-ratio:3/4}
+  body.force-mobile .heritage-cta{padding:50px 16px}
+  body.force-mobile .heritage-cta .cta-container{flex-direction:column; text-align:center}
+  body.force-mobile .heritage-cta .headline{margin-bottom:16px; font-size:2rem}
+  body.force-mobile .heritage-cta .headline span{font-size:2.8rem}
+  body.force-mobile .heritage-cta .description{font-size:14px}
+  body.force-mobile .heritage-cta .cta-image img{width:80%; margin:0 auto}
+  body.force-mobile .heritage-cta .cta-background{display:none}
+
+  /* 상단 띠 */
+  .announcement{
+    background:var(--brand);
+    color:#fff;
+    text-align:center;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:var(--announcement-h);
+    padding:4px 12px;
+  }
+
+  /* 헤더/내비 */
+  header{
+    border-bottom:1px solid #e8e8e8;
+    background:var(--secondary-light);
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .nav{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 20px;
+    min-height:var(--header-h);
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    margin-right:auto;
+  }
+  .logo img{height:32px; width:auto}
+  .menu{
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .menu a{
+    color:var(--secondary-dark); text-decoration:none; font-weight:600;
+  }
+  .menu a:hover{color:var(--brand)}
+  .utils{display:flex; gap:16px}
+  .util-btn{font-size:1rem; color:#555; text-decoration:none}
+
+  .search-area{
+    background:#fff;
+    padding:0 16px;
+    border-bottom:1px solid #efefef;
+    margin:0;
+    min-height:var(--search-h);
+    display:flex;
+    align-items:center;
+  }
+  .search-panel{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    width:100%;
+  }
+  .search-field{
+    flex:1;
+    display:flex;
+    align-items:center;
+    border:1px solid #c5c5c5;
+    padding:10px 12px;
+    background:#fff;
+  }
+  .search-field input{
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:1rem;
+    font-family:'Helvetica Neue','Pretendard',system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif;
+    color:#222;
+    background:#fff;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .search-field button{
+    border:none;
+    background:none;
+    padding:0;
+    cursor:pointer;
+  }
+  .search-icons{
+    display:flex;
+    gap:16px;
+  }
+  .icon-btn{
+    width:40px;
+    height:40px;
+    border:1px solid #c5c5c5;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .icon-btn:hover{background:#f6f6f6}
+  .sr-only{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    border:0;
+  }
+
+  /* 공통 컨테이너/섹션 */
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+  section{margin:50px 0}
+  section.search-area{margin-top:0 !important; margin-bottom:0 !important;}
+  .wrap + .wrap{margin-top:50px}
+  .section-title{
+    margin:0 0 20px;
+    text-align:left;
+    font-size:26px;
+    font-family:'Helvetica Neue','Pretendard',system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    color:#000;
+  }
+  .section-title::after{
+    content:attr(data-subtitle);
+    display:block;
+    font-size:14px;
+    text-transform:none;
+    font-weight:400;
+    color:#555;
+  }
+  .collaboration-group{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .collection-group{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .collection-group > *:not(:first-child){
+    margin-top:24px;
+  }
+  .wrap.collection-group > .section-title + *{
+    margin-top:0;
+  }
+  .wrap.collection-group .section-title{
+    margin-bottom:20px;
+  }
+
+  /* 히어로 배너 */
+  .hero{
+    margin:0 0 40px;
+  }
+  .hero.wrap{
+    padding:0;
+    max-width:100%;
+    width:100%;
+  }
+  .hero .banner{
+    background-color:var(--light);
+    background-image:url('https://championstore.jp/media/wysiwyg/parts/25fw/st/ch_25fwstd_l1.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    aspect-ratio:4/6;
+    position:relative; overflow:hidden;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 20px;
+    isolation:isolate;
+  }
+  .hero .banner::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.1));
+    z-index:0;
+  }
+  .hero .banner .hero__content{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    color:#fff;
+    width:100%;
+    max-width:var(--max);
+    margin:0 auto;
+    gap:16px;
+    align-items:center;
+    text-align:center;
+    opacity:0;
+    transform:translateY(40px);
+    animation:heroReveal 1.2s ease forwards .2s;
+  }
+  .hero .banner .backdrop--hero{position:relative;}
+  .hero .banner .backdrop--hero::before{content:none;}
+  .hero__kicker{font-size:1rem; letter-spacing:.2em; font-weight:600; margin:0 0 12px; display:inline-block; text-transform:uppercase; color:#fff}
+  .hero__kicker span{display:inline; padding:0; background:none; color:inherit}
+  .hero__title{font-size:3rem; margin:0 0 16px; line-height:1.1; font-weight:800}
+  .hero__description{font-size:1rem; margin:0 auto 28px; max-width:520px; width:100%}
+  .hero__description p{margin:0}
+  .hero .banner .hero__content.js-overflow-content.backdrop--hero :is(p,h1,h2,h3,h4,h5,h6){
+    margin-bottom:0;
+  }
+  .hero .banner .hero__content.js-overflow-content.backdrop--hero .hero__description{
+    margin-bottom:0;
+  }
+  .hero__cta__wrapper{display:flex; gap:16px; flex-wrap:wrap; justify-content:center}
+  .button-solid, .cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px 28px;
+    font-weight:500;
+    font-size:1rem;
+    text-decoration:none;
+    background:var(--brand);
+    color:var(--secondary-light);
+    transition:background .2s ease;
+  }
+  .button-solid:hover, .cta:hover{background:color-mix(in srgb, var(--brand) 85%, #000);}
+  .hero__btn{display:inline-flex;}
+
+  @keyframes heroReveal{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .hero-bottom-banner{margin:20px 0 50px}
+  .hero-bottom-banner .banner-link{display:block}
+  .hero-bottom-banner img{width:100%; display:block; border-radius:0}
+  .hero-bottom-actions{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+    margin:20px auto 50px;
+  }
+  .hero-bottom-actions .action-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 16px;
+    background:#232d64;
+    color:#fff;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-weight:400;
+  }
+
+  /* 메인 배너 타일 */
+  .banner-tiles{margin:56px 0; padding:0}
+  .banner-tiles__grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+  }
+  .banner-tile{
+    position:relative;
+    border-radius:0;
+    overflow:hidden;
+    min-height:200px;
+    isolation:isolate;
+  }
+  .banner-tile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .banner-tile::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.65));
+    z-index:1;
+  }
+  .banner-tile__tag{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:.08em;
+    line-height:1.2;
+    text-transform:uppercase;
+    color:#fff;
+  }
+  .banner-tile__cta{
+    position:absolute;
+    left:50%;
+    bottom:50px;
+    transform:translateX(-50%);
+    z-index:3;
+    background:transparent;
+    color:#fff;
+    border:1px solid #fff;
+    padding:10px 26px;
+    border-radius:0;
+    font-size:.95rem;
+    font-weight:600;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:opacity .2s ease, background .2s ease;
+  }
+  .banner-tile__cta:hover{background:rgba(255,255,255,.15);}
+  .banner-tile__cta:active{opacity:.7;}
+
+  /* 2열 룩북 프리뷰 */
+  .lookbook-preview{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  }
+  .ph{background:var(--light)}
+  .ph.ratio-56{aspect-ratio:1/1}
+  .ph.ratio-11{aspect-ratio:1/1}
+  .ph.ratio-34{aspect-ratio:3/4}
+
+  /* 헤리티지 CTA */
+  .heritage-cta{
+    margin:56px 0;
+    position:relative;
+    background:var(--secondary-accent);
+    color:var(--secondary-light);
+    overflow:hidden;
+    padding:60px 20px;
+  }
+  .heritage-cta .cta-container{
+    position:relative;
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .heritage-cta .cta-image,
+  .heritage-cta .cta-text{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .heritage-cta .visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .heritage-cta .cta-image img{
+    width:420px;
+    max-width:100%;
+    border-radius:5px;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+    display:block;
+  }
+  .heritage-cta .cta-text{
+    flex:1;
+    min-width:260px;
+  }
+  .heritage-cta .headline{
+    font-size:3rem;
+    line-height:1.2;
+    font-weight:700;
+    font-family:'Helvetica Neue','Pretendard',system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,sans-serif;
+    margin:0 0 20px;
+    font-variant-numeric:lining-nums;
+  }
+  .heritage-cta .headline span{font-size:4rem; display:block;}
+  .heritage-cta .description{
+    color:rgba(255,255,255,.7);
+    font-size:14px;
+    line-height:1.6;
+    margin:0;
+  }
+  .heritage-cta .cta-link{
+    margin-top:24px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    gap:16px;
+    transition:transform .3s ease;
+  }
+  .heritage-cta .cta-link::after{
+    content:'→';
+    font-size:1rem;
+    transition:transform .3s ease;
+  }
+  .heritage-cta .cta-link:hover::after{transform:translateX(6px);}
+  .heritage-cta .cta-background{
+    position:absolute;
+    inset:0;
+  }
+  .heritage-cta .cta-background img{
+    position:absolute;
+    width:300px;
+    height:auto;
+    object-fit:cover;
+    opacity:.25;
+    transform:scale(.95);
+    transition:opacity 1s ease, transform 1s ease;
+    pointer-events:none;
+  }
+  .heritage-cta .cta-background img.visible{
+    opacity:.4;
+    transform:scale(1);
+  }
+
+  /* New Arrivals 카드 그리드 */
+  .grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
+  }
+  .grid-4 .card:nth-of-type(n+5){display:none}
+  .card{
+    background:var(--card); overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .card .thumb{
+    background:var(--light);
+    aspect-ratio:3/4;
+    background-size:cover;
+    background-position:center;
+  }
+  .card .meta{padding:12px 12px 14px; display:flex; flex-direction:column; flex:1; gap:10px}
+  .card .name{
+    font-weight:400;
+    font-size:1rem;
+    margin:0;
+    flex-grow:1;
+    word-break:normal;
+    overflow-wrap:anywhere;
+  }
+  .price-row{display:flex; gap:0 5px; align-items:flex-start; flex-wrap:wrap}
+  .price-row .discount{color:var(--brand); font-weight:800; font-size:1rem}
+  .price-row .sale-price{font-weight:700; color:var(--secondary-dark); font-size:1rem}
+  .price-row .original-price{
+    color:var(--muted);
+    font-size:1rem;
+    text-decoration:line-through;
+    order:-1;
+    width:100%;
+  }
+  .view-more-wrap{margin-top:24px}
+  .view-more{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    padding:12px 32px;
+    border:1px solid var(--secondary-dark);
+    font-weight:500;
+    font-size:1rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--secondary-dark);
+    text-decoration:none;
+    transition:background .2s ease, color .2s ease;
+  }
+  .view-more:hover{background:var(--secondary-dark); color:var(--secondary-light);}
+
+  /* 카테고리 3열 */
+  .category-carousel{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+  }
+  .category-carousel::-webkit-scrollbar{height:4px}
+  .category-carousel::-webkit-scrollbar-thumb{background:#ccc; border-radius:999px}
+  .category-carousel.is-dragging{
+    cursor:grabbing;
+    user-select:none;
+  }
+  .category{background:var(--secondary-light); border:1px solid #eee; overflow:hidden}
+  .category .thumb{
+    background:var(--light);
+    aspect-ratio:3/4;
+    background-size:cover;
+    background-position:center;
+  }
+  .category .meta{padding:12px}
+  .category .title{font-weight:800; margin:0 0 4px}
+  .category .desc{color:var(--muted); font-size:1rem}
+  .category-products{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    padding:0 12px 12px;
+  }
+  .category-product{
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .category-product .thumb{
+    aspect-ratio:1/1;
+    
+    background-size:cover;
+    background-position:center;
+  }
+  .category-product .label{
+    margin:0;
+    font-size:.85rem;
+    font-weight:600;
+    color:#111;
+  }
+  .category-product .price{
+    margin:0;
+    font-size:.8rem;
+    color:#777;
+  }
+  .category-carousel .category:nth-of-type(3){display:none;}
+  body.force-mobile .category-carousel{
+    display:flex;
+    overflow-x:auto;
+    gap:16px;
+    padding-bottom:8px;
+    cursor:grab;
+    -webkit-overflow-scrolling:touch;
+  }
+  body.force-mobile .category-carousel .category{
+    flex:0 0 90%;
+    scroll-snap-align:start;
+  }
+  @media (max-width:900px){
+    .category-carousel{
+      display:flex;
+      overflow-x:auto;
+      gap:16px;
+      padding-bottom:8px;
+      cursor:grab;
+      -webkit-overflow-scrolling:touch;
+    }
+    .category-carousel .category{
+      flex:0 0 75%;
+      scroll-snap-align:start;
+    }
+  }
+
+  /* 비디오 배너 */
+  .video-band{
+    margin:72px 0; padding:0; color:var(--secondary-light);
+  }
+  .video-band .inner{
+    max-width:none;
+    margin:0;
+    padding:0;
+  }
+  .video-background-section{
+    position:relative;
+    overflow:hidden;
+    background:none;
+    width:100%;
+  }
+  .mp4-container,
+  .mp4-container-mobile{position:relative; width:100%;}
+  .mp4-container-mobile{display:none}
+  .video-hero,
+  .video-hero-mobile{
+    width:100%;
+    display:block;
+    border:none;
+    outline:none;
+    aspect-ratio:1/1;
+    object-fit:cover;
+  }
+  .video-hero::-webkit-media-controls,
+  .video-hero-mobile::-webkit-media-controls{display:none !important}
+  .is-hidden{display:none !important}
+
+  /* 2열 섹션 (Champion Now) */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .grid-banner{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+    aspect-ratio:3/4;
+  }
+  .grid-banner::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.35);
+  }
+  .grid-banner span{
+    position:relative;
+    z-index:1;
+  }
+
+  /* 2555 Collection 3열 */
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    column-gap:16px;
+    row-gap:16px;
+  }
+  /* grid-3 재사용 */
+
+  /* 푸터 */
+  footer{
+    background:#f1f1f1;
+    color:#1a1a1a;
+    margin-top:72px;
+    padding:48px 0 60px;
+    border-top:1px solid #e4e4e4;
+  }
+  .footer-wrap{max-width:var(--max); margin:0 auto; padding:0 20px; display:flex; flex-direction:column; gap:16px}
+  .footer-menu{list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:16px; font-size:.95rem}
+  .footer-menu a{color:#111; text-decoration:none; font-weight:600}
+  .footer-menu a:hover{text-decoration:underline}
+  .footer-cs{font-size:1rem; line-height:1.6}
+  .footer-cs a{color:#111; text-decoration:none; font-weight:700}
+  .footer-info{font-size:.95rem; line-height:1.6}
+  .footer-info a{color:#9a9a9a; text-decoration:none}
+  .footer-policy{list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:16px}
+  .footer-policy a{color:#111; text-decoration:none}
+  .footer-policy a:hover{text-decoration:underline}
+  .footer-cert{list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:16px}
+  .footer-sns ul{list-style:none; padding:0; margin:0; display:flex; gap:16px}
+  .footer-sns img{width:24px; height:24px}
+  .footer-note{font-size:.9rem; color:#555}
+
+  /* 반응형 */
+  @media (max-width:1280px){
+    .video-background-section{max-width:100%;}
+  }
+  @media (max-width:1024px){
+    .grid-4{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .heritage-cta .headline{font-size:2.6rem}
+    .heritage-cta .headline span{font-size:3.4rem}
+  }
+  @media (max-width:768px){
+    body{
+      display:block;
+      padding:0;
+      min-height:100vh;
+    }
+    .mobile-frame{
+      width:100%;
+      max-width:100%;
+      border-radius:0;
+      box-shadow:none;
+    }
+    .menu{display:none}
+    .lookbook-preview, .grid-3, .grid-2{grid-template-columns:1fr}
+    .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .hero .banner{
+      background-image:url('https://www.champion.com/cdn/shop/files/0912-champ_HP_mobile.jpg?v=1757513019&width=1558');
+      padding:0 16px 48px;
+      text-align:center;
+    }
+    .banner-tiles__grid{grid-template-columns:1fr}
+    .hero__title{font-size:2.2rem}
+    .hero__description{font-size:1rem; margin:0 auto 24px}
+    .video-band .inner{padding:0}
+    .video-band .section-title{text-align:center}
+    .mp4-container{display:none}
+    .mp4-container-mobile{display:block}
+    .mp4-container-mobile video{aspect-ratio:1/1;}
+    .heritage-cta{padding:40px 16px}
+    .heritage-cta .cta-container{flex-direction:column; text-align:center}
+    .heritage-cta .headline{margin-bottom:16px}
+    .heritage-cta .cta-image img{width:80%; margin:0 auto}
+    .heritage-cta .cta-background{display:none}
+  }
+  @media (max-width:480px){
+    .hero__title{font-size:1.8rem}
+    .heritage-cta .headline{font-size:2rem}
+    .heritage-cta .headline span{font-size:2.8rem}
+    .heritage-cta .description{font-size:14px}
+  }
+</style>
+</head>
+<body class="force-mobile">
+
+  <div class="mobile-frame">
+
+  <div class="announcement">SEASON OFF SALE — 2025.12.31 까지</div>
+
+  <header>
+    <div class="nav">
+      <a class="logo" href="/">
+        <img src="https://www.champion.com/cdn/shop/files/champion-logo-blue.png?v=1740169510&width=350" alt="Champion" />
+      </a>
+      <nav class="menu">
+        <a href="#">New</a><a href="#">Men</a><a href="#">Women</a>
+        <a href="#">Hoodies</a><a href="#">Pants</a><a href="#">T-Shirts</a>
+        <a href="#">Lookbook</a><a href="#">Sale</a>
+      </nav>
+      <div class="utils">
+        <a class="util-btn" href="#">로그인</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="search-area">
+    <div class="search-panel">
+      <label class="search-field">
+        <span class="sr-only">검색어 입력</span>
+        <input type="search" placeholder="리버스위브 신상품 발매" />
+        <button type="button" aria-label="검색">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16" y1="16" x2="22" y2="22" />
+          </svg>
+        </button>
+      </label>
+      <div class="search-icons">
+        <button class="icon-btn" type="button" aria-label="장바구니">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 7l1 12h10l1-12z" />
+            <path d="M9 7V5a3 3 0 0 1 6 0v2" />
+          </svg>
+        </button>
+        <button class="icon-btn" type="button" aria-label="메뉴">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- 히어로 -->
+    <section class="hero wrap">
+      <div class="banner">
+        <div class="hero__content js-overflow-content backdrop--hero" style="--bg: #000000; --opacity: 0.43; --bg-protection-position-horizontal: 59%; --bg-protection-position-vertical: 50%;">
+          <p class="hero__kicker kicker_fX7rUK gt-p__accent" data-aos="hero" data-aos-order="1">
+            <span>NEW ARRIVALS</span>
+          </p>
+          <h1 class="hero__title heading_QUrJyF gt-h1" data-aos="hero" data-aos-order="2">
+            <span>SWEAT SHIRT</span>
+          </h1>
+          <div class="hero__description rte text_tnmWCd gt-p" data-aos="hero" data-aos-order="3">
+            <p>편안함을 더하는 필수 아이템을 지금 확인해 보세요</p>
+          </div>
+          <div class="hero__cta__wrapper">
+            <a class="hero__btn button-solid" href="/collections/new-arrivals" data-aos="hero">
+              SHOP NEW ARRIVALS
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hero-bottom-banner">
+      <a href="/main/html.php?htmid=proc/membership.html" class="banner-link">
+        <img src="https://champitr6563.cdn-nhncommerce.com/data/images/banners/sub_bnr_sample.jpg" alt="회원 혜택">
+      </a>
+    </div>
+    <div class="wrap hero-bottom-actions">
+      <a class="action-btn" href="#">MEN →</a>
+      <a class="action-btn" href="#">WOMEN →</a>
+      <a class="action-btn" href="#">KIDS →</a>
+      <a class="action-btn" href="#">ACC. →</a>
+    </div>
+
+    <!-- NEW ARRIVALS -->
+    <section class="wrap">
+      <h3 class="section-title" data-subtitle="2025fw 신상품 출시">NEW IN</h3>
+      <div class="grid-4">
+        <!-- 8개 예시 -->
+        <!-- 카드는 필요 수량만 복제 -->
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">60%</span>
+              <span class="sale-price">51,600원</span>
+              <span class="original-price">129,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">30%</span>
+              <span class="sale-price">55,300원</span>
+              <span class="original-price">79,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">20%</span>
+              <span class="sale-price">55,200원</span>
+              <span class="original-price">69,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">10%</span>
+              <span class="sale-price">26,100원</span>
+              <span class="original-price">29,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">25%</span>
+              <span class="sale-price">66,700원</span>
+              <span class="original-price">89,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">15%</span>
+              <span class="sale-price">84,100원</span>
+              <span class="original-price">99,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">20%</span>
+              <span class="sale-price">47,200원</span>
+              <span class="original-price">59,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010212/image/main/1000010212_main_041.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">15%</span>
+              <span class="sale-price">29,700원</span>
+              <span class="original-price">35,000원</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="view-more-wrap">
+        <a class="view-more" href="#">VIEW MORE</a>
+      </div>
+    </section>
+
+    <!-- 메인 배너 타일 -->
+    <section class="banner-tiles">
+      <div class="banner-tiles__grid">
+        <article class="banner-tile">
+          <img src="https://champitr6563.cdn-nhncommerce.com/data/skin/front/desktop/pages/magazine/2025fw_campaign/1.jpg" alt="캠페인 배너 1">
+          <span class="banner-tile__tag">UNISEX</span>
+          <a class="banner-tile__cta" href="#">VIEW MORE</a>
+        </article>
+        <article class="banner-tile">
+          <img src="https://champitr6563.cdn-nhncommerce.com/data/skin/front/desktop/pages/magazine/2025fw_campaign/7_test.jpg" alt="캠페인 배너 2">
+          <span class="banner-tile__tag">ONLY<br>FOR<br>WOMEN</span>
+          <a class="banner-tile__cta" href="#">VIEW MORE</a>
+        </article>
+        <article class="banner-tile">
+          <img src="https://champitr6563.cdn-nhncommerce.com/data/skin/front/desktop/pages/magazine/2025campaign/14.jpg" alt="캠페인 배너 3">
+          <span class="banner-tile__tag">ACC.</span>
+          <a class="banner-tile__cta" href="#">VIEW MORE</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- NEW ARRIVALS (복제) -->
+    <section class="wrap">
+      <h3 class="section-title" data-subtitle="2025년 베스트 상품">BEST</h3>
+      <div class="grid-4">
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010216/image/list/1000010216_list_015.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">60%</span>
+              <span class="sale-price">51,600원</span>
+              <span class="original-price">129,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010216/image/list/1000010216_list_015.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">30%</span>
+              <span class="sale-price">55,300원</span>
+              <span class="original-price">79,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010216/image/list/1000010216_list_015.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">20%</span>
+              <span class="sale-price">55,200원</span>
+              <span class="original-price">69,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000010216/image/list/1000010216_list_015.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">10%</span>
+              <span class="sale-price">26,100원</span>
+              <span class="original-price">29,000원</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="view-more-wrap">
+        <a class="view-more" href="#">VIEW MORE</a>
+      </div>
+    </section>
+
+    <!-- 비디오 배너 -->
+    <section class="video-band">
+      <div class="inner">
+        <div class="video-background-section">
+          <div class="mp4-container">
+            <video playsinline autoplay loop muted class="video-hero" preload="metadata" poster="https://cdn.shopify.com/videos/c/o/v/316e3060983c4567b151cf6648646340.mp4">
+              <source src="https://cdn.shopify.com/videos/c/o/v/316e3060983c4567b151cf6648646340.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="mp4-container-mobile">
+            <video playsinline autoplay loop muted class="video-hero-mobile" preload="metadata" poster="https://cdn.shopify.com/videos/c/o/v/316e3060983c4567b151cf6648646340.mp4">
+              <source src="https://cdn.shopify.com/videos/c/o/v/316e3060983c4567b151cf6648646340.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOOKBOOK 프리뷰 & 카테고리 3열 (스와이프) -->
+    <section class="wrap collaboration-group">
+      <h3 class="section-title" data-subtitle="콜라보레이션">collaboration</h3>
+      <div class="category-carousel">
+        <div class="category">
+          <div class="thumb" style="background-image:url('https://champitr6563.cdn-nhncommerce.com/data/skin/mobile/mobile/img/banner/slider_3606671697/ae7775073e3529c5f006cb9c47844c50_87886.jpg');"></div>
+          <div class="meta">
+            <p class="title">× UNDERCOVER</p>
+            <p class="desc">'but beautiful 4'</p>
+          </div>
+          <div class="category-products">
+            <div class="category-product">
+              <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013540/image/main/1000013540_main_048.jpg');"></div>
+              <p class="label">Champion Essentials Hoodie</p>
+              <p class="price">₩79,000</p>
+            </div>
+            <div class="category-product">
+              <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013540/image/main/1000013540_main_048.jpg');"></div>
+              <p class="label">Reverse Weave Crew</p>
+              <p class="price">₩69,000</p>
+            </div>
+          </div>
+        </div>
+        <div class="category">
+          <div class="thumb" style="background-image:url('https://champitr6563.cdn-nhncommerce.com/data/skin/mobile/mobile/img/banner/slider_3606671697/f3ccdd27d2000e3f9255a7e3e2c48800_21744.jpg');"></div>
+          <div class="meta">
+            <p class="title">× Khakis</p>
+            <p class="desc">'기본에 충실한 아름다움'</p>
+          </div>
+          <div class="category-products">
+            <div class="category-product">
+              <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013539/image/main/1000013539_main_030.jpg');"></div>
+              <p class="label">Champion Essentials Hoodie</p>
+              <p class="price">₩69,000</p>
+            </div>
+            <div class="category-product">
+              <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013539/image/main/1000013539_main_030.jpg');"></div>
+              <p class="label">Essential Zip Up</p>
+              <p class="price">₩72,000</p>
+            </div>
+          </div>
+        </div>
+        <div class="category">
+          <div class="thumb" style="background-image:url('https://champitr6563.cdn-nhncommerce.com/data/skin/front/desktop/img/banner/3349f7b674a5b499632caccd1a1136cf_72086.jpg');"></div>
+          <div class="meta">
+            <p class="title">HOODIE</p>
+            <p class="desc">필수 로고 티 컬렉션</p>
+          </div>
+          <div class="category-products">
+            <div class="category-product">
+              <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013540/image/main/1000013540_main_048.jpg');"></div>
+              <p class="label">Champion Essentials Hoodie</p>
+              <p class="price">₩79,000</p>
+            </div>
+            <div class="category-product">
+              <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013539/image/main/1000013539_main_030.jpg');"></div>
+              <p class="label">Heritage Crewneck</p>
+              <p class="price">₩75,000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 헤리티지 CTA -->
+    <section class="heritage-cta">
+      <div class="cta-background">
+        <img class="visible" src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/2025074_brand_1.webp" alt="Heritage detail" style="top:7%; left:10%; transform:translate(-2.6px,1.8px) scale(1);" />
+        <img class="visible" src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/2025074_brand_2.webp" alt="Heritage detail" style="top:10%; right:15%; transform:translate(-5.3px,3.5px) scale(1);" />
+        <img class="visible" src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/2025074_brand_3.webp" alt="Heritage detail" style="bottom:20%; left:5%; transform:translate(-8px,5.3px) scale(1);" />
+        <img class="visible" src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/2025074_brand_4.webp" alt="Heritage detail" style="bottom:10%; right:10%; transform:translate(-10.7px,7.1px) scale(1);" />
+        <img class="visible" src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/2025074_brand_5.webp" alt="Heritage detail" style="top:65%; left:45%; transform:translate(-13.4px,8.9px) scale(1);" />
+        <img class="visible" src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/2025074_brand_6.webp" alt="Heritage detail" style="bottom:50%; right:30%; transform:translate(-16px,10.6px) scale(1);" />
+      </div>
+      <div class="cta-container">
+        <div class="cta-image visible">
+          <img src="https://champitr6563.cdn-nhncommerce.com/data/images/brand/20250325_brand_main.jpg" alt="Champion heritage" />
+        </div>
+        <div class="cta-text visible">
+          <h2 class="headline">OVER 100 YEARS OF CHAMPION</h2>
+          <p class="description">챔피온은 미국 로체스터에서 1919년 설립된 이후 100년이 넘는 시간 동안 애슬레틱 웨어의 혁신을 이끌었습니다. 자체 개발 원단 등 기술력과 내구성을 갖춘 제품은 물론, 시대 흐름에 맞춘 디자인으로 품질과 스타일 모두에서 끊임없이 진화해 왔으며, 캠퍼스 문화와 아메리칸 캐주얼을 대표하는 아이콘으로 현재까지도 전 세계에서 사랑받고 있습니다.</p>
+          <a class="cta-link button-solid" href="/goods/goods_list.php?cateCd=111">Explore</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAMPION NOW (2열 플레이스홀더) -->
+    <section class="wrap">
+      <div class="grid-2">
+        <div class="ph ratio-56 grid-banner" style="background-image:url('https://musinsatrading.com/web/test/madeinusa.jpg');">
+          <span>Made In USA</span>
+        </div>
+        <div class="ph ratio-56 grid-banner" style="background-image:url('https://musinsatrading.com/web/test/blue_tag.jpg');">
+          <span>BLUE TAG</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2555 COLLECTION (3열) -->
+    <section class="wrap collection-group">
+      <h3 class="section-title" data-subtitle="리버스위브 콜렉션">26ss COLLECTION</h3>
+      <div class="grid-3">
+        <div class="ph ratio-34" style="background-image:url('https://www.championstore.com/cdn/shop/files/Hoodies_477x710_5f100d23-1480-4a2d-9198-e60bc7477fd9.jpg?v=1761737618&width=1200'); background-size:cover; background-position:center;"></div>
+      </div>
+      <div class="grid-4">
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013539/image/main/1000013539_main_030.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">60%</span>
+              <span class="sale-price">51,600원</span>
+              <span class="original-price">129,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013539/image/main/1000013539_main_030.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">30%</span>
+              <span class="sale-price">55,300원</span>
+              <span class="original-price">79,000원</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="grid-3">
+        <div class="ph ratio-34" style="background-image:url('https://www.championstore.com/cdn/shop/files/Joggers_477x710_fe7f28b1-15ae-45c4-a8aa-bab316da1e00.jpg?v=1761737618&width=1200'); background-size:cover; background-position:center;"></div>
+      </div>
+      <div class="grid-4">
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013540/image/main/1000013540_main_048.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">60%</span>
+              <span class="sale-price">51,600원</span>
+              <span class="original-price">129,000원</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background-image:url('https://godomall.speedycdn.net/3e7de051a3b311026e5a78cd18d9a1dc/goods/1000013540/image/main/1000013540_main_048.jpg');"></div>
+          <div class="meta">
+            <p class="name">Champion Essentials Hoodie</p>
+            <div class="price-row">
+              <span class="discount">30%</span>
+              <span class="sale-price">55,300원</span>
+              <span class="original-price">79,000원</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-wrap">
+      <ul class="footer-menu">
+        <li><a href="/board/list.php?bdId=notice">공지사항</a></li>
+        <li><a href="/main/html.php?htmid=pages/store/index.html">매장안내</a></li>
+        <li><a href="/service/faq_list.php?category=00">FAQ</a></li>
+        <li><a href="/board/list.php?bdId=qa">1:1문의</a></li>
+      </ul>
+
+      <div class="footer-cs">
+        고객센터 <a href="tel:1599-5012">1599-5012</a><br>
+        AM 10시 ~ PM 5시 (OFF-TIME 12시 ~ 1시)<br>
+        DAY OFF (SATURDAY, SUNDAY, HOLIDAY)<br>
+        E-MAIL : <a href="mailto:customer@musinsatrading.com">customer@musinsatrading.com</a>
+      </div>
+
+      <div class="footer-info">
+        서울특별시 용산구 이태원로 190(이태원동) 6층,7층 무신사스튜디오 한남2호점 대표이사 : 이지훈<br>
+        사업자등록번호 : <a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=2118837444&amp;apv_perm_no=" target="_blank" rel="noopener noreferrer">211-88-37444</a><br>
+        통신판매업신고번호 : 제 2025-서울용산-0672 호<br>
+        대표전화 : 1599-5012<br>
+        개인정보보호책임 : 이지훈<br><br>
+        주식회사 무신사트레이딩 (MUSINSA TRADING Co., Ltd.)
+      </div>
+
+      <ul class="footer-policy">
+        <li><a href="../service/agreement.php">이용약관</a></li>
+        <li><a href="../service/private.php" class="privacy">개인정보처리방침</a></li>
+        <li><a href="/main/html.php?htmid=service/easy-private.html">읽기 쉬운 개인정보처리방침</a></li>
+        <li><a href="../service/private.php#go_teen">청소년보호정책</a></li>
+      </ul>
+
+      <ul class="footer-cert">
+        <li><a href="https://admin.kcp.co.kr/Modules/escrow/kcp_pop.jsp?site_cd=GKSLU" target="_blank" rel="noopener noreferrer">KCP 안전구매서비스</a></li>
+      </ul>
+
+      <div class="footer-sns">
+        <ul>
+          <li><a href="https://www.instagram.com/champion_korea" target="_blank" rel="noopener noreferrer"><img src="https://champitr6563.cdn-nhncommerce.com/data/images/footer/instagram.png" alt="Instagram" /></a></li>
+        </ul>
+      </div>
+
+      <p class="footer-note">© MUSINSA TRADING Co., Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  </div>
+
+<script>
+  document.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+    });
+  });
+
+  (function(){
+    var carousel = document.querySelector('.category-carousel');
+    if (!carousel) return;
+
+    var isDragging = false;
+    var startX = 0;
+    var startScroll = 0;
+
+    function hasOverflow(){
+      return carousel.scrollWidth > carousel.clientWidth;
+    }
+
+    function onPointerDown(e) {
+      if ((typeof e.button === 'number' && e.button !== 0) || !hasOverflow()) return;
+      isDragging = true;
+      startX = e.clientX;
+      startScroll = carousel.scrollLeft;
+      carousel.classList.add('is-dragging');
+      if (carousel.setPointerCapture) {
+        try { carousel.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+      e.preventDefault();
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      carousel.scrollLeft = startScroll - (e.clientX - startX);
+      e.preventDefault();
+    }
+
+    function onPointerUp(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      carousel.classList.remove('is-dragging');
+      if (carousel.releasePointerCapture) {
+        try { carousel.releasePointerCapture(e.pointerId); } catch (_) {}
+      }
+    }
+
+    function onResize(){
+      if (!hasOverflow()){
+        isDragging = false;
+        carousel.classList.remove('is-dragging');
+      }
+    }
+
+    carousel.addEventListener('pointerdown', onPointerDown, { passive:false });
+    carousel.addEventListener('pointermove', onPointerMove, { passive:false });
+    carousel.addEventListener('pointerup', onPointerUp);
+    carousel.addEventListener('pointerleave', onPointerUp);
+    carousel.addEventListener('pointercancel', onPointerUp);
+    window.addEventListener('resize', onResize);
+    onResize();
+  })();
+</script>
+
+</body>
+</html>

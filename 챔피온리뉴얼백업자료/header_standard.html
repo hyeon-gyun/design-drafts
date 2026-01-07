@@ -1,0 +1,236 @@
+{*** 상단 기본파일 | main/index.php ***}
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="../../css/mcss.css" />
+<link type="text/css" rel="stylesheet" href="../../css/swiper.min.css" />
+<script type="text/javascript" src="../../js/mo_js/swiper.min.js"></script>
+<script type="text/javascript" src="../../js/mo_js/jquery.mallcategory.js"></script>
+<script type="text/javascript" src="../../js/mo_js/jquery.top-1.0.js"></script>
+<script type="text/javascript" src="../../js/mo_js/mcommon.js"></script>
+
+<style>
+	nav .category_side > li:nth-of-type(1) > a {color: #1b468c;}
+	nav .category_side > li:nth-of-type(7) > a {border-bottom: 1px solid #ddd; padding-bottom: 10px;}
+	nav .category_side > li:nth-of-type(8) > a {color: #e2383f; padding-top: 10px;}
+	nav .category_side > li:nth-of-type(11) > a {border-bottom: 1px solid #ddd; padding-bottom: 10px;}
+	nav .category_side > li:nth-of-type(13) > a {padding-top: 10px;}
+</style>
+
+<div id="header_wrap">
+
+  <!-- 상단 이벤트 (공지) 배너 -->
+  {=includeFile('/outline/header/top-notice-bn/index.html')}
+
+  <div class="h_sec01" id="header-inner">
+    <div class="top_cate">
+      <a href="#" class="side_menu"><img src="../../img/mimg/top_allcate.png" /></a>
+    </div>
+
+    <!-- 로고 수정하는 곳 -->
+    <div class="top_logo">
+      <a href="/"><img src="/data/images/header/header_logo_25.png" /></a>
+    </div>
+
+    <div class="top_right">
+      <div class="top_search"><img src="../../img/mimg/top_search.png" /></div>
+      <div class="top_cart">
+        <a href="../order/cart.php"><img src="../../img/mimg/top_cart.png" /><span>{=dataCartGoodsCnt()}</span></a>
+      </div>
+    </div>
+    <!-- //top_right -->
+  </div>
+  <!-- //h_sec01 -->
+
+  <div class="h_sec02">
+    <!-- 상단 탑 카테고리 -->
+    <!-- <div class="swiper-container swiper_top">{=includeWidget("proc/category_all.html",'cateType','category')}</div>-->
+
+	  <!-- 인기키워드 01 -->
+	  <div class="hot_keyword" style="display: flex; align-items: center;justify-content: center;"><a href="/goods/goods_list.php?cateCd=111" style="color:#fff; font-size: 14px;">25 Winter Collection 2nd Drop ｜ <span style="text-decoration: underline;">Now Online</span></a></div>
+	  <div class="hot_keyword cboth" style="display: none;">
+		  <p class="key1">인기검색어</p>
+		  <p class="btn_open"><img src="../img/mimg/icon_open.png" /></p>
+      <!-- 핫키워드 롤링 -->
+      <div class="swiper-container swiper_hot">
+        <div class="swiper-wrapper">
+          <!-- 핫키워드 01 수정 -->
+          <div class="swiper-slide">
+            <a href="/goods/goods_search.php?keyword=패딩">
+              <span class="key2">1</span>
+              <span class="key3">패딩</span>
+            </a>
+          </div>
+          <!-- 핫키워드 02 수정 -->
+          <div class="swiper-slide">
+            <a href="/goods/goods_search.php?keyword=후리스">
+              <span class="key2">2</span>
+              <span class="key3">후리스</span>
+            </a>
+          </div>
+          <!-- 핫키워드 03 수정 -->
+          <div class="swiper-slide">
+            <a href="/goods/goods_search.php?keyword=후드티">
+              <span class="key2">3</span>
+              <span class="key3">후드티</span>
+            </a>
+          </div>
+          <!-- 핫키워드 04 수정 -->
+          <div class="swiper-slide">
+            <a href="/goods/goods_search.php?keyword=맨투맨">
+              <span class="key2">4</span>
+              <span class="key3">맨투맨</span>
+            </a>
+          </div>
+          <!-- 핫키워드 05 수정 -->
+          <div class="swiper-slide">
+            <a href="/goods/goods_list.php?cateCd=015001">
+              <span class="key2">5</span>
+              <span class="key3">양말</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- //swiper_hot -->
+    </div>
+    <!-- //hot_keyword -->
+  </div>
+  <!-- //h_sec02 -->
+
+  <div class="header_box">
+    <!-- 네비게이터 -->
+    <!--{ ? layout.current_page == 'y' && layout.page_name }-->
+    <div class="navi_g">
+      <ul>
+        <li>{=__('HOME')}</li>
+        <!--{ ? gCurrentPageName == 'goods/goods_list' }-->
+        <li>{=dataCategoryPosition(cateCd,'</li>
+        <li>',cateType)}</li>
+        <!--{ : }-->
+        <li>{=layout.page_name}</li>
+        <!--{ / }-->
+      </ul>
+    </div>
+    <!--{ / }-->
+    <!--{ ? gCurrentPageName != 'main/index' && gCurrentPageName != 'goods/goods_list' && gCurrentPageName != 'goods/goods_view' }-->
+    <div class="sub_top">
+      <div class="sub_top_left">
+        <!--{ ? gReturnUrl }-->
+        <a href="{=gReturnUrl}" class="all_page_prev">{=__('이전')}</a>
+        <!--{ : }-->
+        <a href="{=gReferer}" class="all_page_prev js_bn_back">{=__('이전')}</a>
+        <!--{ / }-->
+      </div>
+      <h2>
+        <a href="#" class="js_page_reload"><!--{ ? gPageName }-->{=gPageName}<!--{:}-->{=layout.page_name}<!--{/}--></a>
+      </h2>
+      <!--{ ? (gCurrentPageName == 'board/list' || gCurrentPageName == 'mypage/mypage_qa' || gCurrentPageName == 'mypage/mypage_goods_qa' || gCurrentPageName == 'mypage/mypage_goods_review') && bdList.cfg.auth.write == 'y'}-->
+      <div class="sub_top_right2"><a href="../board/write.php?bdId={req.bdId}&mypageFl={req.mypageFl}&goodsNo={goodsView.goodsNo}&gboard=r&noheader=y" data-toggle="modal" data-target="#popupBoard" class="board_btn">{=__('글쓰기')}</a></div>
+      <!--{ / }-->
+      <!--{ ? gCurrentPageName == 'board/view' }-->
+      <div class="sub_top_right2"><a href="../board/list.php?bdId={req.bdId}&mypageFl={req.mypageFl}" class="board_btn">{=__('목록가기')}</a></div>
+      <!--{ / }-->
+      <!--{ ? gCurrentPageName == 'board/plus_review_article' || gCurrentPageName == 'board/plus_review_photo' || gCurrentPageName == 'board/plus_review_goods' }-->
+      <div class="sub_top_right2 btn_plus_review_register"><a href="../board/plus_review_popup_write.php?mode=addPopup" class="ogl_reviewrite" data-toggle="modal" data-target="#popupBoard">{=__('리뷰등록')}</a></div>
+      <!--{ / }-->
+    </div>
+    <!--{ / }-->
+  </div>
+</div>
+<!-- //header_wrap -->
+
+<!-- 검색 팝업-->
+<div class="searchBox">
+  <div class="quick_searchClose"><img src="../../img/mimg/btn_close.png" /></div>
+  <div class="search_title">SEARCH</div>
+  <form name="frmSearchTop" id="frmSearchTop" action="../goods/goods_search.php" method="get">
+    <!--{ ? adUrl }-->
+    <input type="hidden" name="adUrl" value="{adUrl}" />
+    <!--{ / }-->
+    <fieldset>
+      <input type="search" name="keyword" class="js_auto_focus" title="{adKeyword}" placeholder="{adKeyword}" id="sch" placeholder="{=__('검색어를 입력해주세요.')}" autocomplete="off" />
+    </fieldset>
+    <button type="submit" class="btn_search"><img src="../../img/mimg/btn_search.png" /></button>
+  </form>
+
+  <!--{ @ dataHitKeyword() }-->
+  <div class="bestkeyword">
+    <!-- 상단 인기검색어 자동출력 : 상품 - 상품 노출형태 관리 - 검색창 관련 설정 - 인기 검색어 설정 -->
+    <!--{ @ .value_ }--><a href="/goods/goods_search.php?keyword={=..value_}">#{=..value_}&nbsp;&nbsp;</a
+    ><!--{ / }-->
+  </div>
+  <!--{ / }-->
+</div>
+<!-- //searchBox -->
+
+<nav>
+  <div class="bg"></div>
+  <div class="nav_bg_box">
+    <div class="nav_box">
+      <div class="slide_section2 nav-fixed-top">
+        <ul class="cboth">
+          <!--{ ? gd_is_login() === false }-->
+          <li><a href="../member/login.php">로그인</a></li>
+          <li><a href="../member/join_method.php">회원가입</a></li>
+          <!--{ : }-->
+          <li><a href="../member/logout.php?returnUrl={=logoutReturnUrl}">로그아웃</a></li>
+          <li><a href="../mypage/index.php">마이페이지</a></li>
+          <!--{ / }-->
+        </ul>
+        <div class="left_close"></div>
+      </div>
+      <div class="nav_iscroll_box">
+        <div class="nav_content_box">
+          <div class="slide_section3 cboth">
+            <div class="tab_category hamburger-gnb">
+              <!-- 자동 카테고리 출력-->
+              <div class="cboth">{=includeWidget("proc/category_all.html",'cateType','category')}</div>
+            </div>
+          </div>
+          <!-- //slide_section3 -->
+
+          <!-- <div class="nav-banner">
+			<a href="/goods/goods_list.php?cateCd=018006"><img src="/data/images/header/m-bn01.jpg" alt=""></a>
+			<a href="/goods/event_sale.php?sno=107"><img src="/data/images/header/m-member.jpg" alt=""></a>
+          </div> -->
+
+          <div class="slide_section6">
+            <ul class="cboth">
+              <!-- 퀵메뉴 SNS배너 수정하는곳 -->
+              <li><a href="https://www.instagram.com/champion_korea" target="_blank"><img src="/data/images/footer/instagram.png" /></a></li>
+              <!-- <li><a href="https://www.facebook.com/championseoul" target="_blank"><img src="/data/images/footer/facebook.png" /></a></li>
+              <li><a href="https://www.youtube.com/channel/UCVfARQu2iW4f8-RFj5BptVQ" target="_blank"><img src="/data/images/footer/youtube.png" /></a></li> -->
+            </ul>
+          </div>
+          <!-- //slide_section6 -->
+        </div>
+        <!-- //nav_content_box -->
+      </div>
+    </div>
+    <!-- //nav_box -->
+  </div>
+  <!-- //nav_bg_box -->
+	
+	<!-- 모바일 멤버십취크 메뉴 추가 20251126-->
+	<!--
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+
+		const mobUl = document.querySelector("ul.category_side.swiper-wrapper");
+		if (!mobUl) return;
+
+		if (mobUl.querySelector("li.custom-mobile-membersday")) return;
+
+		const li = document.createElement("li");
+		li.classList.add("swiper-slide", "custom-mobile-membersday");
+
+		li.innerHTML = `<a href="/main/html.php?htmid=proc/members-week.html" class="icon_arrow" style="color: #BD161C !important;">MEMBERS WEEK</a>`;
+
+		mobUl.insertBefore(li, mobUl.firstElementChild);
+	});
+	</script>
+	-->
+	
+</nav>
+
+<div id="container">
+  <div id="contents_wrap"></div>
+</div>

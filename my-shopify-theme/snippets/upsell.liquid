@@ -1,0 +1,36 @@
+{% comment %} 
+    snippets/upsell.liquid
+
+    Adds the upsell product block to the product page and featured product section.
+
+    Accepts:
+    - Product
+    - Block
+
+    Usage:
+{% endcomment %}
+
+{% unless block.settings.product.id == product.id %}
+    {% assign upsell_product = block.settings.product %}
+    {% unless upsell_product == blank %}
+        {% assign upsell_product = all_products[block.settings.product] %}
+    {% endunless %}
+    <div class="product__upsell-item" {{ block.shopify_attributes }}>
+        {% unless upsell_product == blank %}
+            {% unless block.settings.title == blank %}
+            <h5 class="product__upsell-header">
+                {{ block.settings.title }}
+            </h5>
+            {% endunless %}
+            <upsell-product data-product-url="{{ upsell_product.url }}?view=upsell" data-block-id="{{ block.id }}"></upsell-product>
+        {% endunless %}
+    </div>
+    <style type="text/css">
+        upsell-product .flickity-button {
+        display: none;
+        }
+        upsell-product .product__section-content {
+        padding: 0 !important;
+        }
+    </style>
+{% endunless %}

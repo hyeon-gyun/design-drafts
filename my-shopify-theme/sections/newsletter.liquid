@@ -1,0 +1,179 @@
+{{ 'section-newsletter.css' | asset_url | stylesheet_tag: preload: true }}
+
+{%- liquid
+
+  assign section_padding = ''
+  if section.settings.section_padding == 'top'
+    assign section_padding = 'pb0'
+  elsif section.settings.section_padding == 'bottom'
+    assign section_padding = 'pt0'
+  elsif section.settings.section_padding == 'none'
+    assign section_padding = 'pt0 pb0'
+  endif
+
+-%}
+<style>
+  #shopify-section-{{ section.id }} {
+    background: var(--background);
+    color: var(--text-color);
+  }
+  {% unless section.settings.color_scheme == 'none' %}
+    #shopify-section-{{ section.id }} {
+      --background: var(--{{ section.settings.color_scheme }}-background);
+      --text-color: var(--{{ section.settings.color_scheme }}-color);
+      --header-color: var(--{{ section.settings.color_scheme }}-color);
+    }
+  {% endunless %}
+</style>
+<section
+  class="newsletter--section newsletter--section-{{ section.id }} global__section global__section--padding {{ section_padding }}"
+  data-aos="{{ settings.scroll_animation }}">
+
+
+    {% if section.settings.title != blank %}
+      <div class="section-title row a-center">
+        <h2>{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+
+    {%- if section.settings.newsletter_subheading != blank -%}
+      <div class="section-subheading rte row a-center">
+        {{ section.settings.newsletter_subheading }}
+      </div>
+    {%- endif -%}
+
+    <div class="section-newsletter row grid__wrapper"
+      data-aos="{{ settings.scroll_animation }}"
+      data-aos-delay="100">
+      {% assign newsletter_form_id = 'newsletter__form-' | append: section.id %}
+      {% form 'customer', id: newsletter_form_id, class: 'span-12 grid__wrapper grid__wrapper-nest' %}
+        {{ form.errors | default_errors }}
+        {% if form.posted_successfully? %}
+          <p class="form--success span-6 push-3 sm-span-12 auto a-center">{{ 'general.newsletter_form.confirmation' | t }}</p>
+        {% else %}
+          <div class="input-group password__input-group span-6 push-3 sm-span-12 auto">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <label class="visually-hidden" for="Email--{{ section.id }}">{{ 'general.newsletter_form.email_placeholder' | t }}</label>
+            <input type="email"
+              name="contact[email]"
+              id="Email--{{ section.id }}"
+              class="input-group__field newsletter__input"
+              value="{% if customer %}{{ customer.email }}{% endif %}"
+              placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+              autocorrect="off"
+              autocapitalize="off">
+              <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe">
+                <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+              </button>
+          </div>
+          {% if section.settings.mail_gdpr_text %}
+            <div class="gdpr-text before-signup rte a-center span-6 push-3 sm-span-12 auto">{{ section.settings.mail_gdpr_text }}</div>
+          {% endif %}
+        {% endif %}
+      {% endform %}
+
+      {% if section.settings.show_social_icons %}
+        <div class="section-icons span-8 push-2 sm-span-12 auto"
+          data-aos="{{ settings.scroll_animation }}"
+          data-aos-delay="100">
+          {% render 'social-icons', fill_color: 'var(--text-color)', wrapper: '.section-icons' %}
+        </div>
+      {% endif %}
+    </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings":
+  [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Subscribe to our newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_subheading",
+      "label": "Subheading",
+      "default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mail_gdpr_text",
+      "label": "GDPR text",
+      "default": "<p>*You're signing up to receive our emails and can unsubscribe at any time.</p>"
+    },
+    {
+      "type": "paragraph",
+      "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "cs1",
+          "label": "1"
+        },
+        {
+          "value": "cs2",
+          "label": "2"
+        },
+        {
+          "value": "cs3",
+          "label": "3"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "section_padding",
+      "label": "Section spacing",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "both"
+    }
+  ],
+  "presets":
+  [
+    {
+      "name": "Newsletter"
+    }
+  ],
+  "disabled_on": {
+    "groups":
+    ["header"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,101 @@
+{% comment %}
+product-icon-listing.liquid
+
+Renders product's icon/badge on the product grid.
+Accompanies product listings (collection page, search result) and not updated dynamically
+Accepts:
+- product: {Object} Product Liquid object (optional)
+
+Usage:
+{% include 'product-icon-listing', product: product %}
+{% endcomment %}
+
+{%- liquid
+
+  if settings.custom_icon
+    assign has_custom_icon = false
+    if product.tags.size > 0
+      assign product_tags = product.tags | join: ','
+      if product_tags contains 'icon_'
+        for tag in product.tags
+          if tag contains 'icon_'
+            assign has_custom_icon = true
+            assign custom_icon = tag | replace: 'icon_', ''
+          endif
+        endfor
+      endif
+    endif
+  endif
+
+  assign has_new_icon = false
+  if settings.new_icon_type == 'date' and product.available
+    assign date_range = settings.date_range
+    assign product_created_at = product.created_at | date: '%s'
+    assign time_ago = 'now' | date: '%s' | minus: product_created_at | divided_by: 86400
+    if time_ago <= date_range
+      assign has_new_icon = true
+    endif
+  elsif settings.new_icon_type == 'collection' and product.available
+    for col in product.collections
+      if col.handle == 'new'
+        assign has_new_icon = true
+      endif
+    endfor
+  endif
+
+  assign sold_out_icon = false
+  if settings.sold_out_icon and product.available == false
+    assign sold_out_icon = true
+  endif
+
+-%}
+
+{% if has_custom_icon and custom_icon != blank %}
+  <div class="icn icn--custom icn--custom--{{ custom_icon | handle }}">
+    <span class="icn__inner">
+      {{ custom_icon }}
+    </span>
+  </div>
+{% endif %}
+
+{% if has_new_icon %}
+  <div class="new icn">
+    <span class="icn__inner">
+      {{ 'products.general.new' | t }}
+    </span>
+  </div>
+{% endif %}
+
+{% if sold_out_icon %}
+  <div class="so icn">
+    <span class="icn__inner">
+      {{ 'products.general.sold' | t }}
+    </span>
+  </div>
+{% endif %}
+
+  {% if product.price < product.compare_at_price %}
+    <div class="sale-item sale-item--{{ settings.sale_items }} icn">
+      <span class="icn__inner">
+        {% case settings.sale_items %}
+          {% when 'percentage' %}
+            {% if product.price_varies or product.compare_at_price_varies %}
+              {{ 'products.general.sale' | t }}
+            {% else %}
+              {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}
+              {% assign discount = discount | round | append: '%' %}
+              {{ 'products.general.savings' | t: savings: discount }}
+            {% endif %}
+          {% when 'amount' %}
+            {% if product.price_varies or product.compare_at_price_varies %}
+              {{ 'products.general.sale' | t }}
+            {% else %}
+              {% assign discount = product.compare_at_price | minus: product.price | money %}
+              {{ 'products.general.savings' | t: savings: discount }}
+            {% endif %}
+          {% when 'icon' %}
+            {{ 'products.general.sale' | t }}
+        {% endcase %}
+      </span>
+    </div><!-- /.sale-item -->
+  {% endif %}

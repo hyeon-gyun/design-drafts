@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="keywords"
+      content="Y-3,와이스리,야마모토 요지,Yohji Yamamoto,패션,남성,여성,유니섹스,온라인몰,아이템,샵,브랜드,공식"
+    />
+    <meta
+      name="description"
+      content="Y-3｜와이스리의 국내 공식 직영 온라인 스토어입니다. Y-3는 adidas의 전문적인 스포츠 기술과 위트 있는 야마모토 요지의 크리에이티비티가 융합된 스포츠 패션 브랜드입니다."
+    />
+    <meta property="og:image" content="https://y-3.com/template/img/og_img.png" />
+    <meta property="og:title" content="Y-3 와이스리" />
+    <meta
+      property="og:description"
+      content="Y-3｜와이스리의 국내 공식 직영 온라인 스토어입니다. Y-3는 adidas의 전문적인 스포츠 기술과 위트 있는 야마모토 요지의 크리에이티비티가 융합된 스포츠 패션 브랜드입니다."
+    />
+    <meta property="og:url" content="https://y-3.com/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Y-3 와이쓰리</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://use.typekit.net/doo8oqr.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --black: #050505;
+        --gray: #6f6f6f;
+        --light-gray: #e5e5e5;
+        --line: #cfcfcf;
+        --accent: #f25037;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Helvetica Neue', 'Pretendard Variable', 'Pretendard', sans-serif;
+        color: var(--black);
+        background: #fff;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrap {
+        min-height: 100vh;
+        background: #fff;
+      }
+
+      .notice-bar {
+        background: #e3e3e3;
+        color: #1b1b1b;
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.75rem;
+      }
+
+      .hero-banner {
+        text-transform: uppercase;
+        background: #000;
+        color: #fff;
+        text-align: center;
+        font-size: 0.95rem;
+        padding: 0.85rem 1rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .gnb {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 4vw;
+        gap: 1rem;
+      }
+
+      .gnb-left {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: clamp(50px, 5vw, 60px);
+      }
+
+      .gnb-nav {
+        display: flex;
+        gap: 2.5rem;
+        font-size: 0.95rem;
+      }
+
+      .gnb-nav a {
+        text-transform: uppercase;
+      }
+
+      .gnb-icons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .gnb-icons a {
+        display: inline-flex;
+        width: 28px;
+        height: 28px;
+      }
+
+      .gnb-icons img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .main-hero {
+        padding: 0;
+        background: #fff;
+      }
+
+      .hero-slider {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .hero-slider .slick-list {
+        margin: 0;
+      }
+
+      .hero-slider .slick-track {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .hero-slider .slick-slide {
+        padding: 0;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        border: none;
+      }
+
+      .hero-card img {
+        width: 100%;
+        height: 70vh;
+        max-height: 1000px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        padding: 0.9rem 1.2rem;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        text-align: right;
+        font-weight: 500;
+      }
+
+      @media (max-width: 768px) {
+        .hero-caption {
+          font-size: 1rem;
+        }
+      }
+
+      .hero-slider .slick-dots {
+        position: static;
+        margin-top: 3rem;
+        display: flex !important;
+        justify-content: center;
+        gap: 0.75rem;
+        line-height: 0;
+      }
+
+      .hero-slider .slick-dots li {
+        width: auto;
+        height: auto;
+      }
+
+      .hero-slider .slick-dots li button {
+        width: 10px;
+        height: 4px;
+        background: #c1c1c1;
+        border: none;
+        padding: 0;
+        text-indent: -9999px;
+        cursor: pointer;
+      }
+
+      .hero-slider .slick-dots li.slick-active button {
+        background: #242424;
+      }
+
+      .section {
+        padding: 3rem 4vw;
+      }
+
+      .section h2 {
+        font-size: 1.5rem;
+        margin: 0 0 1.5rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .banner-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      .banner-card {
+        background: #f3f3f3;
+        min-height: 220px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #d9d9d9;
+      }
+
+      .banner-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .banner-card span {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.6rem 1rem;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .pick-slider,
+      .new-slider {
+        position: relative;
+        width: 100%;
+        margin-left: 0;
+        transform: none;
+      }
+
+      .pick-slider .slick-list,
+      .new-slider .slick-list {
+        margin: 0 -12px;
+      }
+
+      .pick-slider .slick-slide,
+      .new-slider .slick-slide {
+        padding: 0 12px;
+      }
+
+      .pick-list,
+      .new-grid,
+      .ranking-grid,
+      .category-list {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .pick-list {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .pick-slider .pick-list.slick-initialized,
+      .new-slider .new-grid.slick-initialized {
+        display: block;
+      }
+
+      .pick-card img,
+      .new-card img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+      }
+
+      .ranking-card img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+      }
+
+      .card-info {
+        padding: 0.8rem 1rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
+      .card-info strong {
+        display: block;
+        margin-bottom: 0.35rem;
+      }
+
+      .card-info span {
+        color: var(--gray);
+      }
+
+      .new-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .ranking-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .ranking-card {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ranking-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem;
+      }
+
+      .ranking-info .rank-number {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-right: 0.5rem;
+        border-right: 1px solid #000;
+      }
+
+      .ranking-info .rank-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .ranking-info .rank-details span {
+        font-size: 0.9rem;
+      }
+
+      .ranking-info .rank-details .price {
+        color: #ff4c4c;
+      }
+
+      .video-piece {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        border: 1px solid var(--light-gray);
+        overflow: hidden;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .video-piece video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .category-list {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      .category-list li {
+        background: #000;
+        color: #fff;
+        padding: 1rem;
+        border: 1px solid #000;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .category-list li:hover,
+      .category-list li:focus-within {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
+
+      footer {
+        padding: 5rem 4vw;
+        background: #f9f9f9;
+        border-top: 1px solid var(--light-gray);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(160px, 1fr));
+        gap: 100px;
+        font-size: 0.85rem;
+      }
+
+      .footer-grid h4 {
+        margin: 0 0 0.7rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .footer-grid ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .footer-grid .footer-sns {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      .footer-grid .footer-sns img {
+        width: 24px;
+        height: 24px;
+        display: block;
+      }
+
+      .footer-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .footer-visual-img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #e9e9e9;
+        border: 1px solid var(--light-gray);
+        overflow: hidden;
+      }
+
+      .footer-visual-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .footer-bottom {
+        margin-top: 3rem;
+        border-top: 1px solid var(--light-gray);
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .footer-logo img {
+        height: 40px;
+      }
+
+      .copyright {
+        font-size: 0.7rem;
+        color: var(--gray);
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .d-sp {
+        display: none;
+      }
+
+      @media (max-width: 1024px) {
+        .gnb-nav {
+          gap: 1.2rem;
+        }
+
+        .hero-card img {
+          height: 60vh;
+        }
+
+        .new-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .ranking-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(3, minmax(180px, 1fr));
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .d-pc {
+          display: none !important;
+        }
+
+        .d-sp {
+          display: block !important;
+        }
+
+        .gnb {
+          flex-wrap: wrap;
+          align-items: center;
+          flex-direction: column;
+          position: relative;
+          padding-top: 2rem;
+        }
+
+        .gnb-left {
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .gnb-left .logo {
+          margin: 0 auto;
+        }
+
+        .gnb-icons {
+          position: absolute;
+          top: 3rem;
+          left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0 4vw;
+          box-sizing: border-box;
+        }
+
+        .gnb-icons .sideNavi {
+          display: inline-flex;
+          position: absolute;
+          left: 4vw;
+        }
+
+        .gnb-nav {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          padding-top: 0.5rem;
+          margin-top: 0.75rem;
+          gap: 1rem;
+        }
+
+        .hero-slider {
+          width: 100vw;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .pick-slider,
+        .new-slider {
+          width: 100%;
+          margin-left: 0;
+          transform: none;
+        }
+
+        .hero-slider .slick-track {
+          gap: 0;
+        }
+
+        .pick-slider .slick-track,
+        .new-slider .slick-track {
+          gap: 12px;
+        }
+
+        .hero-slider .slick-slide {
+          padding: 0;
+        }
+
+        .pick-slider .slick-slide,
+        .new-slider .slick-slide {
+          padding: 0 12px;
+        }
+
+        .video-piece {
+          width: 100vw;
+          height: 100vw;
+        }
+
+        .hero-card img {
+          height: 65vh;
+        }
+
+        .hero-slider .slick-slide .hero-card img {
+          filter: none !important;
+        }
+
+        .new-grid {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        .ranking-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body id="topPage" class="indexPage">
+    <div class="wrap">
+      <div class="notice-bar">전상품 무료배송 서비스 ᅵ 회원가입 </div>
+      <div class="hero-banner">FALL WINTER 2025 NEW ARRIVAL</div>
+
+      <header class="gnb">
+        <div class="gnb-left">
+          <a href="#" class="logo">
+            <img src="./img/logo.svg" alt="Y-3" />
+          </a>
+          <nav class="gnb-nav">
+            <a href="#">MEN</a>
+            <a href="#">WOMEN</a>
+            <a href="#">UNISEX</a>
+          </nav>
+        </div>
+        <div class="gnb-icons">
+          <a href="#" aria-label="검색">
+            <img src="./img/search_n_icon.svg" alt="SEARCH" />
+          </a>
+          <a href="#" aria-label="회원" class="d-pc">
+            <img src="./img/member_n_icon.svg" alt="MEMBER" />
+          </a>
+          <a href="#" aria-label="위시리스트" class="d-pc">
+            <img src="./img/like_n_icon.svg" alt="WISH LIST" />
+          </a>
+          <a href="#" aria-label="장바구니" class="cart">
+            <img src="./img/cart_n_icon.svg" alt="CART" />
+          </a>
+          <a href="#" aria-label="메뉴" class="sideNavi openBtn js-action">
+            <img src="./img/navi_n_icon.svg" alt="Navigation" />
+          </a>
+        </div>
+      </header>
+
+      <section class="main-hero">
+        <div class="hero-slider">
+          <article class="hero-card">
+            <img
+              src="./img/main_1.jpg"
+              alt="메인 비주얼 1"
+            />
+            <div class="hero-caption">Campaign Shot by Daido Moriyama</div>
+          </article>
+          <article class="hero-card">
+            <img
+              src="./img/main_2.jpg"
+              alt="메인 비주얼 2"
+            />
+            <div class="hero-caption">INSPIRATION</div>
+          </article>
+          <article class="hero-card">
+            <img
+              src="./img/main_3.jpg"
+              alt="메인 비주얼 3"
+            />
+            <div class="hero-caption">3 STRIPES</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <ul class="category-list">
+          <li><a href="#">TOPS / 상의</a></li>
+          <li><a href="#">OUTER / 아우터</a></li>
+          <li><a href="#">PANTS / 팬츠</a></li>
+          <li><a href="#">SHOES / 신발</a></li>
+          <li><a href="#">BAG / 가방</a></li>
+          <li><a href="#">ACCESSORIES / 소품</a></li>
+          <li><a href="#">HEAD WEAR / 모자</a></li>
+          <li><a href="#">SOCKS / 양말</a></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="banner-grid">
+          <a class="banner-card" href="#">
+            <img
+              src="./img/sub_1.jpg"
+              alt="New in 1"
+            />
+            <span>NEIGHBORHOOD</span>
+          </a>
+          <a class="banner-card" href="#">
+            <img
+              src="./img/sub_2.jpg"
+              alt="New in 2"
+            />
+            <span>TRACK STORY</span>
+          </a>
+          <a class="banner-card" href="#">
+            <img
+              src="./img/sub_3.jpg"
+              alt="New in 3"
+            />
+            <span>LOOKBOOK</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>SELECT</h2>
+        <div class="pick-slider">
+          <div class="pick-list">
+          <article class="pick-card">
+            <img
+              src="./img/sel_1.jpg"
+              alt="Track Top"
+            />
+            <div class="card-info">
+              <strong>NBHD TRACK TOP</strong>
+              <span>₩42,900</span>
+            </div>
+          </article>
+          <article class="pick-card">
+            <img
+              src="./img/sel_2.jpg"
+              alt="Leather Racer"
+            />
+            <div class="card-info">
+              <strong>NBHD LEATHER RACER</strong>
+              <span>₩352,000</span>
+            </div>
+          </article>
+          <article class="pick-card">
+            <img
+              src="./img/sel_3.jpg"
+              alt="Football Jersey"
+            />
+            <div class="card-info">
+              <strong>NBHD FOOTBALL JERSEY</strong>
+              <span>₩27,500</span>
+            </div>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>NEW</h2>
+        <div class="new-slider">
+          <div class="new-grid">
+          <article class="new-card">
+            <img
+              src="./img/new_1.jpg"
+              alt="Balaclava"
+            />
+            <div class="card-info">
+              <strong>Y-3 NBHD BALACLAVA</strong>
+              <span>₩15,400</span>
+            </div>
+          </article>
+          <article class="new-card">
+            <img
+              src="./img/new_2.jpg"
+              alt="Leather Racer Pants"
+            />
+            <div class="card-info">
+              <strong>LEATHER RACER PANTS</strong>
+              <span>₩275,000</span>
+            </div>
+          </article>
+          <article class="new-card">
+            <img
+              src="./img/new_3.jpg"
+              alt="Leather Bomber"
+            />
+            <div class="card-info">
+              <strong>NBHD BOMBER JACKET</strong>
+              <span>₩319,000</span>
+            </div>
+          </article>
+          <article class="new-card">
+            <img
+              src="./img/new_4.jpg"
+              alt="Graphic Hoodie"
+            />
+            <div class="card-info">
+              <strong>GRAPHIC HOODIE</strong>
+              <span>₩44,000</span>
+            </div>
+          </article>
+          <article class="new-card">
+            <img
+              src="./img/new_5.jpg"
+              alt="Football Jersey"
+            />
+            <div class="card-info">
+              <strong>FOOTBALL JERSEY</strong>
+              <span>₩27,500</span>
+            </div>
+          </article>
+          <article class="new-card">
+            <img
+              src="./img/new_6.jpg"
+              alt="Leather Racer Jacket"
+            />
+            <div class="card-info">
+              <strong>LEATHER RACER JACKET</strong>
+              <span>₩352,000</span>
+            </div>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="video-piece">
+          <video
+            id="featureVideo"
+            src="https://cds.cagocloud.ws/movie/y3jp/mvs/2025/1230_lQ1d1c.mp4"
+            playsinline
+            loop
+            muted
+            autoplay
+            controls
+          ></video>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>BEST</h2>
+        <div class="ranking-grid">
+          <article class="ranking-card">
+            <img
+              src="./img/best_1.jpg"
+              alt="FT Hoodie"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">1</div>
+              <div class="rank-details">
+                <strong>FT HOODIE</strong>
+                <span class="price">₩25,410 (40%OFF)</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_2.jpg"
+              alt="Classic Liner"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">2</div>
+              <div class="rank-details">
+                <strong>CLASSIC LINER BOMBER</strong>
+                <span class="price">₩24,200 (60%OFF)</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_3.jpg"
+              alt="Flannel Shirt"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">3</div>
+              <div class="rank-details">
+                <strong>FLANNEL SHIRT</strong>
+                <span class="price">₩36,300 (40%OFF)</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_4.jpg"
+              alt="Graphic Hoodie"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">4</div>
+              <div class="rank-details">
+                <strong>NBHD GRAPHIC HOODIE</strong>
+                <span class="price">₩44,000</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_5.png"
+              alt="Bucket Hat"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">5</div>
+              <div class="rank-details">
+                <strong>Y-3 BUCKET HAT</strong>
+                <span class="price">₩8,800 (50%OFF)</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_6.jpg"
+              alt="Cargo Pant"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">6</div>
+              <div class="rank-details">
+                <strong>FLANNEL CARGO PANTS</strong>
+                <span class="price">₩40,260 (40%OFF)</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_7.jpg"
+              alt="Best Item 7"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">7</div>
+              <div class="rank-details">
+                <strong>BEST ITEM 7</strong>
+                <span class="price">₩58,000</span>
+              </div>
+            </div>
+          </article>
+          <article class="ranking-card">
+            <img
+              src="./img/best_8.jpg"
+              alt="Best Item 8"
+            />
+            <div class="ranking-info">
+              <div class="rank-number">8</div>
+              <div class="rank-details">
+                <strong>BEST ITEM 8</strong>
+                <span class="price">₩68,000</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer id="footer">
+        <div class="footer-grid">
+          <div class="footer-visual">
+            <h4>캠페인</h4>
+            <div class="footer-visual-img">
+              <img src="./img/foo_2.jpg" alt="Y-3 캠페인 비주얼" />
+            </div>
+          </div>
+          <div class="footer-visual">
+            <h4>스토어</h4>
+            <div class="footer-visual-img">
+              <img src="./img/foo_1.jpg" alt="Y-3 캠페인 비주얼" />
+            </div>
+          </div>
+          <div>
+            <h4>계정</h4>
+            <ul>
+              <li><a href="#">MY PAGE</a></li>
+              <li><a href="#">LOGIN</a></li>
+              <li><a href="#">SIGN UP</a></li>
+              <li><a href="#">WISH LIST</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>브랜드</h4>
+            <ul>
+              <li><a href="#">ABOUT Y-3</a></li>
+              <li><a href="#">SHOP IN JAPAN</a></li>
+              <li><a href="#">RECRUIT</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>고객 지원</h4>
+            <ul>
+              <li><a href="#">도움말</a></li>
+              <li><a href="#">고객 서비스</a></li>
+              <li><a href="#">판매 규약</a></li>
+              <li><a href="#">개인정보처리방침</a></li>
+              <li><a href="#">특정상거래법</a></li>
+            </ul>
+          </div>
+          <div>
+            <ul class="footer-sns">
+              <li><a href="#"><img src="./img/ico-youtube.svg" alt="YouTube" /></a></li>
+              <li><a href="#"><img src="./img/ico-facebook.svg" alt="Facebook" /></a></li>
+              <li><a href="#"><img src="./img/ico-instagram.svg" alt="Instagram" /></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+        <div class="footer-logo">
+          <img src="./img/logo.svg" alt="Y-3" />
+        </div>
+        <p class="copyright">
+          &copy; 2025 ADIDAS AG. ADIDAS, ADIDAS WORDMARK AND Y-3 ARE REGISTERED TRADEMARKS OF
+          ADIDAS. YOHJI YAMAMOTO IS A REGISTERED TRADEMARK OF YOHJI YAMAMOTO, INC.
+        </p>
+      </div>
+    </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+      $(function () {
+        $('.hero-slider').slick({
+          slidesToShow: 1,
+          arrows: false,
+          dots: true,
+          autoplay: false,
+          autoplaySpeed: 4000,
+          centerMode: true,
+          centerPadding: '12%',
+          responsive: [
+            {
+              breakpoint: 1200,
+              settings: {
+                centerPadding: '8%',
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                centerMode: false,
+              },
+            },
+          ],
+        });
+
+        const initResponsiveSlider = (selector, options) => {
+          const $targets = $(selector);
+          if (!$targets.length) return;
+          let resizeTimer;
+
+          const toggleSlider = () => {
+            const isMobile = window.innerWidth < 1024;
+            $targets.each(function () {
+              const $slider = $(this);
+              if (isMobile) {
+                if (!$slider.hasClass('slick-initialized')) {
+                  $slider.slick(options);
+                }
+              } else if ($slider.hasClass('slick-initialized')) {
+                $slider.slick('unslick');
+              }
+            });
+          };
+
+          toggleSlider();
+          $(window).on('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(toggleSlider, 150);
+          });
+        };
+
+        initResponsiveSlider('.pick-slider .pick-list', {
+          slidesToShow: 1,
+          arrows: false,
+          dots: false,
+          centerMode: true,
+          centerPadding: '14%',
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                centerPadding: '18%',
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                centerPadding: '14%',
+              },
+            },
+          ],
+        });
+
+        initResponsiveSlider('.new-slider .new-grid', {
+          slidesToShow: 1,
+          arrows: false,
+          dots: false,
+          centerMode: true,
+          centerPadding: '20%',
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                centerPadding: '24%',
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                centerPadding: '18%',
+              },
+            },
+          ],
+        });
+
+        const video = document.getElementById('featureVideo');
+        if (video) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  video.play().catch(() => {});
+                } else {
+                  video.pause();
+                }
+              });
+            },
+            { threshold: 0.5 }
+          );
+          observer.observe(video);
+        }
+      });
+    </script>
+  </body>
+</html>

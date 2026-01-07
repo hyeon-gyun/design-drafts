@@ -1,0 +1,134 @@
+{%- comment -%}
+
+  snippets/product-listing.liquid
+
+  This snippet is used to display a product in a grid layout. It is used in the product grid and product recommendations sections.
+
+  Accepts:
+    - product: The product object to display
+    - collection: The collection object the product belongs to
+    - section: The section object the product is being displayed in
+    - loading: The loading state of the page
+    - fetchpriority: The fetch priority of the image
+
+  Usage:
+  {% render 'product-listing', collection: collection, product: product, loading: loading, fetchpriority: fetch_priority %}
+
+{%- endcomment -%}
+
+{%- liquid
+
+  case settings.product_image_size
+    when 'natural'
+      assign aspect_ratio = 'natural'
+    when 'square'
+      assign aspect_ratio = 'square'
+    when 'landscape'
+      assign aspect_ratio = 'landscape'
+    when 'portrait'
+      assign aspect_ratio = 'portrait'
+  endcase
+
+-%}
+
+<div class="product--grid-image image_{{ aspect_ratio }}">
+
+  {% render 'product-icon-listing', product: product %}
+
+  <a href="{{ product.url | within: collection }}" title="{{ product.title | escape }}">
+
+    {%- if product.featured_media -%}
+      <div class="reveal">
+        {% if product.featured_media.media_type == 'video' or
+              product.featured_media.media_type == 'external_video' %}
+          {% if settings.product_grid_video %}
+            {% render 'product-loop-video', product: product %}
+          {% endif %}
+          {% render 'basic-responsive-image', type: product.featured_media.preview_image, width: 700, loading: loading, fetchpriority: fetchpriority %}
+        {% else %}
+          {% render 'basic-responsive-image', type: product.featured_media, width: 700, loading: loading, fetchpriority: fetchpriority %}
+        {% endif %}
+        {% if settings.image_flip and product.media.size > 1 %}
+          <div class="hidden">
+            {% assign secondary_image = product.media[1] %}
+            {% render 'basic-responsive-image', type: secondary_image, width: 700 %}
+          </div><!-- /.hidden -->
+        {% endif %}
+      </div><!-- /.reveal -->
+    {%- else -%}
+      <div class="box-ratio" style="padding-bottom: 100%;">
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+  </a>
+
+  {% unless settings.quickview_type == 'disabled' or settings.show_quick_add and product.options.size <= 1 %}
+
+    {%- liquid
+
+      if settings.quickview_type == 'modal'
+        assign quickview_classes = 'js-modal-open'
+        assign quickview_settings = 'data-wau-modal-target="quickview"'
+      else
+        assign quickview_classes = 'js-slideout-open'
+        assign quickview_settings = 'data-wau-slideout-target="quickview" data-slideout-direction="right"'
+      endif
+
+    -%}
+
+      <button
+        class="quick-view-{{ product.id }} product-listing__quickview-trigger {{ quickview_classes }} js-quickview-trigger" 
+        type="button"
+        name="button"
+        data-wau-modal-target="quickview"
+        {{ quickview_settings }}
+        data-product-url="/products/{{ product.handle }}?view=quick">
+        {% render 'snip-icons',
+          wrapper: '.product-listing__quickview-trigger',
+          type: 'icon-theme',
+          icon: 'search',
+          classes: 'vib-center',
+          size: '18px',
+          fill: 'var(--text-color)',
+          hover: 'var(--text-color)' %}
+      </button>
+
+  {% endunless %}
+
+  {% if settings.show_quick_add and product.available %}
+    {% render 'product-grid-add', product: product %}
+  {% endif %}
+
+</div>
+
+<div class="product--details">
+  <a href="{{ product.url | within: collection }}" class="js-product--details-link">
+    {% if settings.vendor %}
+      <p class="h4">{{ product.vendor }}</p>
+    {% endif %}
+    <h3 class="mb0">{{ product.title }}</h3>
+  </a>
+
+  {% unless product.template_suffix == 'not-for-sale' %}
+
+    {% render 'product-price-listing', product: product %}
+
+    <div class="product_listing_options">
+
+      {%- liquid
+        if product.variants.size >= 1
+          if settings.show_colors and product.available
+            render 'show-colors', product: product
+          endif
+          if settings.show_sizes and product.available
+            render 'show-sizes', product: product
+            endif
+        endif
+      -%}
+
+    </div>
+
+  {% endunless %}
+
+</div>

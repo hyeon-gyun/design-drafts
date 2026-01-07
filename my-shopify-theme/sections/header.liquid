@@ -1,0 +1,609 @@
+{%- liquid
+
+  if section.settings.logo_align == 'center'
+    assign logo_align_center = true
+  else
+    assign logo_align_left = true
+  endif
+
+  if section.settings.logo_position == 'inline'
+    assign logo_position_inline = true
+  else
+    assign logo_position_above = true
+  endif
+
+  assign hd_locale_selector = false
+  assign hd_country_selector = false
+  if section.settings.show_country_selector and localization.available_countries.size > 1
+    assign hd_country_selector = true
+  endif
+
+  if section.settings.show_locale_selector and shop.published_locales.size > 1
+    assign hd_locale_selector = true
+  endif
+
+  assign logo_width = ''
+  assign nav_width = ''
+  assign header_cart_links_width = ''
+
+  if logo_align_left and logo_position_above
+    assign logo_width = 'span-9 gr1'
+    assign nav_width = 'span-12 auto gr2'
+    assign header_cart_links_width = 'span-3 auto gr1 gc10'
+  elsif logo_align_center and logo_position_above
+    assign logo_width = 'span-6 push-3 gr1'
+    assign nav_width = 'span-12 auto gr2'
+    assign header_cart_links_width = 'span-3 auto gr1 gc10'
+  endif
+
+  assign show_cart_links = true
+
+  assign overlap = false
+  if section.settings.header_cover and template == 'index'
+    assign overlap = true
+  endif
+
+  if section.settings.padded_header
+    assign padding_class = 'pt15 pb15'
+  else
+    assign padding_class = ''
+  endif
+
+-%}
+
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+{% if hd_country_selector or hd_locale_selector %}
+{{ 'component-disclosures.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+{% style %}
+
+  {% comment %} Base styles {% endcomment %}
+  #shopify-section-{{ section.id }} {
+    --logo-width: {{ section.settings.logo_max_width | append: 'px' }};
+    --mobile-logo-width: {{ section.settings.mobile_logo_max_width | append: 'px' }};
+    --background: var(--pre-scroll-background);
+    --text-color: var(--pre-scroll-color);
+  }
+
+  {% comment %} Header overlays first section of homepage (desktop only){% endcomment %}
+  @media screen and (min-width: 980px) {
+    #shopify-section-{{ section.id }}.wau--header header.header-section.overlap__section {
+      --background: transparent;
+      --text-color: {{ section.settings.header_overlay_color }};
+    }
+    {% comment %} Header overlays first section of homepage - set hover scheme to revert to base style {% endcomment %}
+    #shopify-section-{{ section.id }}.wau--header header.header-section.overlap__section:hover {
+      --background: var(--pre-scroll-background);
+      --text-color: var(--pre-scroll-color);
+    }
+  }
+
+  {% comment %} Header changes color scheme on scroll {% endcomment %}
+  #shopify-section-{{ section.id }}.wau--header.is-stuck header.header-section,
+  #shopify-section-{{ section.id }}.wau--header.is-stuck header.header-section.overlap__section:hover {
+    --background: var(--homepage-scroll-background);
+    --text-color: var(--homepage-scroll-color);
+  }
+
+  #shopify-section-{{ section.id }} header.header-section.nav--hover-effect-true .navigation__menu {
+    --hover-underline-height: 2px;
+    --hover-underline-transition-duration: 0.25s;
+    --hover-underline-bottom:  0.2rem;
+    --hover-homepage-pre-scroll-color: var(--pre-scroll-color);
+    --hover-homepage-scroll-color: var(--homepage-scroll-color);
+    --hover-pre-scroll-color: var(--pre-scroll-color);
+  }
+
+  {% if section.settings.enable_sticky_header %}
+      .wau--header { position: sticky; top: -1px; z-index: 12; }
+  {% endif %}
+
+  {% if section.settings.header_cover and template == 'index' %}
+    @media screen and (min-width:980px) { 
+      body.template-index .page-wrap { position: relative; margin-top: var(--header-height); width: 100%; }
+    }
+  {% endif %}
+
+  {% if section.settings.header_border %}
+    .header-section { border-bottom: 1px solid {{ settings.dotted_color }}; }
+  {% endif %}
+
+  {% if section.settings.show_mobile_search %}
+    @media screen and (max-width: 740px) {
+      .search-page--form_content {
+        display: none;
+      }
+    }
+  {% else %}
+    .mobile__search--container {
+      display: none;
+    }
+  {% endif %}
+
+{% endstyle %}
+
+<header class="header-section relative{% if overlap %} overlap__section{% endif %} {{ padding_class }} nav--hover-effect-{{ section.settings.nav_hover_effect }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section">
+  <div class="relative{% if section.settings.full_width_header %} gridlock-fluid{% endif %}">
+    <div class="row">
+      <div class="nav-container{% if logo_position_above %} grid__wrapper{% endif %} {% if section.settings.full_width_header %}full{% endif %} {{ section.settings.logo_position }} logo-{{ section.settings.logo_align }}"><!-- start nav container -->
+
+        <!-- Mobile menu trigger -->
+        <div class="mobile-menu__trigger lg-hide">
+          <div class="slideout__trigger--open text-left">
+            <button class="slideout__trigger-mobile-menu js-slideout-open text-left" data-wau-slideout-target="mobile-navigation" data-slideout-direction="left" aria-label="Open navigation" tabindex="0" type="button" name="button">
+              {% render 'snip-icons',
+                 wrapper: '.slideout__trigger-mobile-menu',
+                 type: 'icon-theme',
+                 icon: 'menu-bars',
+                 classes: 'slideout__trigger-mobile-menu--icon vib-center',
+                 size: '14px',
+                 fill: 'var(--text-color)',
+                 hover: 'var(--text-color)' %}
+            </button>
+          </div>
+        </div>
+
+        {% if logo_align_left or logo_position_above %}
+          {% render 'logo',
+            logo_width: logo_width,
+            logo_image: section.settings.logo,
+            alt_logo_image: section.settings.logo_alt,
+            logo_position: section.settings.logo_position
+          %}
+        {% endif %}
+
+        <nav aria-label="Primary Navigation" class="navigation header-navigation {{ nav_width }} device-hide">
+          <ul role="menubar" aria-label="Primary Navigation" id="main-nav" class="navigation__menu mb0 a-right">
+            {% for link in linklists[section.settings.main_nav].links %}
+              {% render 'navigation', link: link %}
+            {% endfor %}
+          </ul>
+        </nav>
+
+        {% if logo_align_center and logo_position_inline %}
+          {% render 'logo',
+            logo_width: logo_width,
+            logo_image: section.settings.logo,
+            alt_logo_image: section.settings.logo_alt,
+            logo_position: section.settings.logo_position 
+          %}
+        {% endif %}
+
+        <ul class="header__shopping-cart shopping__cart-links relative mb0 {{ header_cart_links_width }}">
+          {% render 'shopping-cart-links',
+            cart: cart,
+            show_cart_links: show_cart_links,
+            hd_locale_selector: hd_locale_selector,
+            hd_country_selector: hd_country_selector,
+            fill_color: 'var(--text-color)',
+            wrapper: '.header__shopping-cart' %}
+        </ul>
+
+      </div><!-- end nav container -->
+
+    </div>
+  </div>
+
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class":"wau--header",
+  "settings":
+  [
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "label": "Logo position",
+      "default":"inline",
+      "options":
+      [
+        {
+          "value": "above",
+          "label": "Above navigation"
+        },
+        {
+          "value": "inline",
+          "label": "Inline with navigation"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "logo_align",
+      "label": "Logo alignment",
+      "default":"left",
+      "options":
+      [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "header_cover",
+      "label": "Enable desktop homepage overlay"
+    },
+    {
+      "type": "color",
+      "id": "header_overlay_color",
+      "label": "Overlay text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "250px x 80px recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_alt",
+      "label": "Alternative logo",
+      "info": "Show an alternative logo of the same size when scrolling."
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 100,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo image max width (desktop)",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_max_width",
+      "min": 80,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo image max width (mobile)",
+      "default": 200
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "main_nav",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_hover_effect",
+      "label": "Navigation hover effect",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Megamenus"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_menu",
+      "label": "Show products in drop downs",
+      "info": "If your main nav item links to a collection, and has a sub menu item, products from the Collection are shown in any drop down menus."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "Show social icons",
+      "info": "Shown at the bottom of mega menus"
+    },
+    {
+      "type": "richtext",
+      "id": "megamenu_text",
+      "label": "Mega menu text",
+      "info": "Shown at the bottom of mega menus"
+    },
+    {
+      "type":"header",
+      "content":"Display options"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_header",
+      "label": "Enable full width"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "padded_header",
+      "label": "Add vertical padding",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "header_border",
+      "label": "Add bottom border"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_search",
+      "label": "Show mobile search form",
+      "default":true
+    },
+    {
+      "type": "header",
+      "content": "Language Selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Enable language selector",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Country/Region Selector",
+      "info": "To add a country/region, go to your [payment settings.](/admin/settings/payments)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Enable country/region selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_flag",
+      "label": "Show country flags",
+      "default": true
+    }
+  ],
+  "blocks":
+  [
+    {
+      "type": "submenu_with_image",
+      "name": "Submenu with image",
+      "settings":
+      [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter menu item to add image to submenu (case-sensitive)"
+        },
+        {
+          "type": "image_picker",
+          "id": "nav_image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "nav_image_position",
+          "label": "Image position",
+          "options":
+          [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "mega_menu",
+      "name": "Mega menu",
+      "settings":
+      [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter menu item to apply a mega menu"
+        },
+        {
+          "type": "select",
+          "id": "megamenu_image_position",
+          "label": "Image position",
+          "options":
+          [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "nav_image",
+          "label": "Featured image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "richtext",
+          "id": "nav_image_text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "nav_image_2",
+          "label": "Featured image"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Link"
+        },
+        {
+          "type": "richtext",
+          "id": "nav_image_text_2",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "submenu_with_hours",
+      "name": "Submenu with hours",
+      "settings":
+      [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter menu item to add image to submenu (case-sensitive)"
+        },
+        {
+          "type": "select",
+          "id": "hours_position",
+          "label": "Image position",
+          "options":
+          [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "hours_title",
+          "label": "Hours title",
+          "default": "Business hours"
+        },
+        {
+          "type": "text",
+          "id": "monday_title",
+          "label": "Monday",
+          "default": "Monday"
+        },
+        {
+          "type": "text",
+          "id": "monday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "text",
+          "id": "tuesday_title",
+          "label": "Tuesday",
+          "default": "Tuesday"
+        },
+        {
+          "type": "text",
+          "id": "tuesday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "text",
+          "id": "wednesday_title",
+          "label": "Wednesday",
+          "default": "Wednesday"
+        },
+        {
+          "type": "text",
+          "id": "wednesday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "text",
+          "id": "thursday_title",
+          "label": "Thursday",
+          "default": "Thursday"
+        },
+        {
+          "type": "text",
+          "id": "thursday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "text",
+          "id": "friday_title",
+          "label": "Friday",
+          "default": "Friday"
+        },
+        {
+          "type": "text",
+          "id": "friday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "text",
+          "id": "saturday_title",
+          "label": "Saturday",
+          "default": "Saturday"
+        },
+        {
+          "type": "text",
+          "id": "saturday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "text",
+          "id": "sunday_title",
+          "label": "Sunday",
+          "default": "Sunday"
+        },
+        {
+          "type": "text",
+          "id": "sunday_hours",
+          "label": "Heading",
+          "default": "8:30AM - 8:00PM"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_today",
+          "label": "Highlight today",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{% liquid
+  assign loading = 'lazy'
+  assign fetch_priority = 'auto'
+  if section.index == 1 and has_subcollections == false and forloop.index <= section.settings.grid
+    assign loading = 'eager'
+    assign fetch_priority = 'high'
+  endif
+%}
+
+{%- if recommendations.performed and recommendations.products_count > 0 -%}
+  <section class="product-recommendations__wrapper"
+    id="related"
+    data-section-id="{{ section.id }}"
+    data-aos="{{ settings.scroll_animation }}">
+
+        <div class="product-recommendations row" data-product-id="{{ product.id }}">
+          <div class="related-product-loop grid__wrapper px0">
+
+            {% if section.settings.product_recommendations_heading != blank %}
+              <div class="section-title span-12 auto">
+                <h2>{{ section.settings.product_recommendations_heading }}</h2>
+              </div>
+            {% endif %}
+
+            {%- for product in recommendations.products limit: section.settings.items_shown -%}
+              <div class="product product-index span-3 auto sm-span-6"
+                data-product-id="{{ product.id }}"
+                data-aos="{{ settings.scroll_animation }}"
+                data-aos-delay="{{ forloop.index | times: 100 }}">
+
+                {% render 'product-listing', 
+                  product: product,
+                  collection: collection,
+                  section: section,
+                  loading: loading,
+                  fetch_priority: fetch_priority %}
+
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+  </section>
+
+{%- else  -%}
+
+  <div class="js-product-rec-wrapper"
+      data-base-url="{{ routes.product_recommendations_url }}"
+      data-product-id="{{ product.id }}"
+      data-section-id="{{ section.id }}"
+      data-section-type="product-recommendations"
+      data-intent="related">
+  </div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "settings":
+  [
+    {
+      "type": "text",
+      "id": "product_recommendations_heading",
+      "label": "Heading",
+      "default": "You may also like"
+    },
+    {
+      "type": "range",
+      "id": "items_shown",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Products shown",
+      "default": 4
+    }
+  ]
+}
+{% endschema %}

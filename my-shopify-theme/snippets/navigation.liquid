@@ -1,0 +1,413 @@
+{%- liquid
+
+  assign is_upcase = false
+
+  if settings.uppercase_nav
+    assign is_upcase = true
+  endif
+
+-%}
+
+{% assign meganav = false %}
+{% assign submenu_with_image = false %}
+{% for block in section.blocks %}
+  {% if block.type == 'submenu_with_hours' %}
+    {% if block.settings.menu_item == link.title %}
+      {% capture hoursmenu %}
+        <li data-active-class="navigation__menuitem--active" class="navigation__menuitem navigation__menuitem--dropdown js-doubletap-to-go js-aria-expand" aria-haspopup="true" aria-expanded="false" role="none">
+          <a class="navigation__menulink js-menu-link js-open-dropdown-on-key is_upcase-{{ is_upcase }}" href="{{ link.url }}">
+            {{ link.title }}
+            {% render 'snip-icons',
+               wrapper: '.navigation__menulink',
+               type: 'apollo',
+               icon: 'down-carrot',
+               classes: 'navigation__menulink--icon vib-center',
+               size: '6px',
+               fill: 'var(--text-color)',
+               hover: 'var(--text-color)' %}
+          </a>
+
+          <ul class="dropdown dropdown--withimage js-dropdown js-hours-of-operations" data-enable-highlighting="{{ block.settings.highlight_today }}">
+            {% capture hours %}
+            <span class="dropdown__navimage dropdown__column dropdown__column--hours">
+              <h4>{{ block.settings.hours_title }}</h4>
+              <ul class="hours-widget">
+                <li>
+                  <span class="key" data-day="monday">{{ block.settings.monday_title }}</span>
+                  <span class="value">{{ block.settings.monday_hours }}</span>
+                </li>
+                <li>
+                  <span class="key" data-day="tuesday">{{ block.settings.tuesday_title }}</span>
+                  <span class="value">{{ block.settings.tuesday_hours }}</span>
+                </li>
+                <li>
+                  <span class="key" data-day="wednesday">{{ block.settings.wednesday_title }}</span>
+                  <span class="value">{{ block.settings.wednesday_hours }}</span>
+                </li>
+                <li>
+                  <span class="key" data-day="thursday">{{ block.settings.thursday_title }}</span>
+                  <span class="value">{{ block.settings.thursday_hours }}</span>
+                </li>
+                <li>
+                  <span class="key" data-day="friday">{{ block.settings.friday_title }}</span>
+                  <span class="value">{{ block.settings.friday_hours }}</span>
+                </li>
+                <li>
+                  <span class="key" data-day="saturday">{{ block.settings.saturday_title }}</span>
+                  <span class="value">{{ block.settings.saturday_hours }}</span>
+                </li>
+                <li>
+                  <span class="key" data-day="sunday">{{ block.settings.sunday_title }}</span>
+                  <span class="value">{{ block.settings.sunday_hours }}</span>
+                </li>
+              </ul>
+            </span>
+            <style>
+              .hours-widget {
+                /* 28px matches existing line height */
+                --line-height: 28px;
+                line-height: var(--line-height);
+              }
+              .hours-widget li {
+                display: flex;
+              }
+              .hours-widget .value {
+                margin-left: auto;
+              }
+              .hours-widget .today {
+                font-weight: 900;
+              }
+            </style>
+            {% endcapture %}
+            {% if block.settings.hours_position == 'left' %}
+              {{ hours }}
+            {% endif %}
+            <span class="dropdown__navmenu dropdown__column">
+              {% for sub_link in link.links %}
+                {% if sub_link.links != blank %}
+                <li data-active-class="dropdown__menuitem--active" role="none" class="dropdown__menuitem dropdown__menuitem--nested js-doubletap-to-go js-menuitem-with-nested-dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="dropdown__menulink js-aria-expand js-menu-link" role="menuitem" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                  {% render 'snip-icons',
+                    wrapper: '.dropdown__menulink',
+                    type: 'apollo',
+                    icon: 'right-carrot',
+                    classes: 'navigation__menulink--icon vib-center',
+                    size: '6px',
+                    fill: 'var(--text-color)',
+                    hover: 'var(--text-color)' %}
+                  <ul role="menu" class="dropdown dropdown--nested js-dropdown-nested">
+                    {% for sub_sub_link in sub_link.links %}
+                      <li class="dropdown__menuitem" role="none">
+                        <a class="dropdown__menulink js-menu-link-inside-dropdown" role="menuitem" href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% else %}
+                  <li class="dropdown__menuitem" role="none">
+                    <a class="dropdown__menulink js-menu-link" role="menuitem" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </span>
+            {% if block.settings.hours_position == 'right' %}
+              {{ hours }}
+            {% endif %}
+          </ul>
+        </li>
+      {% endcapture %}
+      {% assign hours_of_operation = true %}
+    {% endif %}
+  {% elsif block.type == 'submenu_with_image' %}
+    {% if block.settings.menu_item == link.title %}
+      {% capture imagemenu %}
+        <li data-active-class="navigation__menuitem--active" class="navigation__menuitem navigation__menuitem--dropdown js-menuwithimage-parent js-doubletap-to-go js-aria-expand" aria-haspopup="true" aria-expanded="false" role="none">
+          <a class="navigation__menulink js-menu-link js-open-dropdown-on-key is_upcase-{{ is_upcase }}" href="{{ link.url }}">
+            {{ link.title }}
+            {% render 'snip-icons',
+               wrapper: '.navigation__menulink',
+               type: 'apollo',
+               icon: 'down-carrot',
+               classes: 'navigation__menulink--icon vib-center',
+               size: '6px',
+               fill: 'var(--text-color)',
+               hover: 'var(--text-color)' %}
+          </a>
+
+          <ul class="dropdown dropdown--withimage js-dropdown">
+            {% if block.settings.nav_image != blank %}
+              {% capture navimage %}
+              {%- assign image_size = '300x' -%}
+              <span class="dropdown__navimage dropdown__column">
+                {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}">
+                {% endif %}
+                  {% render 'basic-responsive-image', type: block.settings.nav_image, width: 300 %}
+                {% if block.settings.link != blank %}
+                </a>
+                {% endif %}
+              </span>
+              {% endcapture %}
+            {% endif %}
+            {% if block.settings.nav_image_position == 'left' %}
+              {{ navimage }}
+            {% endif %}
+            <span class="dropdown__navmenu dropdown__column">
+              {% for sub_link in link.links %}
+                {% if sub_link.links != blank %}
+                <li data-active-class="dropdown__menuitem--active" role="none" class="dropdown__menuitem dropdown__menuitem--nested js-doubletap-to-go js-menuitem-with-nested-dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="dropdown__menulink js-aria-expand js-menu-link" role="menuitem" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                  {% render 'snip-icons',
+                    wrapper: '.dropdown__menulink',
+                    type: 'apollo',
+                    icon: 'right-carrot',
+                    classes: 'navigation__menulink--icon vib-center',
+                    size: '6px',
+                    fill: 'var(--text-color)',
+                    hover: 'var(--text-color)' %}
+                  <ul role="menu" class="dropdown dropdown--nested js-dropdown-nested">
+                    {% for sub_sub_link in sub_link.links %}
+                      <li class="dropdown__menuitem" role="none">
+                        <a class="dropdown__menulink js-menu-link-inside-dropdown" role="menuitem" href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% else %}
+                  <li class="dropdown__menuitem" role="none">
+                    <a class="dropdown__menulink js-menu-link" role="menuitem" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+            </span>
+            {% if block.settings.nav_image_position == 'right' %}
+              {{ navimage }}
+            {% endif %}
+          </ul>
+        </li>
+      {% endcapture %}
+      {% assign submenu_with_image = true %}
+    {% endif %}
+  {% elsif block.type == 'mega_menu' %}
+    {% if block.settings.menu_item == link.title %}
+      {% capture megalink %}
+        <li data-active-class="navigation__menuitem--active" class="navigation__menuitem navigation__menuitem--dropdown js-doubletap-to-go js-aria-expand" aria-haspopup="true" aria-expanded="false" role="none">
+          <a class="navigation__menulink js-menu-link js-open-dropdown-on-key is_upcase-{{ is_upcase }}" href="{{ link.url }}">
+            {{ link.title }}
+            {% render 'snip-icons',
+              wrapper: '.navigation__menulink',
+              type: 'apollo',
+              icon: 'down-carrot',
+              classes: 'navigation__menulink--icon vib-center',
+              size: '6px',
+              fill: 'var(--text-color)',
+              hover: 'var(--text-color)' %}
+          </a>
+
+          {% if block.settings.nav_image != blank or block.settings.nav_image_2 != blank  %}
+            {% capture megamenu_image %}
+            {% liquid
+                assign has_image = false
+                if block.settings.nav_image != blank or block.settings.nav_image_2 != blank
+                  assign has_image = true
+                endif
+            %}
+              <span class="span-4 auto mm-image">
+                {% if block.settings.nav_image != blank %}
+                  <div class="megamenu__imagecontainer">
+                    {% if block.settings.link != blank %}
+                      <a href="{{ block.settings.link }}">
+                    {% endif %}
+                      {% render 'basic-responsive-image', type: block.settings.nav_image, width: 500 %}
+                    {% if block.settings.link != blank %}
+                      </a>
+                    {% endif %}
+                    {% if block.settings.nav_image_text %}
+                      {{ block.settings.nav_image_text }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if block.settings.nav_image_2 != blank %}
+                  <div class="megamenu__imagecontainer">
+                    {% if block.settings.link_2 != blank %}
+                      <a href="{{ block.settings.link_2 }}">
+                    {% endif %}
+                      {% render 'basic-responsive-image', type: block.settings.nav_image_2, width: 500 %}
+                    {% if block.settings.link_2 != blank %}
+                      </a>
+                    {% endif %}
+                    {% if block.settings.nav_image_text_2 %}
+                      {{ block.settings.nav_image_text_2 }}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </span>
+            {% endcapture %}
+          {% endif %}
+
+          {% case link.links.size %}
+            {% when 2 %}
+              {% assign columns = '2' %}
+            {% when 3 %}
+              {% assign columns = '3' %}
+            {% else %}
+              {% assign columns = '4' %}
+          {% endcase %}
+
+          <ul class="megamenu">
+            <div class="megamenu__container grid__wrapper edge pb0">
+              {% if block.settings.megamenu_image_position == 'left' %}
+                {{ megamenu_image }}
+              {% endif %}
+              <span class="{% if has_image %}span-8{% else %}span-12{% endif %} auto megamenu--submenu_container" style="columns: {{ columns }};">
+                {% for sub_link in link.links %}
+                  <li class="megamenu__listcontainer">
+                    <h4 class="megamenu__header">
+                      <a class="megamenu__headerlink" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                    </h4>
+                    {% if sub_link.links != blank %}
+                      <ul class="megamenu__list">
+                        {% for sub_sub_link in sub_link.links %}
+                          <li class="megamenu__listitem">
+                            <a class="megamenu__listlink" href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </span>
+              {% if block.settings.megamenu_image_position == 'right' %}
+                {{ megamenu_image }}
+              {% endif %}
+            </div>
+            {% if section.settings.show_social_icons or megamenu_text != blank %}
+              <div class="menu--content_container grid__wrapper">
+                {% if section.settings.show_social_icons %}
+                  <div class="header_social-icons">{% render 'social-icons'%}</div>
+                {% endif %}
+                {% if section.settings.megamenu_text != blank %}
+                  <div class="header_text">{{ section.settings.megamenu_text }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </ul>
+        </li>
+      {% endcapture %}
+      {% assign meganav = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% if submenu_with_image %}
+  {{ imagemenu }}
+{% elsif hours_of_operation %}
+  {{ hoursmenu }}
+{% elsif meganav %}
+  {{ megalink }}
+{% elsif link.links != blank %}
+  <li data-active-class="navigation__menuitem--active" class="navigation__menuitem navigation__menuitem--dropdown js-doubletap-to-go js-menuitem" role="none">
+    <a class="navigation__menulink js-menu-link js-aria-expand js-open-dropdown-on-key is_upcase-{{ is_upcase }}" role="menuitem" aria-haspop="true" aria-expanded="false" href="{{ link.url}}">
+      {{ link.title }}
+      {% render 'snip-icons',
+         wrapper: '.navigation__menulink',
+         type: 'apollo',
+         icon: 'down-carrot',
+         classes: 'navigation__menulink--icon vib-center',
+         size: '6px',
+         fill: 'var(--text-color)',
+         hover: 'var(--text-color)' %}
+    </a>
+    {% if link.type == 'collection_link' and section.settings.product_menu %}
+      {% assign collection = link.object %}
+      <ul class="megamenu">
+        <div class="megamenu__container grid__wrapper">
+          <!-- Start Megamenu Inner Links -->
+          <li class="span-3 auto">
+            <h4 class="megamenu__header">{{ link.title }}</h4>
+            <ul class="megamenu__list">
+              {% for sub_link in link.links %}
+                {% if sub_link.links != blank %}
+                <li data-active-class="megamenu__listitem--active" role="none" class="megamenu__listitem megamenu__listitem--nested js-doubletap-to-go js-megamenu-listitem-with-nested-dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="megamenu__listlink js-aria-expand js-megamenu-menu-link" href="{{ sub_link.url }}" role="menuitem">{{ sub_link.title }}</a>
+                  {% render 'snip-icons',
+                    wrapper: '.dropdown__menulink',
+                    type: 'apollo',
+                    icon: 'right-carrot',
+                    classes: 'navigation__menulink--icon vib-center',
+                    size: '6px',
+                    fill: 'var(--text-color)',
+                    hover: 'var(--text-color)' %}
+                  <ul role="menu" class="dropdown dropdown--nested js-dropdown-nested">
+                    {% for sub_sub_link in sub_link.links %}
+                      <li class="dropdown__menuitem" role="none">
+                        <a class="dropdown__menulink js-menu-link-inside-dropdown" role="menuitem" href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% else %}
+                  <li class="megamenu__listitem">
+                    <a class="megamenu__listlink js-megamenu-menu-link" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+          {% for product in collection.products limit: 4 %}
+            <li class="span-2 auto product js-megamenu-product isolation">
+              {% render 'product-listing', product: product, collection: collection %}
+            </li>
+          {% endfor %}
+        </div>
+        {% if section.settings.show_social_icons or megamenu_text != blank %}
+          <div class="menu--content_container grid__wrapper">
+            {% if section.settings.show_social_icons %}
+              <div class="header_social-icons">{% render 'social-icons'%}</div>
+            {% endif %}
+            {% if section.settings.megamenu_text != blank %}
+              <div class="header_text">{{ section.settings.megamenu_text }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </ul>
+    {% else %}
+      <ul role="menu" aria-label="{{ link.title }}" class="dropdown js-dropdown">
+        {% for sub_link in link.links %}
+          {% if sub_link.links != blank %}
+          <li data-active-class="dropdown__menuitem--active" role="none" class="dropdown__menuitem dropdown__menuitem--nested js-doubletap-to-go js-menuitem-with-nested-dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown__menulink js-aria-expand js-menu-link" role="menuitem" href="{{ sub_link.url }}">
+              {{ sub_link.title }}
+              {% render 'snip-icons',
+                wrapper: '.dropdown__menulink',
+                type: 'apollo',
+                icon: 'right-carrot',
+                classes: 'navigation__menulink--icon vib-center',
+                size: '6px',
+                fill: 'var(--text-color)',
+                hover: 'var(--text-color)' %}
+            </a>
+            <ul role="menu" class="dropdown dropdown--nested js-dropdown-nested">
+              {% for sub_sub_link in sub_link.links %}
+                <li class="dropdown__menuitem" role="none">
+                  <a class="dropdown__menulink js-menu-link-inside-dropdown" role="menuitem" href="{{ sub_sub_link.url }}">
+                    {{ sub_sub_link.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% else %}
+            <li class="dropdown__menuitem" role="none">
+              <a class="dropdown__menulink js-menu-link" role="menuitem" href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </li>
+{% else %}
+  <li class="navigation__menuitem" role="none">
+    <a class="navigation__menulink js-menu-link is_upcase-{{ is_upcase }}" role="menuitem" href="{{ link.url }}">{{ link.title }}</a>
+  </li>
+{% endif %}

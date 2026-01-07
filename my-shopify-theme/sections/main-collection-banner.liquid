@@ -1,0 +1,199 @@
+{{ 'section-image-with-text-overlay.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% comment %} 
+  Collection banner image section.
+  Shares setup and CSS with image-with-text-overlay.liquid
+{% endcomment %}
+
+{%- liquid
+
+  if section.settings.image
+    assign scale = section.settings.scale
+    assign section_padding = ''
+    if section.settings.section_padding == 'top'
+      assign section_padding = 'mb0'
+    elsif section.settings.section_padding == 'bottom'
+      assign section_padding = 'mt0'
+    elsif section.settings.section_padding == 'none'
+      assign section_padding = 'mt0 mb0'
+    endif
+  else
+    assign section_padding = 'mt0 mb0'
+  endif
+
+-%}
+
+{% if section.settings.image %}
+  <section
+    class="parallax--section-{{ section.id }} parallax--section global__section global__section--margin {{ section_padding }}"
+    data-section-type="iwto-section"
+    data-scale="1.{{ scale }}"
+    data-section-id="{{ section.id }}"
+    data-aos="{{ settings.scroll_animation }}">
+
+      <article class="section--image">
+        {% liquid
+          if section.index == 1
+            assign loading = 'eager'
+            assign fetch_priority = 'high'
+          endif
+          %}
+        {% render 'basic-responsive-image', type: section.settings.image, width: 2000, loading: loading, fetchpriority: fetch_priority %}
+      </article>
+
+      <div class="section--caption a-center">
+        {% if section.settings.floating_title %}
+          <h1>{{ collection.title }}</h1>
+        {% endif %}
+        {% if section.settings.show_collection_description %}
+          <div class="rte">
+            {{ collection.description }}
+          </div>
+        {% endif %}
+      </div>
+
+  </section>
+
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      --text-color: {{ section.settings.text_color }};
+      --header-color: {{ section.settings.text_color }};
+      --desktop-section-height: {{ section.settings.desktop_height }}px;
+      --mobile-section-height: {{ section.settings.mobile_height }}px;
+      --background: transparent;
+      --caption-vertical: 50%;
+      --caption-horizontal: 50%;
+      --caption-vertical-negative: -50%;
+      --caption-horizontal-negative: -50%;
+      --section-overlay-color: {{ section.settings.overlay_color | color_modify: 'alpha', block_opacity }};
+    }
+    .no-js .parallax--section-{{ section.id }} {
+      background-image: url('{{ section.settings.image | image_url: width: 2000 }}');
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      background-position: center center !important;
+    }
+    {% if section.settings.floating_title %}
+      .collection__page--section-title {
+        display: none;
+      }
+    {% endif %}
+    {% if section.settings.show_collection_description %}
+      .collection-description {
+        display: none;
+      }
+    {% endif %}
+  {% endstyle %}
+
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Collection banner image",
+  "settings":
+  [
+    {
+      "type": "paragraph",
+      "content": "Add a banner image specific to each collection using [metafields](https:\/\/www.weareunderground.com/blogs/icon-support/using-metafields-for-product-content), or override metafields by adding an image that will be commonly shared by all collections."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "2880px x 1200px recommended"
+    },
+    {
+      "type": "range",
+      "id": "scale",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "label": "Image scale",
+      "default": 2,
+      "info": "Increases / decreases parallax scrolling intensity"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 200,
+      "max": 1000,
+      "step": 100,
+      "label": "Desktop image height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 200,
+      "max": 800,
+      "step": 100,
+      "label": "Mobile image height",
+      "default": 400
+    },
+    {
+      "type":"header",
+      "content":"Collection title"
+    },
+    {
+      "type": "checkbox",
+      "id": "floating_title",
+      "label": "Show collection title",
+      "default":false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "label": "Show collection description",
+      "default":false
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "overlay_color",
+      "label": "Image overlay",
+      "default": "linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.3) 100%)",
+      "info":"Add an overlay to help separate text from the image"
+    },
+    {
+      "type": "select",
+      "id": "section_padding",
+      "label": "Section spacing",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "bottom"
+    }
+  ],
+  "presets":
+  [
+    {
+      "name": "Collection banner image"
+    }
+  ],
+  "templates":
+  [
+    "collection"
+  ]
+}
+{% endschema %}

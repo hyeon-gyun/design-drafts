@@ -1,0 +1,223 @@
+{% comment %}
+snippets/sidebar-list-filter.liquid
+
+Renders the sidebar list filter. Handles normal, size and color filters.
+
+Accepts:
+- filter {Object} - Filter Liquid object
+- block {Object} - Section block Liquid object
+- unique_id {String} - Unique identifier
+- color_swatch_options
+
+Usage:
+{%
+  render 'sidebar-list-filter',
+  filter: filter,
+  block: block,
+  unique_id: unique_id,
+  color_swatch_options: color_swatch_options
+%}
+{% endcomment %}
+{%- liquid
+
+    # Set default to false since we are in a loop.
+    assign is_size_filter = false
+    assign is_color_filter = false
+    assign filter_label_to_lowercase = filter.label | downcase
+
+    # Figure out color filters.
+    if color_swatch_options contains filter_label_to_lowercase
+      assign is_color_filter = true
+    endif
+
+    # Don't worry about size option filters for now as they do not do anything.
+    assign size_option_names = 'size,talla,taglia,taille,tamanho,grosse' | split: ','
+    if size_option_names contains filter.label
+      assign is_size_filter = true
+    endif
+
+    # Determine filter type.
+    if is_color_filter
+      assign filter_type = 'color'
+    elsif is_size_filter
+      assign filter_type = 'size'
+    else
+      assign filter_type = 'regular'
+    endif
+
+  # Get block settings
+  assign scroll_long_lists = block.settings.scroll_long_lists
+  assign two_column_labels = block.settings.two_column_labels
+  assign filter_color_swatches = block.settings.filter_color_swatches
+  assign show_filter_count = block.settings.show_filter_count
+
+  assign show_swatch = true
+  assign show_text = true
+  assign swatch_only = false
+  assign two_column_labels = false
+
+  if filter_type == 'size' or filter_type == 'regular'
+    if block.settings.two_column_labels
+      assign two_column_labels = true
+    endif
+  endif
+
+  if is_color_filter and filter_color_swatches == 'color_swatch_with_text'
+    assign two_column_labels = true
+    assign show_swatch = true
+    assign show_text = true
+    assign swatch_only = false
+    assign list_item_class = 'filter_swatch two_columns'
+  endif
+
+  if is_color_filter and filter_color_swatches == 'color_swatch_only'
+    assign show_swatch = true
+    assign show_text = false
+    assign swatch_only = true
+    assign list_item_class = 'swatch_only'
+  endif
+
+  if is_color_filter and filter_color_swatches == 'text_only'
+    assign show_swatch = false
+    assign show_text = true
+    assign swatch_only = false
+    assign list_item_class = 'no_color_swatch'
+  endif
+
+-%}
+<div class="sidebar-filter filter--{{ filter_type }}{% if scroll_long_lists %} scroll{% endif %}">
+  <ul class="sidebar--filters-ul{% if two_column_labels %} flex--row{% endif %}">
+    {% liquid
+      if filter.operator == 'AND'
+        assign active_values = filter.values | where: 'active', true
+        assign inactive_values = filter.values | where: 'active', false
+        assign sorted_values = active_values | concat: inactive_values
+      else
+        assign sorted_values = filter.values
+      endif
+     %}
+    {% for value in sorted_values %}
+
+      {%- liquid
+        assign variant_img_url = null
+        assign swatch_color_name = value.label | handleize | downcase | append: '.png'
+        assign swatch_image_url = swatch_color_name | file_url
+        if value.display.type == 'colors'
+          assign css_color = value.display.value
+        else
+          assign css_color = value.label | split: ' ' | last | downcase
+        endif
+
+        if images[swatch_color_name] != blank
+          assign bg_img = 'background-image:url(' | append:  swatch_image_url | append: ');'
+        else
+          assign bg_img = ''
+        endif
+        assign bg_color = 'background-color:' | append:  css_color | append: ';'
+
+        if value.active
+          assign status = 'current'
+          assign url = value.url_to_remove
+        elsif value.count == 0 and value.active == false
+          assign status = 'disabled'
+          assign url = ''
+        else
+          assign status = ''
+          assign url = value.url_to_add
+        endif
+      -%}
+
+      {% liquid
+        assign swatch_class = ''
+
+        if filter.presentation == 'swatch' and value.swatch.image
+          assign swatch_class = 'presentation--swatch'
+          if block.settings.swatch_size contains 'thumbnail'
+            assign swatch_class = swatch_class | append: ' size--thumbnail two_columns'
+          else
+            assign swatch_class = swatch_class | append: ' size--icon'
+          endif
+          if block.settings.crop_swatch_image
+              assign swatch_class = swatch_class | append: ' image--cropped'
+          endif
+          assign show_swatch = true
+          assign show_text = true
+          assign list_item_class = ''
+        endif
+
+        if filter.presentation == 'swatch' and value.swatch.image == false
+          assign show_swatch = true
+          assign show_text = true
+          assign swatch_class = 'filter_swatch two_columns'
+          assign list_item_class = ''
+        endif
+
+      %}
+      <li class="{{ status }} {{ swatch_class }}{% if is_color_filter %} {{ list_item_class }}{% endif %}">
+        {% if is_color_filter %}
+          <a class="js-collection-side-filter {{ status }}" href="{{ url }}" title="{{ value.label }}">
+            <input type="checkbox"
+              name="{{ value.param_name }}"
+              value="{{ value.value }}"
+              id="{{ filter.label | handle }}--{{ value.value }}"
+              {% if value.active %}checked{% endif %}
+              {% if value.count == 0 and value.active == false %}disabled{% endif%} >
+
+               {%- capture classes -%}
+                   color-filter color-filter--{{ status }} {{ status }} color-filter--{{- filter.presentation }}
+               {%- endcapture -%}
+
+               {% if show_swatch %}
+               {% case filter.presentation %}
+                 {% assign classes = classes | append: ' color-filter--rounded' %}
+                 {% when 'swatch' %}
+                   {% if value.swatch.image %}
+                    <div class="filter--presentation_image">
+                     {{
+                       value.swatch.image
+                       | image_url: width: 300
+                       | image_tag: alt: value.swatch.image.alt, class: classes
+                     }}
+                    </div>
+                   {% elsif value.swatch.color %}
+                     {% assign swatch_background = 'rgb('
+                       | append: value.swatch.color.rgb
+                       | append: ')'
+                     %}
+                     <div class="{{- classes -}}" style="background: {{ swatch_background }};"></div>
+                   {% endif %}
+                 {% when 'image' %}
+                   {% if value.image %}
+                     {{
+                       value.image
+                       | image_url: width: 300
+                       | image_tag: alt: value.image.alt, class: classes, style: swatch_size_class
+                     }}
+                   {% endif %}
+                 {% else %}
+                   <span
+                     class="color-filter color-filter--rounded color-filter--{{ status }} {{ status }} color-filter--default"
+                     style="{{ bg_color }}{{ bg_img }}"
+                   ></span>
+               {% endcase %}
+              {% endif %}
+
+            {% if show_text == true %}
+              <label class="color-filter--label" for="{{ filter.label | handle }}--{{ value.value | handle }}--{{ unique_id }}">{{ value.label | escape }}{% if show_filter_count %} <span class="filter__count">({{ value.count }})</span>{% endif %}</label>
+            {% endif %}
+          </a>
+        {% else %}
+          <a class="js-collection-side-filter {{ status }}" data-tag="{{ url }}" href="{{ url }}">
+            <input type="checkbox"
+                   name="{{ value.param_name }}"
+                   value="{{ value.value }}"
+                   id="{{ filter.label | handle }}--{{ value.value | handle }}--{{ unique_id }}"
+                   {% if value.active %}checked{% endif %}
+                   {% if value.count == 0 and value.active == false %}disabled{% endif%} >
+            <label class="regular-filter--label" for="{{ filter.label | handle }}--{{ value.value | handle }}--{{ unique_id}}">{{ value.label | escape }}{% if show_filter_count %} <span class="filter__count">({{ value.count }})</span>{% endif %}</label>
+          </a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,213 @@
+/* ---- Countdown section ---- */
+.countdown__time {
+  font-size: var(--font-size);
+}
+
+.countdown__label,
+.countdown__how,
+.countdown__time-label {
+  font-size: var(--font-size);
+}
+
+.countdown__time--wrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  position: relative;
+}
+
+.countdown__image,
+.countdown__wrapper.has--image {
+  grid-row: 1/1;
+  grid-column: 1/13 !important;
+}
+
+.countdown__image,
+.countdown--content_container.has--image {
+  height: var(--desktop-section-height);
+}
+
+.countdown__image .box-ratio {
+  padding-bottom: var(--desktop-section-height) !important;
+  position: relative;
+}
+
+@media screen and (max-width: 740px) {
+  .countdown__image,
+  .countdown--content_container.has--image {
+    height: var(--mobile-section-height);
+  }
+  .countdown__image .box-ratio {
+    padding-bottom: var(--mobile-section-height) !important;
+  }
+}
+
+.countdown__image .box-ratio img {
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  height: 100%;
+}
+
+.countdown__image:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--section-overlay-color);
+}
+
+.countdown__image {
+  position: relative;
+}
+
+.countdown__wrapper.has--image.position-start {
+  align-self: start;
+}
+.countdown__wrapper.has--image.position-center {
+  align-self: center;
+}
+.countdown__wrapper.has--image.position-end {
+  align-self: end;
+}
+
+.countdown__wrapper.has--image .countdown__grid {
+  background: transparent;
+}
+
+.countdown__grid {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  padding: 20px;
+  background: var(--background);
+  color: var(--text-color);
+  position: relative;
+  z-index: 1;
+}
+
+/* layout cases */
+.countdown__grid.l-center {
+  justify-content: center;
+}
+
+.countdown__grid.l-space-between {
+  justify-content: space-between;
+}
+
+.countdown__grid.l-flex-row {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 15px;
+}
+
+.countdown__time-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* Stacked appearance */
+.countdown__grid.l-flex-row .countdown__time-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.countdown__colon-divider {
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
+
+.countdown__heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.countdown__heading.rte > * {
+  color: var(--text-color);
+  font-size: var(--text-size);
+  margin-bottom: 0;
+}
+
+p.countdown__time {
+  font-size: var(--clock-text-size);
+}
+
+.countdown__heading p a {
+  text-decoration: underline;
+}
+
+.countdown__button-wrapper {
+  margin-left: 10px;
+}
+
+/* Stacked appearance */
+.countdown__grid.l-flex-row .countdown__button-wrapper {
+  flex: 1 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+}
+
+.countdown__button-wrapper a.button,
+.countdown__button-wrapper a.button:hover,
+.countdown__button-wrapper a.button:visited {
+  background: var(--button-color);
+  color: var(--button-text);
+  font-size: var(--clock-text-size)
+  margin: 0 auto;
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 48px;
+  line-height: 48px;
+}
+
+@media screen and (max-width: 980px) {
+  .countdown__grid {
+    flex-wrap: wrap;
+    row-gap: 15px;
+  }
+  .countdown__time-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .countdown__button-wrapper {
+    flex: 1 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .countdown__grid {
+    text-align: center;
+  }
+  .countdown__grid.l-space-between {
+    justify-content: center;
+  }
+}

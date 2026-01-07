@@ -1,0 +1,1303 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHAMPION Archive</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css">
+<script src="https://inoo11.cafe24.com/web/strism_ver9/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+<style>
+body { margin:0; }
+html, body { max-width: 100%; overflow-x: hidden; }
+.pc-view ul, .mo-view ul { list-style: none; margin: 0; padding: 0; }
+.pc-view { display:none; }
+.mo-view { display:block; }
+.mo-view { overflow-x: hidden; }
+.mo-view img { max-width: 100%; height: auto; }
+.pc-view img.logo-5 { width: 70%; max-width: 900px; display: block; margin: 0 auto; height: auto; }
+.pc-view img.img-half { width: 50%; height: auto; }
+@media (min-width:600px) {
+  .pc-view { display:block; }
+  .mo-view { display:none; }
+}
+</style>
+<style>
+    
+.scrolldw { position:fixed; bottom:100px; left:50%; margin:0 0 0 -15px; }
+.scrolldw img { width:30px; }    
+    
+#top, #bar { display: none; }
+.wide_bnr { display:none; }    
+.overmenu { top: 100px; }
+.pc-view img.logo-half { width: 100%; height: auto; }
+    
+.archive_wrap {
+		position: relative;
+		clear: both;
+		background-color: #1a1a1a;
+}
+.archive_side {
+		position: fixed;
+		top: 50%;
+		left: ;
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+		z-index: 10;
+		font-family: 'Questrial', 'Nanum Myeongjo', sans-serif;
+		color: #fff;
+}
+.archive_side p:nth-child(1) {
+		position: fixed;
+		top: ;
+		left: 1%;
+		font-size: 20px;
+		transform: rotate(-90deg);
+}
+.archive_side p:nth-child(2) {
+		position: fixed;
+		top: ;
+		right: 1%;
+		font-size: 20px;
+		transform: rotate(90deg);
+}
+.archive_list {
+		position: relative;
+		clear: both;
+		width: 760px;
+		margin: 0 auto 200px auto;
+		text-align: center;
+}
+.archive_list a {
+		padding: 30px 100px;
+		margin: 20px;
+		background-color: #ff7125;
+		color: #fff;
+		font-size: 20px;
+}
+.archive_list a:hover {
+		background-color: #eee;
+		color: #000;
+}
+   
+.spin {
+		-webkit-animation: spin 5.2s infinite linear;
+		animation: spin 5.2s infinite linear;
+}
+@keyframes spin {
+		0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+		}
+		100% {
+				-webkit-transform: rotate(-360deg);
+				transform: rotate(-360deg);
+		}
+}
+.bounce {
+		-webkit-animation: verticalBounce 30s linear infinite both;
+		animation: verticalBounce 30s linear infinite both;
+}
+@-webkit-keyframes verticalBounce {
+		0%, 10%, 30%, 50%, 70%, 90%, 100% {
+				-webkit-transform: translateX(0);
+				transform: translateY(0);
+		}
+		20%, 40%, 60%, 80% {
+				-webkit-transform: translateX(-100px);
+				transform: translateY(200px);
+		}
+}
+#champion_pc_cont .breath {
+		-webkit-animation: breath 5s linear infinite both;
+		animation: breath 5s linear infinite both;
+}
+@keyframes breath {
+		0% {
+				transform: scale(0.9);
+		}
+		50% {
+				transform: scale(1);
+		}
+		100% {
+				transform: scale(0.9);
+		}
+}
+div {
+		position: relative;
+		cursor: default;
+}
+#champion_pc_cont img {
+		display: block;
+}
+#pc-version .pc-logo-rotator {
+		display: block;
+		width: 100%;
+		transform-style: preserve-3d;
+		transform-origin: 50% 50%;
+		will-change: transform;
+}
+#pc-version .pc-logo-rotator img {
+		backface-visibility: visible;
+		-webkit-backface-visibility: visible;
+}
+#champion_pc_cont span {
+		background: rgba(255, 255, 255, 0.95);
+}
+.clearfix {
+		clear: both;
+}
+#champion_pc_cont {
+		background-color: #eaeaea;
+		font-family: 나눔스퀘어;
+		font-size: 25px;
+		line-height: 40px;
+		font-weight: 100;
+		text-align: justify;
+}
+.sec-01 {
+		position: relative;
+		overflow: hidden;
+		background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: #222;
+}
+.sec-01:after {
+		content: "";
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-image: url(img/4_03.png);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		opacity: 0.1;
+		z-index: 0;
+		filter: blur(5px);
+		-webkit-filter: blur(5px);
+		pointer-events: none;
+}
+.sec-01.hide-bg:after {
+		opacity: 0;
+}
+.sec-01 div:nth-child(1) {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 9;
+	}
+#pc-version .sec-01 div:nth-child(1) {
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			transform: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			pointer-events: none;
+}
+#pc-version .sec-01 div:nth-child(1) .pc-logo-rotator {
+			width: auto;
+			max-width: none;
+}
+#pc-version .sec-01 div:nth-child(1) img.logo-half {
+			width: 478px;
+			max-width: 70vw;
+			height: auto;
+}
+.sec-01 div:nth-child(2) {
+		position: fixed;
+		bottom: 150px;
+		left: 50%;
+		transform: translate(-50%, 0);
+		z-index: 1;
+}
+.sec-01 div:nth-child(2) img {
+		width:150px;
+}    
+.sec-01 div:nth-child(3) {
+		position: fixed;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		z-index: 1;
+}
+.sec-02 {
+		position: relative;
+		overflow: hidden;
+		background-attachment: fixed;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url(img/4_03.png);
+}
+.sec-02 div:nth-child(1) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
+}
+.sec-03 {
+		position: relative;
+		clear: both;
+		width: 80%;
+		margin: 10% auto;
+}
+.sec-03 ul {
+		position: relative;
+		width: 50%;
+		float: left;
+}
+.sec-03 ul:nth-child(1) li {
+		padding-right: 10%;
+		position: relative;
+		z-index: 3;
+}
+.sec-03 ul:nth-child(1) li:nth-child(3) {
+		margin-top: 10%;
+		z-index: 9;
+}
+.sec-03 ul:nth-child(2) li {
+		float: right;
+		margin: 50% 0 0 0;
+}
+.sec-03 ul:nth-child(2) li:nth-child(1) {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 2;
+}
+.sec-03 ul:nth-child(2) li:nth-child(2) {
+		position: relative;
+		padding: 75px;
+		z-index: 1;
+}
+.sec-04 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin: 10% auto;
+}
+.sec-04 li {
+		position: relative;
+		clear: both;
+		padding: 5% 0;
+}
+.sec-04 li:nth-child(1) {
+		float: left;
+}
+.sec-04 li:nth-child(1) img {
+		margin-left: 50%;
+}
+.sec-04 li:nth-child(2) {
+		float: right;
+		z-index: 9;
+		position: relative;
+}
+.sec-04 li:nth-child(3) {
+		clear: both;
+}
+.sec-05 {
+		position: relative;
+		clear: both;
+		width: 50%;
+		margin: 10% auto;
+		z-index: 9;
+}
+.sec-05 ul:nth-child(1) li {
+		font-size: 50px;
+		line-height: 70px;
+		text-align: left;
+}
+.sec-05 ul:nth-child(2) li {
+		margin: 10% 0;
+		position: relative;
+		width: 45%;
+		float: left;
+}
+.sec-05 ul:nth-child(2) li:nth-child(2) {
+		position: relative;
+		float: right;
+}
+.sec-06 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin: 10% auto;
+		text-align: center;
+		z-index: 1;
+}
+.sec-06 img {
+		position: relative;
+		clear: both;
+		width: 70%;
+		margin: 10% auto;
+		text-align: center;
+		z-index: 1;
+}
+.sec-07 {
+		position: relative;
+		clear: both;
+		width: 50%;
+		margin: 30% auto;
+		z-index: 9;
+}
+.sec-07 ul:nth-child(1) li {
+		font-size: 50px;
+		line-height: 70px;
+}
+.sec-08 {
+		background-attachment: fixed;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url(img/20.png);
+}
+.sec-08 div:nth-child(1) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
+}
+.sec-08 div:nth-child(2) {
+		position: absolute;
+		top: -75px;
+		left: 10%;
+		z-index: 1;
+}
+.sec-09 {
+		position: relative;
+		clear: both;
+		width: 50%;
+		margin: 15% auto;
+		text-align: right;
+		z-index: 9;
+}
+.sec-09 ul:nth-child(1) li {
+		font-size: 50px;
+		line-height: 70px;
+}
+.sec-10 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin: 10% auto;
+		z-index: 1;
+}
+.sec-10 ul {
+		float: left;
+		width: 50%;
+		position: relative;
+}
+.sec-10 ul:nth-child(1) li:nth-child(2) {
+		position: absolute;
+		top: 70%;
+		left: 50%;
+		z-index: 2;
+}
+.sec-10 ul li img {
+		margin: 0 auto;
+}
+.sec-10 ul:nth-child(2) {
+		margin: 10% 0 0 0;
+}
+.sec-11 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin: 10% auto;
+		z-index: 9;
+}
+.sec-11 img {
+		margin: 0 auto;
+}
+.sec-11 a img:hover {
+    	animation: none;
+    	transform: none;
+}    
+.sec-12 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin: 20% auto;
+		z-index: 1;
+}
+.sec-12 ul {
+		float: left;
+		position: relative;
+}
+.sec-12 img {
+		margin: 0 auto;
+}
+.sec-12 ul:nth-child(1) {
+		width: 40%;
+		margin: 0 0 0 0;
+}
+.sec-12 ul:nth-child(2) {
+		width: 40%;
+		margin: 20% 0 0 0;
+		position: relative;
+}
+.sec-12 ul:nth-child(2) li:nth-child(2) img {
+		position: absolute;
+		bottom: -75px;
+		left: -75px;
+		z-index: 1;
+}
+.sec-12 ul:nth-child(3) {
+		width: 20%;
+		margin: 10% 0 0 0;
+}
+.sec-13 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		margin: 30% auto;
+		text-align: center;
+		z-index: 9;
+}
+.sec-13 img {
+		position: relative;
+		clear: both;
+		width: 50%;
+		margin: 5% auto;
+		text-align: center;
+		z-index: 1;
+}
+.sec-14 {
+		position: relative;
+		clear: both;
+		width: 90%;
+		margin: 20% auto;
+		padding-bottom: 25%;
+		z-index: 1;
+}
+.sec-14 li {
+		float: left;
+		width: 20%;
+}
+.sec-14 li img {
+		width: 85%;
+		margin: 0 auto;
+}
+.sec-14 li a img:hover {
+    	animation: breath 5s linear infinite both;	
+    	transform: scale(1);		
+}    
+.sec-15 {
+		background-attachment: fixed;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url(img/40.png);
+}
+.sec-15 div:nth-child(1) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 9;
+}
+.sec-16 {
+		position: relative;
+		clear: both;
+		width: 80%;
+		margin: 30% auto;
+		z-index: 1;
+}
+.sec-16 ul {
+		float: left;
+		width: 50%;
+		position: relative;
+}
+.sec-16 ul:nth-child(2) li:nth-child(2) {
+		position: absolute;
+		top: 70%;
+		right: 50%;
+		z-index: 2;
+}
+.sec-16 ul li img {
+		margin: 0 auto;
+}
+.sec-16 ul:nth-child(2) {
+		margin: 10% 0 0 0;
+}
+.sec-17 {
+		position: relative;
+		clear: both;
+		width: 50%;
+		margin: 15% auto;
+		text-align: center;
+		z-index: 9;
+}
+.sec-17 ul:nth-child(1) li {
+		font-size: 50px;
+		line-height: 70px;
+}
+.sec-18 {
+		background-attachment: fixed;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url(https://www.championkorea.com/);
+    	z-index:9;
+}
+.sec-18 div:nth-child(1) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index:9;
+}
+</style>
+<style>
+.spin {
+		-webkit-animation: spin 5.2s infinite linear;
+		animation: spin 5.2s infinite linear;
+}
+@keyframes spin {
+		0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+		}
+		100% {
+				-webkit-transform: rotate(-360deg);
+				transform: rotate(-360deg);
+		}
+}
+.breath {
+		-webkit-animation: breath 5s linear infinite both;
+		animation: breath 5s linear infinite both;
+}
+@keyframes breath {
+		0% {
+				transform: scale(0.9);
+		}
+		50% {
+				transform: scale(1);
+		}
+		100% {
+				transform: scale(0.9);
+		}
+}
+#champion_mo_cont {
+	background-color: #eaeaea;
+	font-family: 'Questrial', 'Nanum Square', sans-serif;
+	font-size: 15px;
+	line-height: 25px;
+	font-weight: normal;
+	text-align: justify;
+	color: #333;
+	width: 100%;
+	overflow: hidden;
+}
+#champion_mo_cont div {
+	position: relative;
+	max-width: 100%;
+}
+#champion_mo_cont .section-01 {
+	width: 100%;
+	text-align: center;
+}
+#champion_mo_cont .section-01 img {
+	width: 50%;
+	margin: 20% auto 0;
+}
+#champion_mo_cont .section-02 {
+	width: 100%;
+	text-align: center;
+}
+#champion_mo_cont .section-02 img {
+	width: 30%;
+	margin: 20px auto 20%;
+}
+#champion_mo_cont .section-03 {
+	width: 100%;
+	text-align: center;
+	background: #333 url(img/4_03.png) no-repeat center center;
+	background-size: cover;
+	display: table;
+}
+#champion_mo_cont .section-03 img {
+	width: 50%;
+	padding: 50% 0;
+}
+#champion_mo_cont .section-04 {
+	width: 100%;
+}
+#champion_mo_cont .section-04 img {
+	height: 40px;
+	margin: 10% 10% 0 10%;
+}
+#champion_mo_cont .section-05 {
+	width: 100%;
+}
+#champion_mo_cont .section-05 img {
+	height: 20px;
+	margin: 0 10% 0 10%;
+}
+#champion_mo_cont .section-06 {
+	width: 100%;
+}
+#champion_mo_cont .section-06 p {
+	margin: 10% 10% 0 10%;
+}
+#champion_mo_cont .section-07 {
+	width: 100%;
+	z-index: 1;
+}
+#champion_mo_cont .section-07 img {
+	height: 60px;
+	margin: 10% 10% 0 5%;
+}
+#champion_mo_cont .section-08 {
+	width: 100%;
+	text-align: center;
+	z-index: 0;
+}
+#champion_mo_cont .section-08 img {
+	width: 80%;
+	margin: -30px auto 50px;
+}
+#champion_mo_cont .section-09 {
+	width: 100%;
+	text-align: left;
+}
+#champion_mo_cont .section-09 img {
+	width: 50%;
+	margin: 10px auto 25px;
+}
+#champion_mo_cont .section-10 {
+	width: 100%;
+	text-align: right;
+}
+#champion_mo_cont .section-10 img {
+	width: 70%;
+	margin: 10px auto 25px;
+}
+#champion_mo_cont .section-11 {
+	width: 100%;
+	text-align: left;
+}
+#champion_mo_cont .section-11 img {
+	width: 70%;
+	margin: 10px auto 25px;
+}
+#champion_mo_cont .section-12 {
+	width: 100%;
+}
+#champion_mo_cont .section-12 p {
+	margin: 10% 10% 0 10%;
+	font-size: 25px;
+	line-height: 40px;
+	text-align: left;
+}
+#champion_mo_cont .section-13 {
+	width: 100%;
+}
+#champion_mo_cont .section-13 img {
+	width: 100%;
+	margin: 10% 0 0 0;
+}
+#champion_mo_cont .section-14 {
+	width: 100%;
+	z-index: 1;
+	text-align: right;
+}
+#champion_mo_cont .section-14 img {
+	height: 60px;
+	margin: 10% 5% 0 5%;
+}
+#champion_mo_cont .section-15 {
+	width: 100%;
+	text-align: center;
+	background: #333 url(img/20.png) no-repeat center center;
+	background-size: cover;
+	display: table;
+	margin-top: -30px;
+}
+#champion_mo_cont .section-15 img {
+	width: 50%;
+	padding: 50% 0;
+}
+#champion_mo_cont .section-16 {
+	width: 100%;
+	text-align: left;
+}
+#champion_mo_cont .section-16 img {
+	width: 80%;
+	margin: 10% auto 25px;
+}
+#champion_mo_cont .section-17 {
+	width: 100%;
+	text-align: right;
+}
+#champion_mo_cont .section-17 img {
+	width: 80%;
+	margin: -50px auto 25px;
+}
+#champion_mo_cont .section-18 {
+	width: 100%;
+	text-align: center;
+}
+#champion_mo_cont .section-18 img {
+	width: 70%;
+	margin: 10px auto 25px;
+}
+#champion_mo_cont .section-19 {
+	width: 100%;
+	text-align: center;
+	z-index: 0;
+}
+#champion_mo_cont .section-19 img {
+	width: 80%;
+	margin: 10% auto;
+}
+#champion_mo_cont .section-20 {
+	width: 100%;
+	text-align: right;
+}
+#champion_mo_cont .section-20 img {
+	width: 80%;
+	margin: 10% auto 25px;
+}
+#champion_mo_cont .section-21 {
+	width: 100%;
+	text-align: left;
+}
+#champion_mo_cont .section-21 img {
+	width: 70%;
+	margin: -100px auto 25px;
+}
+#champion_mo_cont .section-22 {
+	width: 100%;
+	text-align: right;
+}
+#champion_mo_cont .section-22 img {
+	width: 10%;
+	margin: -250px 10% 10%;
+}
+#champion_mo_cont .section-23 {
+	width: 100%;
+	z-index: 1;
+}
+#champion_mo_cont .section-23 img {
+	height: 60px;
+	margin: -200px 10% 0 5%;
+}
+#champion_mo_cont .section-24 {
+	width: 100%;
+	text-align: center;
+	z-index: 0;
+}
+#champion_mo_cont .section-24 img {
+	width: 80%;
+	margin: 0 auto 2.5%;
+}
+#champion_mo_cont .section-25 {
+	width: 100%;
+	text-align: center;
+	z-index: 0;
+}
+#champion_mo_cont .section-25 img {
+	width: 70%;
+	margin: 0 auto 10%;
+}
+#champion_mo_cont .section-26 {
+	width: 100%;
+	text-align: center;
+	background: #333 url(img/40.png) no-repeat center center;
+	background-size: cover;
+	display: table;
+	margin-top: 10%;
+}
+#champion_mo_cont .section-26 img {
+	width: 50%;
+	padding: 50% 0;
+}
+#champion_mo_cont .section-27 {
+	width: 100%;
+	text-align: center;
+	z-index: 0;
+}
+#champion_mo_cont .section-27 img {
+	width: 80%;
+	margin: 10% auto;
+}
+#champion_mo_cont .section-28 {
+	width: 100%;
+	z-index: 1;
+	text-align: right;
+}
+#champion_mo_cont .section-28 img {
+	height: 60px;
+	margin: -75px 20% 0 5%;
+}
+#champion_mo_cont .section-29 {
+	width: 100%;
+	text-align: center;
+	z-index: 0;
+}
+#champion_mo_cont .section-29 img {
+	width: 50%;
+	margin: 20% auto 30%;
+}
+</style>
+</head>
+<body>
+<div class="pc-view" id="pc-version">
+<div id="champion_pc_cont">
+		<div class="sec-01 full" style="height: 959px;">
+					<div style="opacity: 114.87;"><div class="pc-logo-rotator"><img src="img/logo_02_01.png" data-aos="fade-down" class="aos-init aos-animate logo-half"></div></div>
+				<div style=""><img src="img/2.png" data-aos="fade-up" class="breath aos-init aos-animate"></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-02 full" style="height: 959px;">
+				<div><img src="img/5.svg" data-aos="zoom-in" class="aos-init logo-5"></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-03">
+				<ul>
+						<li><img src="img/6.png" data-aos="fade-right" class="aos-init img-half"></li>
+						<li><img src="img/7.png" data-aos="fade-left" class="aos-init img-half"></li>
+						<li><span>챔피온은 미국 로체스터에서 1919년 설립된 이후 100년이 넘는 시간 동안 애슬레틱 웨어의 혁신을 이끌었습니다.<br>
+								<br>
+								자체 개발 원단 등 기술력과 내구성을 갖춘 제품은 물론, 시대 흐름에 맞춘 디자인으로 품질과 스타일 모두에서 끊임없이 진화해 왔으며,<br>
+								<br>
+								캠퍼스 문화와 아메리칸 캐주얼을 대표하는 아이콘으로 현재까지도 전 세계에서 사랑받고 있습니다.</span></li>
+				</ul>
+				<ul>
+						<li><img src="img/10.png" data-aos="zoom-in" class="spin aos-init"></li>
+						<li><img src="img/9.png" data-aos="zoom-in" class="breath aos-init"></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-04">
+				<ul>
+						<li><img src="img/11.png" data-aos="fade-right" class="aos-init"></li>
+						<li><img src="img/12.png" data-aos="fade-left" class="aos-init"></li>
+						<li><img src="img/13.png" data-aos="fade-right" class="aos-init"></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-05">
+				<ul>
+						<li>챔피온의 스포츠 헤리티지를 바탕으로 경기용 퍼포먼스와 일상 속 스타일을 겸비한 세련된 스포티 룩을 제안합니다.</li>
+				</ul>
+				<ul>
+						<li><span>챔피온은 NBA와 NFL, 올림픽 등 주요 경기 유니폼을 제작하며 스포츠웨어 브랜드로서의 정체성을 확립했습니다.<br><br><br>선수들의 퍼포먼스를 위해 세계 최초로 스웨트셔츠에 후드를 부착하고, 통기성이 있는 나일론 메시 저지를 개발했으며, 여성 스포츠 시장에도 힘을 쏟아 스포츠 브라 등을 제작하며 다양한 스포츠웨어의 기준을 세웠습니다.</span></li>
+						<li><span>
+								1930년대, 챔피온은 선수들이 워밍업하거나 경기 전후로 체온이 떨어지지 않도록, 스웨트셔츠에 후드를 더하는 아이디어를 처음 고안했습니다. <br>
+								<br>
+								그 때 운동선수를 위한 방한복으로 시작된 후디는 이제 누구나 즐겨 입는 일상복이 되었습니다. 현재 챔피온은 클래식 플리스, 리버스 위브®, 파워 블렌드®, 캠퍼스 프렌치 테리 등 다양한 소재와 디자인의 후디로 그 전통을 이어가고 있습니다.</span></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-06"><img src="img/17.png" data-aos="fade-up" class="aos-init"></div>
+		<div class="clearfix"></div>
+		<div class="sec-07">
+				<ul>
+						<li>매일 같은 루틴 속에서도 챔피온은 당신 안의 ‘원래의 나’를 깨웁니다. 곧 당신만의 플레이가 다시 시작됩니다.</li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-08 full" style="height: 959px;">
+				<div><img src="img/logo_03.png" data-aos="zoom-in" class="breath aos-init logo-half"></div>
+				<div><img src="img/10.png" data-aos="zoom-in" class="spin aos-init"></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-09">
+				<ul>
+						<li><span>그저 평소처럼 흘러가는 오늘.<br> 기록을 깨지 않아도 괜찮은 하루.<br><br>그 안에서 나다운 챔피언을 지키는 것.</span></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-10">
+				<ul>
+						<li><img src="img/24.png" data-aos="fade-right" class="breath aos-init"></li>
+						<li><img src="img/5.svg" data-aos="fade-left" class="aos-init"></li>
+				</ul>
+				<ul>
+						<li><img src="img/26.png" data-aos="fade-left" class="aos-init"></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-11"><img src="img/27.png" data-aos="zoom-in" class="aos-init"></div>
+		<div class="clearfix"></div>
+		<div class="sec-12">
+				<ul>
+						<li><img src="img/28.png" data-aos="fade-up" class="aos-init"></li>
+				</ul>
+				<ul>
+						<li><img src="img/29.png" data-aos="fade-up" class="aos-init"></li>
+						<li><img src="img/10.png" data-aos="zoom-in" class="spin aos-init"></li>
+				</ul>
+				<ul>
+						<li><img src="img/31.png" data-aos="fade-up" class="bounce aos-init"></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-13">
+				<div><img src="img/32_01.png" data-aos="fade-right" class="aos-init"></div>
+				<div><img src="img/32_02.png" data-aos="fade-left" class="aos-init"></div>
+				<div><img src="img/32_03.png" data-aos="fade-right" class="aos-init"></div>
+				<div><img src="img/32_04.png" data-aos="fade-left" class="aos-init"></div>
+				<div><img src="img/32_05.png" data-aos="fade-right" class="aos-init"></div>
+				<div><img src="img/32_06.png" data-aos="fade-left" class="aos-init"></div>
+				<div><img src="img/32_07.png" data-aos="fade-right" class="aos-init"></div>
+				<div><img src="img/32_08.png" data-aos="fade-left" class="aos-init"></div>
+				<div><img src="img/32_09.png" data-aos="fade-right" class="aos-init"></div>
+				<div><img src="img/32_10.png" data-aos="fade-left" class="aos-init"></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-14">
+				<ul>
+						<li><a href=""><img src="img/34.png" data-aos="fade-up" class="aos-init"></a></li>
+						<li><a href=""><img src="img/35.png" data-aos="fade-down" class="aos-init"></a></li>
+						<li><a href=""><img src="img/36.png" data-aos="fade-up" class="aos-init"></a></li>
+						<li><a href=""><img src="img/37.png" data-aos="fade-down" class="aos-init"></a></li>
+						<li><a href=""><img src="img/38.png" data-aos="fade-up" class="aos-init"></a></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-15 full" style="height: 959px;">
+				<div><img src="img/5.svg" data-aos="zoom-in" class="aos-init logo-5"></div>
+		</div>
+		<div class="sec-05">
+				<ul>
+						<li>리버스 위브®가 만든<br>챔피온 스웨트의 오리지널 헤리티지</li>
+				</ul>
+				<ul>
+						<li><span>1934년, 챔피온은 의류의 수축 문제를 해결하기 위해 세계 최초로 ‘엔지니어드 스웨트셔츠’를 개발했습니다. 원단의 결 방향을 가로로 재단하는 ‘리버스 위브®’ 방식을 도입한 이 스웨트셔츠는 곧 미국 전역의 스포츠팀에 널리 퍼졌습니다.</span></li>
+						<li><span>1938년 챔피온은 해당 기술에 대한 특허를 출원했고, 이후 방식을 개선해 1952년에는 두번째 특허를 획득했습니다. 이는 오늘날까지 이어지고 있는 리버스 위브®의 기반이 되었으며 챔피온의 헤리티지로 불립니다.</span></li>
+						
+				</ul>
+		</div>
+	<div class="sec-11"><img src="img/reverse_weave_02.png" data-aos="fade-up" class="aos-init"></div>
+		<div class="clearfix"></div>
+		<div class="sec-16">
+				<ul>
+						<li><img src="img/42.png" data-aos="fade-right" class="breath aos-init"></li>
+				</ul>
+				<ul>
+						<li><img src="img/44.png" data-aos="fade-left" class="aos-init"></li>
+						<li><img src="img/43.png" data-aos="fade-right" class="aos-init"></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-17">
+				<ul>
+						<li>세대를 이어온 챔피온 오리지널 스웨트 감성,<br>100년 헤리티지의 무게가 주는 클래식.</li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-10">
+				<ul>
+						<li><img src="img/46.png" data-aos="fade-right" class="aos-init"></li>
+						<li><img src="img/10.png" data-aos="zoom-in" class="spin aos-init"></li>
+				</ul>
+				<ul>
+						<li><img src="img/49.png" data-aos="fade-up" class="breath aos-init"></li>
+				</ul>
+		</div>
+		<div class="clearfix"></div>
+		<div class="sec-18 full" style="height: 959px;">
+				<div><a href=""><img src="img/logo_01_01.png" data-aos="zoom-in" class="breath aos-init logo-half"></a></div>
+		</div>
+		<div class="clearfix"></div>
+</div>
+
+
+<script type="text/javascript">
+
+//ie_scroll_smooth
+if (navigator.userAgent.match(/Trident\/7\./)) { // if IE
+    $('body').on("mousewheel", function() {
+        // remove default behavior
+        event.preventDefault();
+
+        //scroll without smoothing
+        var wheelDelta = event.wheelDelta;
+        var currentScrollPosition = window.pageYOffset;
+        window.scrollTo(0, currentScrollPosition - wheelDelta);
+    });
+    $('body').keydown(function(e) {
+        var currentScrollPosition = window.pageYOffset;
+
+        switch (e.which) {
+            case 33: // page up
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+                window.scrollTo(0, currentScrollPosition - 600);
+                break;
+            case 34: // page down
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+                window.scrollTo(0, currentScrollPosition + 600);
+                break;
+            case 38: // up
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+                window.scrollTo(0, currentScrollPosition - 120);
+                break;
+            case 40: // down
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+                window.scrollTo(0, currentScrollPosition + 120);
+                break;
+            default:
+                return; // exit this handler for other keys
+        }
+    });
+
+}
+
+//auto_height	
+
+$(document).ready(function() {
+
+    var currentWidth = $(window).width();
+    var currentHeight = $(window).height();
+
+    $(".full").css("height", currentHeight);
+
+});
+
+$(window).load(function() {
+
+    var currentWidth = $(window).width();
+    var currentHeight = $(window).height();
+
+    $(".full").css("height", currentHeight);
+
+});
+
+$(window).resize(function() {
+
+    var currentWidth = $(window).width();
+    var currentHeight = $(window).height();
+
+    $(".full").css("height", currentHeight);
+
+});
+
+//scroll_display_none	
+
+$(window).bind('scroll', function() {
+
+    if ($(window).scrollTop() > 0) {
+
+        $('.sec-01 div:nth-child(2)').fadeOut("fast");
+        //$('.sec-01 div:nth-child(3)').fadeOut("fast");
+
+
+    } else {
+
+        $('.sec-01 div:nth-child(2)').fadeIn("fast");
+        //$('.sec-01 div:nth-child(3)').fadeIn("fast");
+
+    }
+
+});
+
+//footer_display_none	
+
+$(window).scroll(function() {
+    if ($('#pc-version .pc-logo-rotator').length) return;
+	    var threshold = 200; // number of pixels before bottom of page that you want to start fading
+	    var op = (($(document).height() - $(window).height()) - $(window).scrollTop()) / threshold;
+	    if (op <= 0) {
+	        $(".sec-01 div:nth-child(1)").hide();
+			//$(".sec-01 div:nth-child(3)").hide();
+	    } else {
+			$(".sec-01 div:nth-child(1)").show();
+	        //$(".sec-01 div:nth-child(3)").show();
+	    }
+		$(".sec-01 div:nth-child(1)").css("opacity", op);
+	    //$(".sec-01 div:nth-child(3)").css("opacity", op);
+	}); 	
+
+// PC hero logo rotateY (3 turns across full scroll)
+(function() {
+    var $heroLogoWrap = $('#pc-version .sec-01 div:nth-child(1)');
+    var $rotator = $heroLogoWrap.find('.pc-logo-rotator');
+    if (!$rotator.length) return;
+
+    var ticking = false;
+    function update() {
+        ticking = false;
+        if (!$('#pc-version').is(':visible')) return;
+
+        var scrollTop = $(window).scrollTop();
+        var maxScroll = $(document).height() - $(window).height();
+        var viewportH = $(window).height();
+        var fadeSpan = Math.min(viewportH * 0.25, 250);
+        var fadeEnd = maxScroll;
+        var fadeStart = maxScroll - fadeSpan;
+        fadeStart = Math.max(0, fadeStart);
+        fadeEnd = Math.max(fadeStart + 1, fadeEnd);
+
+        var opacity = 1;
+        if (scrollTop >= fadeStart) {
+            opacity = scrollTop >= fadeEnd ? 0 : 1 - ((scrollTop - fadeStart) / (fadeEnd - fadeStart));
+        }
+        opacity = Math.max(0, Math.min(1, opacity));
+        $heroLogoWrap.css('opacity', opacity);
+        $heroLogoWrap.css('visibility', opacity <= 0.01 ? 'hidden' : 'visible');
+
+        var rotationEnd = fadeEnd;
+        var progress = rotationEnd > 0 ? scrollTop / rotationEnd : 0;
+        progress = Math.max(0, Math.min(1, progress));
+
+        var deg = progress * 720;
+        $rotator.css('transform', 'perspective(1000px) rotateY(' + deg + 'deg)');
+    }
+
+    function requestTick() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+    }
+
+    $(window).on('scroll resize load', requestTick);
+    requestTick();
+})();
+
+//sec-01 배경을 뷰포트에 고정하지만 섹션을 벗어나면 숨김
+(function() {
+    var sec01Height = $('.sec-01').outerHeight();
+    $(window).on('scroll', function() {
+        var sc = $(this).scrollTop();
+        if (sc > sec01Height) {
+            $('.sec-01').addClass('hide-bg');
+        } else {
+            $('.sec-01').removeClass('hide-bg');
+        }
+    });
+    $(window).on('resize', function() {
+        sec01Height = $('.sec-01').outerHeight();
+    });
+})();
+
+</script>
+<script>
+
+AOS.init({
+    startEvent: 'load',
+    duration: 1000,
+});
+
+$(window).on('load', function() {
+    AOS.refresh();
+});
+
+</script>
+</div>
+<div class="mo-view" id="mo-version">
+<div id="champion_mo_cont">
+		<div class="section-01"><img src="img/logo_02_01.png" data-aos="fade-down" class="breath aos-init aos-animate"></div>
+		<div class="section-02"><img src="img/2.png" data-aos="fade-up" class="aos-init aos-animate"></div>
+		<div class="section-03"><img src="img/5.svg" data-aos="zoom-in" class="aos-init aos-animate"></div>
+		<div class="section-04"><img src="img/6.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-05"><img src="img/7.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-06">
+				<p>챔피온은 미국 로체스터에서 1919년 설립된 이후 100년이 넘는 시간 동안 애슬레틱 웨어의 혁신을 이끌었습니다.<br>
+								<br>
+								자체 개발 원단 등 기술력과 내구성을 갖춘 제품은 물론, 시대 흐름에 맞춘 디자인으로 품질과 스타일 모두에서 끊임없이 진화해 왔으며,<br>
+								<br>
+								캠퍼스 문화와 아메리칸 캐주얼을 대표하는 아이콘으로 현재까지도 전 세계에서 사랑받고 있습니다.</p>
+		</div>
+		<div class="section-07"><img src="img/10.png" class="spin"></div>
+		<div class="section-08"><img src="img/9.png" data-aos="zoom-in" class="aos-init"></div>
+		<div class="section-09"><img src="img/11.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-10"><img src="img/12.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-11"><img src="img/13.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-12">
+				<p>챔피온의 스포츠 헤리티지를 바탕으로 경기용 퍼포먼스와 일상 속 스타일을 겸비한 세련된 스포티 룩을 제안합니다.</p>
+		</div>
+		<div class="section-06">
+				<p>챔피온은 NBA와 NFL, 올림픽 등 주요 경기 유니폼을 제작하며 스포츠웨어 브랜드로서의 정체성을 확립했습니다.<br><br><br>선수들의 퍼포먼스를 위해 세계 최초로 스웨트셔츠에 후드를 부착하고, 통기성이 있는 나일론 메시 저지를 개발했으며, 여성 스포츠 시장에도 힘을 쏟아 스포츠 브라 등을 제작하며 다양한 스포츠웨어의 기준을 세웠습니다.</p>
+		</div>
+		<div class="section-13"><img src="img/17.png" data-aos="zoom-in" class="aos-init"></div>
+		<div class="section-06">
+				<p>1930년대, 챔피온은 선수들이 워밍업하거나 경기 전후로 체온이 떨어지지 않도록, 스웨트셔츠에 후드를 더하는 아이디어를 처음 고안했습니다.</p>
+		</div>
+		<div class="section-06">
+				<p>그 때 운동선수를 위한 방한복으로 시작된 후디는 이제 누구나 즐겨 입는 일상복이 되었습니다. 현재 챔피온은 클래식 플리스, 리버스 위브®, 파워 블렌드®, 캠퍼스 프렌치 테리 등 다양한 소재와 디자인의 후디로 그 전통을 이어가고 있습니다.</p>
+		</div>
+		<div class="section-14"><img src="img/10.png" class="spin"></div>
+		<div class="section-15"><img src="img/logo_03.png" data-aos="zoom-in" class="breath aos-init"></div>
+		<div class="section-12">
+				<p>매일 같은 루틴 속에서도 챔피온은 당신 안의 ‘원래의 나’를 깨웁니다. 곧 당신만의 플레이가 다시 시작됩니다.</p>
+		</div>
+		<div class="section-06">
+				<p>그저 평소처럼 흘러가는 오늘. 기록을 깨지 않아도 괜찮은 하루. 그 안에서 나다운 챔피언을 지키는 것.</p>
+		</div>
+		<div class="section-16"><img src="img/24.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-17"><img src="img/5.svg" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-18"><img src="img/26.png" data-aos="zoom-in" class="breath aos-init"></div>
+		<div class="section-19"><img src="img/27.png" data-aos="fade-up" class="aos-init"></div>
+		<div class="section-20"><img src="img/28.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-21"><img src="img/29.png" data-aos="fade-right" class="breath aos-init"></div>
+		<div class="section-22"><img src="img/31.png" data-aos="fade-up" class="aos-init"></div>
+		<div class="section-23"><img src="img/10.png" class="spin"></div>
+		<div class="section-24"><img src="img/32_01.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_02.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_03.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_04.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_05.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_06.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_07.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_08.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_09.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-24"><img src="img/32_10.png"></div>
+		<div class="section-25"><a href=""><img src="img/34.png" data-aos="fade-left" style="margin-top:10%;" class="aos-init"></a></div>
+		<div class="section-25"><a href=""><img src="img/35.png" data-aos="fade-right" class="aos-init"></a></div>
+		<div class="section-25"><a href=""><img src="img/36.png" data-aos="fade-left" class="aos-init"></a></div>
+		<div class="section-25"><a href=""><img src="img/37.png" data-aos="fade-right" class="aos-init"></a></div>
+		<div class="section-25"><a href=""><img src="img/38.png" data-aos="fade-left" class="aos-init"></a></div>
+		<div class="section-26"><img src="img/5.svg" data-aos="zoom-in" class="breath aos-init"></div>
+		<div class="section-12">
+				<p>리버스 위브®가 만든 챔피온 스웨트의 오리지널 헤리티지</p>
+		</div>
+		<div class="section-06">
+				<p>1934년, 챔피온은 의류의 수축 문제를 해결하기 위해 세계 최초로 ‘엔지니어드 스웨트셔츠’를 개발했습니다. 원단의 결 방향을 가로로 재단하는 ‘리버스 위브®’ 방식을 도입한 이 스웨트셔츠는 곧 미국 전역의 스포츠팀에 널리 퍼졌습니다.</p>
+		</div>
+		<div class="section-06">
+				<p>1938년 챔피온은 해당 기술에 대한 특허를 출원했고, 이후 방식을 개선해 1952년에는 두번째 특허를 획득했습니다. 이는 오늘날까지 이어지고 있는 리버스 위브®의 기반이 되었으며 챔피온의 헤리티지로 불립니다.</p>
+		</div>
+		<div class="section-27"><a href=""><img src="img/reverse_weave_02.png"></a></div>
+		<div class="section-16"><img src="img/42.png" data-aos="fade-right" class="aos-init"></div>
+		<div class="section-17"><img src="img/43.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-18"><img src="img/44.png" data-aos="zoom-in" class="breath aos-init"></div>
+		<div class="section-12">
+				<p>세대를 이어온 챔피온 오리지널 스웨트 감성, 100년 헤리티지의 무게가 주는 클래식.</p>
+		</div>
+		<div class="section-20"><img src="img/46.png" data-aos="fade-left" class="aos-init"></div>
+		<div class="section-21"><img src="img/49.png" data-aos="fade-up" class="aos-init"></div>
+		<div class="section-28"><img src="img/10.png" class="spin"></div>
+		<div class="section-29"><a href=""><img src="img/logo_01_01.png" data-aos="zoom-in" class="breath aos-init"></a></div>
+</div>
+
+<script>
+
+AOS.init({
+    startEvent: 'load',
+    duration: 1000,
+});
+
+$(window).on('load', function() {
+    AOS.refresh();
+});
+
+</script>
+</div>
+</body>
+</html>

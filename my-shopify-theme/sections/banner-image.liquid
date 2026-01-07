@@ -1,0 +1,44 @@
+{% liquid
+ if section.index == 1
+   assign loading = 'eager'
+   assign fetch_priority = 'high'
+ endif
+%}
+{% if section.settings.image != blank %}
+  <div class="collection-banner"
+    data-aos="{{ settings.scroll_animation }}">
+    {%-
+        render 'basic-responsive-image',
+        type: section.settings.image,
+        width: 2000,
+        loading: loading,
+        fetchpriority: fetch_priority
+    -%}
+  </div><!-- /.collection-banner -->
+{% endif %}
+
+{% schema %}
+{
+  "name": "Banner image",
+  "settings":
+  [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "2880px x 1200px recommended"
+    }
+  ],
+  "presets":
+  [
+    {
+      "name": "Banner image"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header","footer"
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu_jWqJgN": {
+          "type": "menu",
+          "disabled": true,
+          "settings": {
+            "footer_nav": "footer",
+            "title": "Explore",
+            "block_width": 3
+          }
+        },
+        "menu_yTpDeA": {
+          "type": "menu",
+          "settings": {
+            "footer_nav": "footer-menu",
+            "title": "Customer Care",
+            "block_width": 3
+          }
+        },
+        "menu_NREaMe": {
+          "type": "menu",
+          "disabled": true,
+          "settings": {
+            "footer_nav": "",
+            "title": "About Us",
+            "block_width": 3
+          }
+        },
+        "newsletter_JTrpwX": {
+          "type": "newsletter",
+          "disabled": true,
+          "settings": {
+            "title": "Subscribe to receive the latest BAPE drop news.",
+            "mailing_subheading": "",
+            "block_width": 6
+          }
+        }
+      },
+      "block_order": [
+        "menu_jWqJgN",
+        "menu_yTpDeA",
+        "menu_NREaMe",
+        "newsletter_JTrpwX"
+      ],
+      "settings": {
+        "text_align": "left",
+        "show_credit_cards": false,
+        "show_social_icons": true,
+        "show_copyright": true,
+        "show_policy": true,
+        "enable_follow_on_shop": false,
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "show_flag": false
+      }
+    },
+    "rich_text_gyahUV": {
+      "type": "rich-text",
+      "blocks": {
+        "text_nfJLrj": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "rich_text": "<p>COMPANY NAME : (주)무신사트레이딩 / REPRESENTATION : 이지훈 / ADRESS : 서울특별시 용산구 이태원로 190, 6층, 7층 (이태원동, 무신사 스튜디오 한남2호점) [반송지주소아님] / BUSINESS REGISTRATION NUMBER : 211-88-37444<a href=\"https://www.ftc.go.kr/bizCommPop.do?wrkr_no=2118837444\" target=\"_blank\">[사업자정보확인]</a>/ COMMUNICATION SALES REPORT : 2025-서울용산-0672 / MAIN PHONE : 1599-5012 FAX : 02-548-7422<br/><br/></p>",
+            "center": false,
+            "block_size": 6
+          }
+        }
+      },
+      "block_order": [
+        "text_nfJLrj"
+      ],
+      "custom_css": [],
+      "name": "Rich text",
+      "settings": {
+        "title": "",
+        "color_scheme": "cs3",
+        "section_padding": "none"
+      }
+    }
+  },
+  "order": [
+    "footer",
+    "rich_text_gyahUV"
+  ]
+}

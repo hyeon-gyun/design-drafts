@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="Y-3,와이스리,야마모토 요지,Yohji Yamamoto,패션,남성,여성,유니섹스,온라인몰,아이템,샵,브랜드,공식" />
+<meta name="description" content="Y-3｜와이스리의 국내 공식 직영 온라인 스토어입니다. Y-3는 adidas의 전문적인 스포츠 기술과 위트 있는 야마모토 요지의 크리에이티비티가 융합된 스포츠 패션 브랜드입니다." />
+<meta property="og:image" content="https://y-3.com/template/img/og_img.png" />
+<meta property="og:title" content="Y-3 와이스리" />
+<meta property="og:description" content="Y-3｜와이스리의 국내 공식 직영 온라인 스토어입니다. Y-3는 adidas의 전문적인 스포츠 기술과 위트 있는 야마모토 요지의 크리에이티비티가 융합된 스포츠 패션 브랜드입니다." />
+<meta property="og:url" content="https://y-3.com/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<title>Y-3 와이쓰리</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://use.typekit.net/doo8oqr.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<style>
+  :root{
+    --bg:#050505;
+    --panel:#121212;
+    --text:#f5f5f5;
+    --muted:#b3b3b3;
+    --primary:#f5f5f5;
+    --primary-hover:#d9d9d9;
+    --secondary:#1f1f1f;
+    --accent:var(--text);
+    --accent-light:#e5e5e5;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font:14px/1.6 'Helvetica Neue','Pretendard Variable','Pretendard',sans-serif;
+  }
+  img{width:100%;height:100%;object-fit:cover;display:block}
+  .strip.full .item picture{display:block; width:100%; height:100%;}
+  a{color:inherit;text-decoration:none}
+
+  header{
+    background:#ffffff;
+    border-bottom:1px solid rgba(0,0,0,.05);
+    color:#111;
+  }
+  .top-banner{
+    text-align:center; font-size:11px; letter-spacing:0.1rem; padding:10px 18px; background:var(--secondary); color:#fff;
+  }
+  .nav{
+    max-width:1920px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; gap:32px; color:#111;
+  }
+  .logo{flex-shrink:0; letter-spacing:0.1rem; text-transform:uppercase; font-size:12px; display:flex; align-items:center;}
+  .logo img{height:26px; margin-right:10px;}
+  .menu{display:flex; gap:24px; font-size:12px; letter-spacing:0.1rem; text-transform:uppercase; color:#111;} 
+  .menu a:hover{color:var(--panel)}
+  .nav-utils{margin-left:auto; display:flex; gap:18px; font-size:12px; color:#111; align-items:center;}
+  .nav-utils .nav-icon{display:none; width:26px; height:26px;}
+  .nav-utils .nav-icon img{width:100%; height:100%; object-fit:contain; display:block;}
+
+  main{width:100%; overflow:hidden;}
+  .strip{width:100%;}
+  .strip.full{
+    position:relative;
+    padding:0;
+    overflow:hidden;
+  }
+  .hero-slider{
+    width:100%;
+    position:relative;
+  }
+  .hero-card{
+    position:relative;
+    overflow:hidden;
+    height:clamp(420px, calc(100vh - 140px), 820px);
+    height: 40vw;
+  }
+  .hero-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-caption{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    box-sizing:border-box;
+    width:100%;
+    color:#fff;
+    padding:1rem 1.5rem;
+    letter-spacing:0.1rem;
+    text-transform:uppercase;
+    font-size:1.8rem;
+    text-align:left;
+    font-weight:600;
+    background:rgba(0,0,0,0.8);
+  }
+  .hero-slider .slick-list{
+    margin:0;
+  }
+  .hero-slider .slick-track{
+    display:flex;
+  }
+  .hero-slider .slick-slide{
+    display:flex;
+  }
+  .hero-slider .slick-dots{
+    position:static;
+    margin:0;
+    display:flex !important;
+    gap:0;
+    padding:0;
+    width:100%;
+  }
+  .hero-slider .slick-dots li{
+    list-style:none;
+    flex:1;
+  }
+  .hero-slider .slick-dots button{
+    width:100%;
+    height:3px;
+    border-radius:999px;
+    border:0;
+    text-indent:-9999px;
+    background:rgba(255,255,255,0);
+    cursor:pointer;
+    padding:0;
+    display:block;
+  }
+  .hero-slider .slick-dots .slick-active button{
+    background:var(--text);
+  }
+
+  @keyframes heroFadeIn{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .btn{
+    margin-top:22px; display:inline-flex; align-items:center; justify-content:center;
+    padding:12px 32px; border-radius:999px; font-size:12px; letter-spacing:0.1rem;
+    align-self:center;
+    background:var(--primary); color:var(--bg); transition:transform .2s ease, background .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px); background:var(--primary-hover);}
+
+  .grid{
+    display:grid; gap:0;
+  }
+  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  .grid.cols-4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+  .category-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    list-style:none;
+    padding:0;
+    margin:0;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    background: #fff;
+    border-top:1px solid #fff;
+    border-bottom:1px solid #fff;
+  }
+  .category-list li{
+    background:#000;
+    color:#fff;
+    padding:1rem 1.2rem;
+    text-align:center;
+    letter-spacing:0.1rem;
+    transition:background 0.2s ease,color 0.2s ease;
+  }
+  .category-list li:hover,
+  .category-list li:focus-within{
+    background:#fff;
+    color:#000;
+  }
+  .tile{position:relative; min-height:280px;}
+  .tile.large{min-height:420px;}
+  .grid.cols-2 .tile{min-height:auto; aspect-ratio:1/1;}
+  .grid.cols-2 .tile.large{min-height:auto;}
+  .tag{
+    position:absolute;
+    right:1rem;
+    bottom:1rem;
+    padding:0.6rem 1rem;
+    background:rgba(0,0,0,.8);
+    color:#fff;
+    font-size:1rem;
+    letter-spacing:0.1rem;
+    font-family:'Helvetica Neue','Pretendard Variable','Pretendard',sans-serif;
+    text-align:right;
+    font-weight:600;
+  }
+  .grid.cols-4 .tile{
+    display:flex;
+    flex-direction:column;
+    min-height:auto;
+  }
+  .grid.cols-4 .tile img{
+    width:100%;
+    height:auto;
+    display:block;
+    flex-grow:1;
+  }
+  .section-gap.grid.cols-4 .tag{
+    position:static;
+    padding:10px;
+    width:100%;
+    text-align:left;
+    letter-spacing:0.1rem;
+    background:none;
+    border-radius:0;
+    font-size:14px;
+    font-weight: normal;
+    color:#000;
+    background-color: #fff;
+  }
+  .section-gap{margin:0;}
+
+  footer{
+    background:#050505;
+    color:#bfbfbf;
+    padding:64px 32px;
+    font-size:12px;
+    letter-spacing:0.05rem;
+  }
+  #footer{
+    background:#050505;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(160px,1fr));
+    gap:100px;
+    margin-bottom:2rem;
+  }
+  .footer-grid h4{
+    margin:0 0 0.5rem;
+    font-size:0.9rem;
+    font-weight:600;
+    color:#fff;
+  }
+  .footer-grid ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:0.4rem;
+  }
+  .footer-grid a{
+    color:#bfbfbf;
+    text-decoration:none;
+    font-size:0.85rem;
+  }
+  .footer-grid a:hover{
+    color:#fff;
+  }
+  .footer-grid ul.footer-sns{
+    display:flex;
+    flex-direction:row;
+    gap:0.75rem;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .footer-sns img{
+    height:28px;
+    filter:invert(1);
+  }
+  .footer-visual{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    color:#fff;
+  }
+  .footer-visual-img{
+    width:100%;
+    aspect-ratio:16/9;
+    background:#0f0f0f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#bfbfbf;
+    font-size:0.85rem;
+    letter-spacing:0.05rem;
+    overflow:hidden;
+  }
+  .footer-visual-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .footer-bottom{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    gap:1rem;
+    flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:1.5rem;
+  }
+  .footer-logo img{
+    width:80px;
+    height:auto;
+    filter:invert(1);
+  }
+
+  @media (max-width:1200px){
+    .grid.cols-4{grid-template-columns:repeat(2,1fr);} 
+    .footer-grid{
+      grid-template-columns:repeat(3,minmax(160px,1fr));
+      gap:2rem;
+    }
+  }
+  @media (max-width:900px){
+    .nav{padding:16px 20px;}
+    .menu{display:none}
+    .nav-utils{gap:12px;}
+    .nav-utils .nav-label{display:none;}
+    .nav-utils .nav-icon{display:inline-flex;}
+    .grid.cols-3,.grid.cols-4,.grid.cols-2{grid-template-columns:1fr;}
+    .category-list{
+      grid-template-columns:repeat(2,1fr);
+    }
+    .category-list.stack-mobile{
+      grid-template-columns:1fr;
+    }
+    .category-list.stack-mobile li:last-child{
+      display:none;
+    }
+    .strip.full{
+      overflow:visible;
+    }
+    .hero-card{
+      height:clamp(360px, 80vh, 640px);
+    }
+    .hero-caption{font-size:1rem;}
+    .grid.cols-4{
+      display:flex;
+      overflow-x:auto;
+      gap:0;
+      padding:0;
+      -webkit-overflow-scrolling:touch;
+      cursor:grab;
+    }
+    .grid.cols-4.is-dragging{
+      cursor:grabbing;
+      user-select:none;
+    }
+    .grid.cols-4 .tile{
+      flex:0 0 75%;
+    }
+    .grid.cols-4::-webkit-scrollbar{display:none;}
+    .footer-grid{
+      grid-template-columns:1fr;
+      gap:1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="top-banner">25' WINTER SEASON OFF</div>
+    <div class="nav">
+      <div class="logo">
+        <img src="./img/logo.svg" alt="Y-3" />
+      </div>
+      <nav class="menu">
+        <a href="#">MEN</a>
+        <a href="#">WOMEN</a>
+        <a href="#">UNISEX</a>
+      </nav>
+      <div class="nav-utils">
+        <span class="nav-label">SEARCH</span>
+        <span class="nav-label">LOGIN</span>
+        <span class="nav-label">CART</span>
+        <a href="#" class="nav-icon" aria-label="검색">
+          <img src="./img/search_n_icon.svg" alt="SEARCH" />
+        </a>
+        <a href="#" class="nav-icon" aria-label="장바구니">
+          <img src="./img/cart_n_icon.svg" alt="CART" />
+        </a>
+        <a href="#" class="nav-icon" aria-label="메뉴">
+          <img src="./img/navi_n_icon.svg" alt="Navigation" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1단 배너 -->
+    <section class="strip full">
+      <div class="hero-slider">
+        <article class="hero-card">
+          <img src="./img/main_3.jpg" alt="메인 비주얼 3" />
+          <div class="hero-caption">3 STRIPES</div>
+        </article>
+        <article class="hero-card">
+          <img src="./img/main_1.jpg" alt="메인 비주얼 1" />
+          <div class="hero-caption">Campaign Shot by Daido Moriyama</div>
+        </article>
+        <article class="hero-card">
+          <img src="./img/main_2.jpg" alt="메인 비주얼 2" />
+          <div class="hero-caption">INSPIRATION</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <ul class="category-list stack-mobile">
+        <li><a href="#">NEW</a></li>
+        <li><a href="#">SELECT</a></li>
+        <li><a href="#">BEST</a></li>
+        <li><a href="#">COLLECTION</a></li>
+      </ul>
+    </section>
+
+    <!-- 3단 배너 -->
+    <section class="section-gap grid cols-3">
+      <article class="tile large">
+        <img src="./img/sub_1.jpg" alt="New in 1" />
+        <span class="tag">NEIGHBORHOOD</span>
+      </article>
+      <article class="tile large">
+        <img src="./img/sub_2.jpg" alt="New in 2" />
+        <span class="tag">TRACK STORY</span>
+      </article>
+      <article class="tile large">
+        <img src="./img/sub_3.jpg" alt="New in 3" />
+        <span class="tag">LOOKBOOK</span>
+      </article>
+    </section>
+
+    <!-- 4단 배너 -->
+    <section class="section-gap grid cols-4">
+      <article class="tile">
+        <img src="./img/new_1.jpg" alt="Y-3 NBHD BALACLAVA" />
+        <span class="tag">Y-3 NBHD BALACLAVA<br />₩15,400</span>
+      </article>
+      <article class="tile">
+        <img src="./img/new_3.jpg" alt="NBHD BOMBER JACKET" />
+        <span class="tag">NBHD BOMBER JACKET<br />₩319,000</span>
+      </article>
+      <article class="tile">
+        <img src="./img/new_2.jpg" alt="LEATHER RACER PANTS" />
+        <span class="tag">LEATHER RACER PANTS<br />₩275,000</span>
+      </article>
+      <article class="tile">
+        <img src="./img/new_6.jpg" alt="NBHD GRAPHIC HOODIE" />
+        <span class="tag">NBHD GRAPHIC HOODIE<br />₩44,000</span>
+      </article>
+    </section>
+
+    <section class="section">
+      <ul class="category-list">
+        <li><a href="#">TOPS / 상의</a></li>
+        <li><a href="#">OUTER / 아우터</a></li>
+        <li><a href="#">PANTS / 팬츠</a></li>
+        <li><a href="#">SHOES / 신발</a></li>
+        <li><a href="#">BAG / 가방</a></li>
+        <li><a href="#">ACC / 소품</a></li>
+        <li><a href="#">HEAD WEAR / 모자</a></li>
+        <li><a href="#">SOCKS / 양말</a></li>
+      </ul>
+    </section>
+
+    <!-- 2단 배너 #1 -->
+    <section class="section-gap grid cols-2">
+      <article class="tile large">
+        <img src="./img/main_2.jpg" alt="메인 비주얼 2" />
+        <span class="tag">INSPIRATION</span>
+      </article>
+      <article class="tile large">
+        <img src="./img/main_3.jpg" alt="메인 비주얼 3" />
+        <span class="tag">3 STRIPES</span>
+      </article>
+    </section>
+
+    <!-- 2단 배너 #2 -->
+    <section class="section-gap grid cols-2 mobile-hide-sm">
+      <article class="tile large">
+        <video src="https://cds.cagocloud.ws/movie/y3jp/mvs/2025/1230_lQ1d1c.mp4" autoplay muted loop playsinline controls style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+      </article>
+      <article class="tile large">
+        <img src="./img/bottom_1.jpg" alt="스토어" />
+      </article>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-grid">
+      <div class="footer-visual">
+        <h4>캠페인</h4>
+        <div class="footer-visual-img">
+          <img src="./img/foo_2.jpg" alt="Y-3 캠페인 비주얼" />
+        </div>
+      </div>
+      <div class="footer-visual">
+        <h4>스토어</h4>
+        <div class="footer-visual-img">
+          <img src="./img/foo_1.jpg" alt="Y-3 캠페인 비주얼" />
+        </div>
+      </div>
+      <div>
+        <h4>계정</h4>
+        <ul>
+          <li><a href="#">MY PAGE</a></li>
+          <li><a href="#">LOGIN</a></li>
+          <li><a href="#">SIGN UP</a></li>
+          <li><a href="#">WISH LIST</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>브랜드</h4>
+        <ul>
+          <li><a href="#">ABOUT Y-3</a></li>
+          <li><a href="#">SHOP IN JAPAN</a></li>
+          <li><a href="#">RECRUIT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>고객 지원</h4>
+        <ul>
+          <li><a href="#">도움말</a></li>
+          <li><a href="#">고객 서비스</a></li>
+          <li><a href="#">판매 규약</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">특정상거래법</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="footer-sns">
+          <li><a href="#"><img src="./img/ico-youtube.svg" alt="YouTube" /></a></li>
+          <li><a href="#"><img src="./img/ico-facebook.svg" alt="Facebook" /></a></li>
+          <li><a href="#"><img src="./img/ico-instagram.svg" alt="Instagram" /></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-logo">
+        <img src="./img/logo.svg" alt="Y-3" />
+      </div>
+      <p class="copyright">
+        &copy; 2025 ADIDAS AG. ADIDAS, ADIDAS WORDMARK AND Y-3 ARE REGISTERED TRADEMARKS OF ADIDAS. YOHJI
+        YAMAMOTO IS A REGISTERED TRADEMARK OF YOHJI YAMAMOTO, INC.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    $(function () {
+      $('.hero-slider').slick({
+        slidesToShow: 1,
+        arrows: false,
+        dots: true,
+        autoplay: false,
+        autoplaySpeed: 4000,
+        speed: 600,
+        pauseOnHover: false,
+        adaptiveHeight: true,
+      });
+    });
+  </script>
+  <script>
+    (function () {
+      var slider = document.querySelector('.grid.cols-4');
+      if (!slider) return;
+
+      var isDragging = false;
+      var startX = 0;
+      var startScroll = 0;
+      var mediaQuery = window.matchMedia('(max-width: 900px)');
+
+      function onPointerDown(event) {
+        if (!mediaQuery.matches) return;
+        isDragging = true;
+        startX = event.clientX;
+        startScroll = slider.scrollLeft;
+        slider.classList.add('is-dragging');
+        if (slider.setPointerCapture) {
+          slider.setPointerCapture(event.pointerId);
+        }
+        event.preventDefault();
+      }
+
+      function onPointerMove(event) {
+        if (!isDragging) return;
+        var delta = event.clientX - startX;
+        slider.scrollLeft = startScroll - delta;
+        event.preventDefault();
+      }
+
+      function onPointerUp(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        slider.classList.remove('is-dragging');
+        if (slider.releasePointerCapture) {
+          slider.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      slider.addEventListener('pointerdown', onPointerDown, { passive: false });
+      slider.addEventListener('pointermove', onPointerMove, { passive: false });
+      slider.addEventListener('pointerup', onPointerUp);
+      slider.addEventListener('pointerleave', onPointerUp);
+      slider.addEventListener('pointercancel', onPointerUp);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "banner-image",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-search",
+      "blocks": {
+        "sidebar_filter_DCCaJ9": {
+          "type": "sidebar_filter",
+          "settings": {
+            "two_column_labels": false,
+            "scroll_long_lists": true,
+            "filter_color_swatches": "text_only",
+            "show_filter_count": true
+          }
+        }
+      },
+      "block_order": [
+        "sidebar_filter_DCCaJ9"
+      ],
+      "settings": {
+        "full_width": false,
+        "grid": 4,
+        "rows": 4,
+        "infinite_scroll": true,
+        "is_sticky": true,
+        "sort_by": true
+      }
+    },
+    "featured_collection_7y9B7C": {
+      "type": "featured-collection",
+      "disabled": true,
+      "custom_css": [
+        "img {object-fit: contain !important;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "title": "You may also like",
+        "collection": "clothing-t-shirts",
+        "carousel": true,
+        "button": false,
+        "button_text": "View all",
+        "grid": 4,
+        "limit": 20,
+        "color_scheme": "cs1",
+        "section_padding": "both"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main",
+    "featured_collection_7y9B7C"
+  ]
+}

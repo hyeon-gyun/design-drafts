@@ -1,0 +1,168 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "162811634384e849d0": {
+      "type": "image-with-text-overlay",
+      "settings": {
+        "desktop_height": 500,
+        "mobile_height": 400,
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "scale": 2,
+        "link": "",
+        "title": "Heading",
+        "subheading": "<p>Add a sentence of overlay text to your image</p>",
+        "button_text": "Button",
+        "text_align": "center",
+        "heading_size": 22,
+        "text_size": 14,
+        "text_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_color": "#000000",
+        "button_color_hover": "#000",
+        "background": "rgba(0,0,0,0)",
+        "caption_horizontal": 50,
+        "caption_vertical": 50,
+        "section_padding": "bottom"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "page_size": "thin",
+        "sidebar_positon": "left"
+      }
+    },
+    "48f552c7-7014-4f9c-9b49-a5fd16a90adb": {
+      "type": "image-with-text",
+      "settings": {
+        "full_width": false,
+        "layout": "left",
+        "image_width": "50%",
+        "image_height": "natural",
+        "desktop_height": 500,
+        "mobile_height": 600,
+        "title": "Image with text",
+        "text": "<p>Pair text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "link": "",
+        "button": "",
+        "text_align": "left",
+        "text_position": "vai-center",
+        "heading_size": 22,
+        "text_size": 14,
+        "text_offset": 0,
+        "color_scheme": "none",
+        "apply_color_to_section": false,
+        "section_padding": "top"
+      }
+    },
+    "6204b425-8557-4123-9757-8b207d070ec8": {
+      "type": "image-with-text",
+      "settings": {
+        "full_width": false,
+        "layout": "right",
+        "image_width": "50%",
+        "image_height": "natural",
+        "desktop_height": 500,
+        "mobile_height": 600,
+        "title": "Image with text",
+        "text": "<p>Pair text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "link": "",
+        "button": "",
+        "text_align": "left",
+        "text_position": "vai-center",
+        "heading_size": 22,
+        "text_size": 14,
+        "text_offset": 0,
+        "color_scheme": "none",
+        "apply_color_to_section": false,
+        "section_padding": "bottom"
+      }
+    },
+    "47f90523-d8be-4b7f-81c6-1a8857276b23": {
+      "type": "editorial-columns",
+      "blocks": {
+        "template--16162443067562__47f90523-d8be-4b7f-81c6-1a8857276b23-168797211811ec5592-0": {
+          "type": "image",
+          "settings": {
+            "heading": "Name",
+            "rich_text": "<p>Add a paragraph of text accompanied by an image </p>",
+            "button": "",
+            "link": ""
+          }
+        },
+        "template--16162443067562__47f90523-d8be-4b7f-81c6-1a8857276b23-168797211811ec5592-1": {
+          "type": "image",
+          "settings": {
+            "heading": "Name",
+            "rich_text": "<p>Add a paragraph of text accompanied by an image </p>",
+            "button": "",
+            "link": ""
+          }
+        },
+        "template--16162443067562__47f90523-d8be-4b7f-81c6-1a8857276b23-168797211811ec5592-2": {
+          "type": "image",
+          "settings": {
+            "heading": "Name",
+            "rich_text": "<p>Add a paragraph of text accompanied by an image </p>",
+            "button": "",
+            "link": ""
+          }
+        },
+        "b0775d40-4507-4190-9396-39d546663f0f": {
+          "type": "image",
+          "settings": {
+            "heading": "Name",
+            "rich_text": "<p>Add a paragraph of text accompanied by an image </p>",
+            "button": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16162443067562__47f90523-d8be-4b7f-81c6-1a8857276b23-168797211811ec5592-0",
+        "template--16162443067562__47f90523-d8be-4b7f-81c6-1a8857276b23-168797211811ec5592-1",
+        "template--16162443067562__47f90523-d8be-4b7f-81c6-1a8857276b23-168797211811ec5592-2",
+        "b0775d40-4507-4190-9396-39d546663f0f"
+      ],
+      "settings": {
+        "full_width": false,
+        "title": "Meet the team",
+        "image_size": "natural",
+        "desktop_image_height": 500,
+        "mobile_image_height": 400,
+        "mobile_swipe": true,
+        "text_align": "center",
+        "color_scheme": "none",
+        "section_padding": "both"
+      }
+    },
+    "16281164377b72f53d": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Subscribe to our newsletter",
+        "newsletter_subheading": "<p>Join our mailing list - no spam!</p>",
+        "mail_gdpr_text": "<p>*You're signing up to receive our emails and can unsubscribe at any time.</p>",
+        "show_social_icons": false,
+        "color_scheme": "none",
+        "section_padding": "both"
+      }
+    }
+  },
+  "order": [
+    "162811634384e849d0",
+    "main",
+    "48f552c7-7014-4f9c-9b49-a5fd16a90adb",
+    "6204b425-8557-4123-9757-8b207d070ec8",
+    "47f90523-d8be-4b7f-81c6-1a8857276b23",
+    "16281164377b72f53d"
+  ]
+}

@@ -1,0 +1,277 @@
+{*** 패밀리 세일 | proc/familysale.php ***}
+{ # header }
+<style>
+	#familySaleBtns {
+		overflow-x: auto;
+		-ms-overflow-style: none; /* IE */
+		scrollbar-width: none; /* Firefox */
+	}
+	#familySaleBtns::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, Opera */
+	}
+	.h_sec01.jh_fixed { 
+		position: initial; 
+	}
+	.h_sec02 { 
+		height: 0; 
+	}
+	.hot_keyword, .right_fixed { 
+		
+	}
+	.hot_keyword a {
+		animation: smoothBlink 1.5s infinite;
+		transition: opacity 0.5s ease-in-out;
+		/*text-shadow: 0 0 5px rgba(255,255,255,0.4);*/
+	}
+	@keyframes smoothBlink {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	.family-sale-wrapper {
+		max-width: 1024px;
+		margin: 0 auto;
+		display: none; /* 기본 숨김 */
+		position: relative;
+	}
+	.family-banner {
+		width: 100%;
+		height: 100%;
+		display: block;
+		object-fit: cover;
+	}
+	.family-info {
+		background: #f8f8f8;
+		padding: 50px;
+		margin-bottom: 30px;
+	}
+	.family-info h3 {
+		margin-top: 0;
+		font-size: 20px;
+		padding-bottom: 40px;
+	}
+	.family-info li {
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+	.tab-buttons {
+		display: flex;
+		overflow-x: auto;
+		gap: 10px;
+		position: sticky;
+		top: 0;
+		background-color:#fff;
+		z-index: 1000;
+		padding: 15px 10px;
+	}
+	.tab-buttons button {
+		background: #f0f0f0;
+		border: none;
+		color: #131635;
+		padding: 10px 16px;
+		cursor: pointer;
+		font-size: 14px;
+		border-radius: 20px;
+		white-space: nowrap;
+		font-family: "knockoutnormal", "knockoutbold", "Noto Sans KR", sans-serif;
+		transition: all 0.2s ease;
+	}
+	.tab-buttons button.active {
+		background: #131635;
+		color: #fff;
+	}
+	.goods-display-area .goods-tab { 
+		display: none; 
+	}
+	.goods-display-area .goods-tab.active { 
+		display: block;
+	}
+	._goods_display_main .main_prd_list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		padding: 0 5px;
+	}
+	/* 입장 모달 */
+	#entryModal {
+		position: fixed;
+		top: 0; left: 0;
+		width: 100%; height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 9999;
+	}
+	.entry-box {
+		background: #fff;
+		padding: 40px 30px;
+		border-radius: 10px;
+		text-align: center;
+		box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+		width: 90%;
+		margin: 0 10px;
+		max-width: 360px;
+	}
+	.entry-box h2 {
+		margin-bottom: 10px;
+		font-size: 22px;
+		color: #131635;
+	}
+	.entry-box p {
+		font-size: 14px;
+		margin-bottom: 10px;
+		color: #333;
+	}
+	.entry-box input {
+		width: 90%;
+		padding: 10px;
+		font-size: 14px;
+		margin: 10px 0 15px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+	.entry-box button {
+		background: #131635;
+		color: #fff;
+		padding: 10px 30px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 14px;
+	}
+	@media (max-width: 768px) {
+		.family-info {
+			padding: 30px 20px;
+		}
+		.banner {
+			height: 30vh;
+		}
+		.family-info h3 {
+			font-size: 18px;
+			line-height: 1.3;
+		}
+		.family-info li {
+			font-size: 12px;
+		}
+		.tab-buttons {
+			padding: 12px 8px;
+			overflow-x: scroll;
+		}
+		.tab-buttons button {
+			font-size: 13px;
+			padding: 10px 14px;
+		}
+		.goods_prd_item2.list_num_4 {
+			width: 33.333%;
+		}
+		._goods_display_main .main_prd_list {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			padding: 0 5px;
+		}
+	}
+</style>
+<div class="hot_keyword" style="display: flex; align-items: center;justify-content: center;"><a href="/member/join_method.php" style="color:#fff;">회원 구매 시 즉시 사용 가능한 최대 10% 장바구니 쿠폰 증정</a></div>
+<!-- 입장 코드 모달 -->
+<div id="entryModal">
+	<div class="entry-box">
+		<h2>Champion Family Sale</h2>
+		<p>4.14 - 4.28<br><strong>(UP TO 90%)</strong></p>
+		<p style="margin-top: 12px; font-weight: 600;">임직원 전용 입장 코드</p>
+		<p>코드를 입력 후 하단 입장하기 버튼을 눌러주세요.</p>
+		<input type="password" id="entryCode" placeholder="입장 코드를 입력해 주세요." />
+		<br>
+		<button onclick="checkEntry()">입장하기</button>
+	</div>
+</div>
+<!-- 패밀리 세일 영역 -->
+<div class="family-sale-wrapper">
+	<div class="banner"><img src="https://champitr6563.cdn-nhncommerce.com/data/skin/front/desktop/img/banner/slider_3040312042/f3ccdd27d2000e3f9255a7e3e2c48800_47551.jpg" alt="패밀리세일 배너" class="family-banner" /></div>
+	<div class="family-info">
+        <h3>Champion Family Sale <span style="color:#e2383f; font-size:16px;">~ 4/28 23:59 까지</span></h3>
+		<ul>
+			<li style="padding: 0 0 10px 0;"><span style="border: 1px solid; padding: 3px 6px;">NOTICE</span></li>
+			<li>- 패밀리 세일 상품의 단순 변심에 의한 교환/환불은 불가합니다. (*상품 불량/하자로 인한 반품은 1:1문의를 통해서 처리가 가능)</li>
+			<li>- 행사 기간 판매량 급증으로 구매한 상품이 품절되어 자동 취소/환불 처리가 될 수 있습니다.</li>
+			<li>- 주문량에 따라 배송이 지연될 수 있으며 결제일로부터 2~5일 이후 순차 발송됩니다.</li>
+			<li>- 주문 전 반드시 가격 일치 여부를 확인해 주시기 바랍니다.</li>
+			<li>- 장바구니에 담지 않은 상품 결제를 위해 회원가입 후 로그인 시, 해당 상품은 자동으로 장바구니에 담기지 않습니다.</li>
+			<li>- 패밀리 세일 링크 접속 후 배너를 클릭하여 일반 페이지로 넘어갈 경우 <strong>패밀리 세일 링크로 재접속</strong>이 가능합니다.</li>
+			<li style="padding: 30px 0 10px 0;"><span style="border: 1px solid; padding: 3px 6px;">MEMBERSHIP BENEFIT</span></li>
+			<li>- 기존/신규 회원 구매 금액별 장바구니 쿠폰 증정</li>
+			<li>- 8만원 이상 10% 즉시 할인 / 5만원 이상 5% 즉시 할인</li>
+		</ul>
+    </div>
+	<!-- 탭 버튼 -->
+	<div id="familySaleBtns" class="tab-buttons">
+		<button class="active" data-sno="294">ALL</button>
+		<button data-sno="295">균일가</button>
+		<button data-sno="302">Spring Season Off</button>
+		<button data-sno="296">Up To 90%</button>
+		<button data-sno="297">Up To 80%</button>
+		<button data-sno="298">Up To 70%</button>
+		<button data-sno="299">Up To 60%</button>
+		<button data-sno="300">Up To 50%</button>
+	</div>
+	<!-- 치환코드 영역 -->
+	<div id="goodsDisplayArea" class="goods-display-area">
+		<div class="goods-tab active" data-sno="294">{=includeWidget('goods/_goods_display_main.html','sno','294')}</div>
+		<div class="goods-tab" data-sno="295">{=includeWidget('goods/_goods_display_main.html','sno','295')}</div>
+		<div class="goods-tab" data-sno="302">{=includeWidget('goods/_goods_display_main.html','sno','302')}</div>
+		<div class="goods-tab" data-sno="296">{=includeWidget('goods/_goods_display_main.html','sno','296')}</div>
+		<div class="goods-tab" data-sno="297">{=includeWidget('goods/_goods_display_main.html','sno','297')}</div>
+		<div class="goods-tab" data-sno="298">{=includeWidget('goods/_goods_display_main.html','sno','298')}</div>
+		<div class="goods-tab" data-sno="299">{=includeWidget('goods/_goods_display_main.html','sno','299')}</div>
+		<div class="goods-tab" data-sno="300">{=includeWidget('goods/_goods_display_main.html','sno','300')}</div>
+	</div>
+</div>
+<script>
+	// 입장 코드 검증
+	function checkEntry() {
+		const code = document.getElementById('entryCode').value.trim().toLowerCase();
+		if (code === 'champion2025') {
+			sessionStorage.setItem('familySaleAccess', 'true');
+			document.getElementById('entryModal').style.display = 'none';
+			document.querySelector('.family-sale-wrapper').style.display = 'block';
+		} else {
+			alert('입장 코드가 올바르지 않습니다.');
+		}
+	}
+	// 입장 여부 확인
+	window.addEventListener('DOMContentLoaded', () => {
+		if (sessionStorage.getItem('familySaleAccess') === 'true') {
+			document.getElementById('entryModal').style.display = 'none';
+			document.querySelector('.family-sale-wrapper').style.display = 'block';
+		}
+	});
+	// 탭 버튼 기능
+	document.addEventListener('DOMContentLoaded', function () {
+		const buttons = document.querySelectorAll('#familySaleBtns button');
+		const tabs = document.querySelectorAll('.goods-tab');
+		const tabWrapper = document.querySelector('.tab-buttons');
+		buttons.forEach(button => {
+			button.addEventListener('click', function () {
+				const sno = this.getAttribute('data-sno');
+				// 버튼 활성화 처리
+				buttons.forEach(btn => btn.classList.remove('active'));
+				this.classList.add('active');
+				// 탭 show/hide
+				tabs.forEach(tab => {
+					tab.classList.toggle('active', tab.getAttribute('data-sno') === sno);
+				});
+				// 콘텐츠로 스크롤 이동
+				const scrollTarget = document.querySelector('.goods-display-area');
+				const offset = tabWrapper.offsetHeight;
+				const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - offset;
+				window.scrollTo({ top: top, behavior: 'smooth' });
+			});
+		});
+	});
+</script>
+{ # footer }

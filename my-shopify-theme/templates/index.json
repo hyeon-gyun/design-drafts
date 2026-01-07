@@ -1,0 +1,460 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1625752154523bf545": {
+      "type": "slideshow",
+      "blocks": {
+        "1625752154523bf545-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/main_pc_1_45fd0068-2693-40df-ba7d-7f120d5de7dc.jpg",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "mobile_image": "shopify://shop_images/main_mb_1_518f4d9a-a565-4355-9c75-92a49d6fad42.jpg",
+            "heading": "",
+            "subheading": "<p>SHOP NOW</p>",
+            "link": "shopify://collections/남성-전체상품",
+            "button_text": "",
+            "second_link": "",
+            "second_button_text": "",
+            "text_align": "center",
+            "subheading_first": false,
+            "slide_text_color": "#ffffff",
+            "cta_color": "#ffffff",
+            "cta_background": "#000000",
+            "cta_background_hover": "#000000",
+            "caption_background": "rgba(0,0,0,0)",
+            "caption_horizontal": 50,
+            "caption_vertical": 100
+          }
+        },
+        "image_7kBQQJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/main_pc_2_571979f9-8840-421c-847d-0322af19b4c1.jpg",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "mobile_image": "shopify://shop_images/main_mb_2_e0b97cd6-72ad-4f63-9857-4956bec3feaf.jpg",
+            "heading": "",
+            "subheading": "<p>SHOP NOW</p>",
+            "link": "shopify://collections/남성-전체상품",
+            "button_text": "",
+            "second_link": "",
+            "second_button_text": "",
+            "text_align": "center",
+            "subheading_first": false,
+            "slide_text_color": "#ffffff",
+            "cta_color": "#ffffff",
+            "cta_background": "#000000",
+            "cta_background_hover": "#000000",
+            "caption_background": "rgba(0,0,0,0)",
+            "caption_horizontal": 50,
+            "caption_vertical": 100
+          }
+        },
+        "image_xK8xKc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/main_pc_3_ca89b987-313f-4b42-a84b-78ca7171f7ff.jpg",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "mobile_image": "shopify://shop_images/main_mb_3_4600b6f3-93c0-4e0e-a8f6-6f487c489884.jpg",
+            "heading": "",
+            "subheading": "<p>SHOP NOW</p>",
+            "link": "shopify://collections/남성-전체상품",
+            "button_text": "",
+            "second_link": "",
+            "second_button_text": "",
+            "text_align": "center",
+            "subheading_first": false,
+            "slide_text_color": "#ffffff",
+            "cta_color": "#ffffff",
+            "cta_background": "#000000",
+            "cta_background_hover": "#000000",
+            "caption_background": "rgba(0,0,0,0)",
+            "caption_horizontal": 50,
+            "caption_vertical": 100
+          }
+        },
+        "image_ccMhF8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/main_pc_4_cb230ac5-e045-4cc3-b979-1f4f63797333.jpg",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "mobile_image": "shopify://shop_images/main_mb_4_52e4bf6d-c760-45fb-9197-367ce4c1d6f6.jpg",
+            "heading": "",
+            "subheading": "<p>SHOP NOW</p>",
+            "link": "shopify://collections/남성-전체상품",
+            "button_text": "",
+            "second_link": "",
+            "second_button_text": "",
+            "text_align": "center",
+            "subheading_first": false,
+            "slide_text_color": "#ffffff",
+            "cta_color": "#ffffff",
+            "cta_background": "#000000",
+            "cta_background_hover": "#000000",
+            "caption_background": "rgba(0,0,0,0)",
+            "caption_horizontal": 50,
+            "caption_vertical": 100
+          }
+        }
+      },
+      "block_order": [
+        "1625752154523bf545-1",
+        "image_7kBQQJ",
+        "image_xK8xKc",
+        "image_ccMhF8"
+      ],
+      "settings": {
+        "enable_autoplay": true,
+        "slider_speed": 5,
+        "pager": "arrows",
+        "video_audio": "off",
+        "slideshow_size": "natural",
+        "desktop_height": 1000,
+        "mobile_height": 600,
+        "caption_below": false,
+        "slide_heading_size": 32,
+        "subheading_size": 15,
+        "cta_size": 15,
+        "section_padding": "none"
+      }
+    },
+    "1625752966582d2e67": {
+      "type": "featured-collection",
+      "custom_css": [
+        "img {object-fit: contain !important;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "title": "New In",
+        "collection": "신규",
+        "carousel": true,
+        "button": false,
+        "button_text": "더 보기",
+        "grid": 4,
+        "limit": 20,
+        "color_scheme": "none",
+        "section_padding": "both"
+      }
+    },
+    "1625752962aa2a6ebb": {
+      "type": "image-gallery",
+      "blocks": {
+        "image_hQewp4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Bape_x_Stray_Kids_Teaser_Banner_855x990_copy_498fd89a-24b0-48f3-b9da-27c9c55b363e.jpg",
+            "image_width": "50%",
+            "double_height": false,
+            "link": "https://kr.bape.com/collections/stray-kids",
+            "heading": "Stray Kids",
+            "text": "",
+            "button": "",
+            "subheading_first": false,
+            "text_color": "#ffffff",
+            "button_color": "#ffffff",
+            "button_background": "rgba(0,0,0,0)",
+            "button_background_hover": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "vertical_position": 100,
+            "horizontal_position": 50,
+            "align_text": "center"
+          }
+        },
+        "1625752962aa2a6ebb-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BAPE_x_88rising_BANNER_Bape_tmall_1200x1200_4499c2eb-56e8-4a0a-86ff-1178135ce17d.jpg",
+            "image_width": "50%",
+            "double_height": false,
+            "link": "https://kr.bape.com/collections/88rising",
+            "heading": "88rising",
+            "text": "",
+            "button": "",
+            "subheading_first": false,
+            "text_color": "#ffffff",
+            "button_color": "#ffffff",
+            "button_background": "rgba(0,0,0,0)",
+            "button_background_hover": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "vertical_position": 100,
+            "horizontal_position": 50,
+            "align_text": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_hQewp4",
+        "1625752962aa2a6ebb-0"
+      ],
+      "settings": {
+        "full_width": true,
+        "title": "",
+        "image_size": "natural",
+        "desktop_image_height": 600,
+        "mobile_image_height": 400,
+        "no_spaces": false,
+        "mobile_swipe": true,
+        "heading_size": 20,
+        "subheading_size": 14,
+        "color_scheme": "none",
+        "section_padding": "none"
+      }
+    },
+    "image_gallery_ByEWRt": {
+      "type": "image-gallery",
+      "blocks": {
+        "image_gezRnh": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BAPE_SS25_Jun_Men_Banner_1667x2500_bec10fdc-e39b-4653-8226-2d5b9f138831.jpg",
+            "image_width": "33%",
+            "double_height": false,
+            "link": "shopify://collections/남성",
+            "heading": "남성",
+            "text": "SHOP",
+            "button": "",
+            "subheading_first": true,
+            "text_color": "#ffffff",
+            "button_color": "#000000",
+            "button_background": "rgba(0,0,0,0)",
+            "button_background_hover": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 5,
+            "vertical_position": 100,
+            "horizontal_position": 50,
+            "align_text": "center"
+          }
+        },
+        "image_f9MKFG": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BAPE_SS25_Jun_Women_Banner_1667x2500_2.jpg",
+            "image_width": "33%",
+            "double_height": false,
+            "link": "shopify://collections/여성",
+            "heading": "여성",
+            "text": "SHOP",
+            "button": "",
+            "subheading_first": true,
+            "text_color": "#ffffff",
+            "button_color": "#000000",
+            "button_background": "rgba(0,0,0,0)",
+            "button_background_hover": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "vertical_position": 98,
+            "horizontal_position": 50,
+            "align_text": "center"
+          }
+        },
+        "image_3tK9Ua": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/20241129BAPE_KIDS9211_R.jpg",
+            "image_width": "33%",
+            "double_height": false,
+            "link": "shopify://collections/신규-아동",
+            "heading": "아동",
+            "text": "SHOP",
+            "button": "",
+            "subheading_first": true,
+            "text_color": "#ffffff",
+            "button_color": "#000000",
+            "button_background": "rgba(0,0,0,0)",
+            "button_background_hover": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 5,
+            "vertical_position": 98,
+            "horizontal_position": 50,
+            "align_text": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_gezRnh",
+        "image_f9MKFG",
+        "image_3tK9Ua"
+      ],
+      "settings": {
+        "full_width": true,
+        "title": "",
+        "image_size": "natural",
+        "desktop_image_height": 600,
+        "mobile_image_height": 400,
+        "no_spaces": false,
+        "mobile_swipe": true,
+        "heading_size": 25,
+        "subheading_size": 14,
+        "color_scheme": "none",
+        "section_padding": "none"
+      }
+    },
+    "16257529781b844d78": {
+      "type": "collection-list",
+      "blocks": {
+        "16257529781b844d78-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "a-bathing-ape"
+          }
+        },
+        "16257529781b844d78-2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bape-black"
+          }
+        },
+        "16257529781b844d78-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "baby-milo-store"
+          }
+        },
+        "featured_collection_pR4LbG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "aape"
+          }
+        },
+        "featured_collection_NPpTH7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "apee"
+          }
+        },
+        "featured_collection_TjUkWA": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bapy"
+          }
+        }
+      },
+      "block_order": [
+        "16257529781b844d78-0",
+        "16257529781b844d78-2",
+        "16257529781b844d78-1",
+        "featured_collection_pR4LbG",
+        "featured_collection_NPpTH7",
+        "featured_collection_TjUkWA"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h3 {display: none;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "title": "Brand",
+        "grid": 6,
+        "mobile_swipe": true,
+        "title_appearance": "title_below",
+        "title_floating_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "title_bold": false,
+        "color_scheme": "none",
+        "section_padding": "top"
+      }
+    },
+    "collection_list_gYid8x": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_wYVrtQ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathing-ape"
+          }
+        },
+        "featured_collection_zVWFTX": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bape-black"
+          }
+        },
+        "featured_collection_caa3hL": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "baby-milo"
+          }
+        },
+        "featured_collection_CUACWM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "aape"
+          }
+        },
+        "featured_collection_Xg8MrQ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "apee"
+          }
+        },
+        "featured_collection_tWCWH3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathing"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_wYVrtQ",
+        "featured_collection_zVWFTX",
+        "featured_collection_caa3hL",
+        "featured_collection_CUACWM",
+        "featured_collection_Xg8MrQ",
+        "featured_collection_tWCWH3"
+      ],
+      "custom_css": [
+        "a {pointer-events: none; cursor: default;}",
+        ".collection__item--details h3 {display: none;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "title": "Brand",
+        "grid": 6,
+        "mobile_swipe": true,
+        "title_appearance": "title_below",
+        "title_floating_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "title_bold": false,
+        "color_scheme": "none",
+        "section_padding": "top"
+      }
+    },
+    "newsletter_XiYpBq": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "title": "Subscribe to receive the latest BAPE drop news.",
+        "newsletter_subheading": "",
+        "mail_gdpr_text": "<p>*By completing this form you're signing up to receive our emails and can unsubscribe at any time.</p>",
+        "show_social_icons": false,
+        "color_scheme": "none",
+        "section_padding": "both"
+      }
+    }
+  },
+  "order": [
+    "1625752154523bf545",
+    "1625752966582d2e67",
+    "1625752962aa2a6ebb",
+    "image_gallery_ByEWRt",
+    "16257529781b844d78",
+    "collection_list_gYid8x",
+    "newsletter_XiYpBq"
+  ]
+}

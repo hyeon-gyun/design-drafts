@@ -1,0 +1,133 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "f1e96864-a3bd-4742-8871-597d58a8a5e1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Delivery and customer service will be suspended during the Easter holiday from April 18 to 21. </p><p>Thank you for your understanding!</p>"
+          }
+        },
+        "text_zDBfYj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Happy Father's Day! 🎉<br/></p><p>Enjoy FREE SHIPPING until June 15 at 11:59 PM HKT!</p>"
+          }
+        },
+        "text_eWqDPM": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Spend over HKD 2,500 to receive a <strong>FREE GIFT</strong>! <strong>🎁</strong></p><p>Hurry, while stocks last!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1e96864-a3bd-4742-8871-597d58a8a5e1",
+        "text_zDBfYj",
+        "text_eWqDPM"
+      ],
+      "disabled": true,
+      "settings": {
+        "announcement_text_size": 13,
+        "top_nav": "",
+        "social_icons": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "1561573654669": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "남성",
+            "megamenu_image_position": "right",
+            "link": "shopify://pages/men",
+            "nav_image_text": "<h6><a href=\"/pages/men\" title=\"Men\">BAPE MEN COLLECTION</a></h6>",
+            "link_2": "",
+            "nav_image_text_2": ""
+          }
+        },
+        "mega_menu_erNXBz": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "여성",
+            "megamenu_image_position": "right",
+            "link": "shopify://pages/women",
+            "nav_image_text": "<h6><a href=\"/pages/women\" title=\"Women\">BAPE WOMEN COLLECTION</a></h6>",
+            "link_2": "",
+            "nav_image_text_2": ""
+          }
+        },
+        "mega_menu_WNwwR7": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "KIDS",
+            "megamenu_image_position": "right",
+            "link": "shopify://pages/kids",
+            "nav_image_text": "<h6><a href=\"/pages/kids\" title=\"Kids\">BAPE KIDS COLLECTION</a></h6>",
+            "link_2": "",
+            "nav_image_text_2": ""
+          }
+        },
+        "mega_menu_wjAbJ3": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "LIFESTYLE",
+            "megamenu_image_position": "right",
+            "link": "shopify://pages/lifestyle",
+            "nav_image_text": "<h6><a href=\"/pages/lifestyle\" title=\"Lifestyle\">BAPE LIFESTYLE COLLECTION</a></h6>",
+            "link_2": "",
+            "nav_image_text_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "1561573654669",
+        "mega_menu_erNXBz",
+        "mega_menu_WNwwR7",
+        "mega_menu_wjAbJ3"
+      ],
+      "custom_css": [],
+      "settings": {
+        "logo_position": "inline",
+        "logo_align": "center",
+        "header_cover": false,
+        "header_overlay_color": "#ffffff",
+        "logo": "shopify://shop_images/BAPE_LOGO_5ab56a10-b38a-4a10-8268-0c70116700f6.jpg",
+        "logo_max_width": 140,
+        "mobile_logo_max_width": 140,
+        "main_nav": "bape-korea",
+        "nav_hover_effect": true,
+        "product_menu": false,
+        "show_social_icons": false,
+        "megamenu_text": "",
+        "full_width_header": true,
+        "enable_sticky_header": true,
+        "padded_header": false,
+        "header_border": false,
+        "show_mobile_search": false,
+        "show_locale_selector": true,
+        "show_country_selector": false,
+        "show_flag": false
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

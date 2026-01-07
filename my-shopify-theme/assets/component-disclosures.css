@@ -1,0 +1,124 @@
+button.disclosure__toggle {
+  background: var(--background);
+  color: var(--text-color);
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-radius: unset !important;
+  height: unset !important;
+  line-height:  unset !important;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button.disclosure__toggle[aria-controls="lang-list"] {
+   text-transform: capitalize;
+}
+
+.disclosure-list {
+  padding: 15px 0px;
+  position: absolute;
+  right: 0;
+  display: none;
+  border-radius: 2px;
+  z-index: 6;
+  text-align: left;
+  list-style: none;
+  background: var(--background);
+  border: 1px solid var(--dotted-color);
+}
+
+.disclosure-list--visible {
+  display: block;
+}
+
+ul.disclosure--ul {
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 0!important;
+  line-height: 1;
+}
+
+.disclosure-list__item {
+  white-space: nowrap;
+  padding: 5px 15px 10px 15px !important;
+  text-align: left;
+  width: 100%;
+}
+
+.disclosure-list__option {
+  text-transform: capitalize;
+  color: var(--text-color) !important;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.disclosure-list__option:focus,
+.disclosure-list__option:hover,
+.disclosure-list__item--current .disclosure-list__option,
+.disclosure-list__option {
+  color: rgb(var(--text-color) / .70);
+}
+
+.disclosure-list__item--current .disclosure-list__option {
+  font-weight: bold;
+}
+
+.disclosure-list__option span.localization-form__currency {
+  font-size: var(--font-size-sm);
+  opacity: 0.7
+}
+
+/* ---- Flags ---- */
+span.country--flag {
+  display: flex;
+  height: 20px;
+  width: 20px;
+  flex-basis: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.disclosure__toggle__flag {
+  flex-basis: 20px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.disclosure__toggle svg {
+  min-width: 20px;
+}
+
+.disclosure-list__item span.country--flag {
+  margin-right: 5px;
+}
+
+/* ---- no-js ---- */
+button.localization-form__noscript-btn {
+ height: 48px;
+ line-height: 48px;
+ border: 1px solid #ccc;
+ border-left: 0;
+ padding-left: 10px;
+ padding-right: 10px;
+}
+
+/* ---- Section specific ---- */
+.header-section .disclosure__toggle {
+  letter-spacing: var(--nav-spacing);
+  font-family: var(--nav-family);
+  font-weight: var(--nav-weight);
+  font-style: var(--nav-style);
+  font-size: var(--nav-size) !important;
+}
+
+#HeaderCountryFormNoScript {
+ display: flex;
+ justify-content: center;
+}

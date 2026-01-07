@@ -1,0 +1,253 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-title row">
+    <h2>
+      <a href="#" title="{{ section.settings.title | escape }}">
+        {{ section.settings.title }}
+      </a>
+    </h2>
+  </div>
+{%- endif -%}
+ <div class="row grid_wrapper">
+
+   {%- liquid
+  assign show_policies = settings.show_policies
+   case section.settings.image_section_size
+     when 'small'
+        assign image_width = 'span-5 push-1 md-span-6 sm-span-12 auto'
+        assign descr_width = 'span-5 md-span-6 sm-span-12 auto'
+     when 'medium'
+        assign image_width = 'span-6 sm-span-12 auto'
+        assign descr_width = 'span-6 sm-span-12 auto'
+     when 'large'
+        assign image_width = 'span-8 md-span-6 sm-span-12 auto'
+        assign descr_width = 'span-4 md-span-6 sm-span-12 auto'
+   endcase
+
+   -%}
+
+
+
+  <div class="product__section-images onboard {{ image_width }}">
+     {{ 'image' | placeholder_svg_tag: 'placeholder-svg span-12' }}
+   </div>
+
+  <div class="product__section-content {{ descr_width }}">
+    <div id="sticky-item" class="product__section-details is_sticky">
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'product_info' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+                <div>
+                  <h3>
+                    {% unless product.title == blank %}
+                      {{ product.title | escape | link_to: product.url }}
+                    {% else %}
+                      {{ 'Featured product title' | link_to: '#' }}
+                    {% endunless %}
+                  </h3>
+                </div>
+                {% render 'product-price', variant: current_variant, product: product %}
+
+                {%- if show_policies -%}
+                  {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+                    <div class="product__policies rte" data-product-policies>
+                      {%- if cart.taxes_included -%}
+                        {{ 'products.product.include_taxes' | t }}
+                      {%- endif -%}
+                      {%- if shop.shipping_policy.body != blank -%}
+                        {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                </div>
+              {% when 'product_quantity' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+                  <div class="product-qty selector-wrapper">
+                     <label for="qty-demo-product">{{ 'products.product.quantity' | t }}</label>
+                     <a class="downer quantity-control-down">-</a>
+                     <input
+                      id="qty-demo-product"
+                      min="1"
+                      type="text"
+                      name="quantity"
+                      class="formQty product-quantity"
+                      value="1"
+                      max="11">
+                     <a class="up quantity-control-up">+</a>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              {% when 'product_sku' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+                  <div class="product__sku-container sku js-product-sku-container">
+                    <span class="product__sku-label">{{ 'customer.order.details.sku' | t }}</span>
+                    <span class="product__sku-value js-product-sku">AB-001</span>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              {% when 'stock_levels' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+                  {% if block.settings.threshold > 0 %}
+
+                    {% capture variant_stock_levels_classes %}
+                      variant-stock-levels js-variant-stock-levels variant-stock-levels--{{ section.id }}
+                    {% endcapture %}
+
+                    <div
+                      id="variant-stock-levels--{{ section.id }}"
+                      class="{{ variant_stock_levels_classes | strip }}"
+                      data-stock-level-threshold="{{ block.settings.threshold }}"
+                    >
+                      <div class="variant-stock-levels__inner">
+                        {% render 'snip-icons',
+                          wrapper: '.variant-stock-levels__icon',
+                          type: 'apollo',
+                          icon: 'error',
+                          classes: 'variant-stock-levels__svg',
+                          size: '14px',
+                          fill: 'var(--text-color)',
+                          hover: 'var(--text-color)' %}
+                        <span class="js-variant-stock-levels__message">
+                          {{ 'products.product.only_left' | t: count: 4 }}
+                        </span>
+                      </div><!-- /.variant-stock-levels__inner -->
+                    </div><!-- /#variant-stock-levels -->
+                  {% endif %}
+                </div>
+              {% when 'product_variants' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+
+
+                  {%- if settings.product_variants == 'swatches' -%}
+                    <div class="product__variants-swatches mt4 mb6 no-js-hidden" data-section="{{ section.id }}">
+
+                      <div class="swatches__container js-variant-selector" data-option-index="{{ option.position }}" data-other-options='{{ other_options | json }}'>
+                        <p class="swatches__option-name h5"><strong>Variants</strong></p>
+                        {%- for n in (1..4) -%}
+                          {% capture radio_button %}
+                            <input type="radio" id="{{ section.id }}-{{ n }}-{{ forloop.index0 }}"
+                                class="swatches__form--input"
+                                name="Variants"
+                                value="{{ n | escape }}"
+                                form="product-form-{{ section.id }}"
+                                data-position="1"
+                                {{ checked }}>
+                          {% endcapture %}
+                          {% capture regular_swatch %}
+                            <div class="swatches__swatch--regular swatch-element js-swatch-element">
+                              {{ radio_button }}
+                              <label class="swatches__form--label" for="{{ section.id }}-{{ n }}-{{ forloop.index0 }}" tabindex="0">
+                                {{ n }}
+                              </label>
+                            </div>
+                          {% endcapture %}
+
+                          {{ regular_swatch }}
+                        {%- endfor -%}
+                      </div>
+
+                    </div>
+                  {%- else -%}
+                    <div class="product__variants-select no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                        <div class="product-form__input product-form__input--dropdown">
+                          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                            Variants
+                          </label>
+                          <div class="select">
+                            <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                              class="js-variant-selector styled-select"
+                              name="Variants"
+                              form="product-form-{{ section.id }}"
+                            >
+                              {%- for n in (1..4) -%}
+                                <option value="{{ value | escape }}">
+                                  {{ n }}
+                                </option>
+                              {%- endfor -%}
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {% when 'product_availability' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+
+                {% unless product == blank %}
+                  <div class="product-single__store-availability-container"
+                    data-variant-id="{{ current_variant.id }}"
+                    data-product-title="{{ product.title | escape }}"
+                    style="visibility:hidden; min-height: 120px;"
+                    data-store-availability-container>
+                  </div>
+                {% else %}
+                  <div class="product-single__store-availability-container" style="min-height: 85px;" data-store-availability-container>
+                    <div class="store-availability-container">
+                      <div class="store-availability-information">
+                        <div class="store-availability-information-container">
+                          <p class="store-availability-information__title">
+                            <svg class="testament--apollo-checkmark store-availability-list__stock--icon vib-center" height="9px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25.7 20" xml:space="preserve">
+                              <g class="hover-fill" fill="var(--text-color)">
+                                <polygon points="8.2,15.8 2,9.6 0,11.6 8.2,20 25.7,2.1 23.7,0 "></polygon>
+                              </g>
+                              <style>.store-availability-list__stock .testament--apollo-checkmark:hover .hover-fill { fill: var(--text-color);}</style>
+                            </svg>
+                            <span class="vib-center">Pickup available</span>
+                          </p>
+                          <p class="store-availability-information__stock">
+                            Usually ready in 1 hour
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endunless %}
+                </div>
+              {% when 'product_buttons' %}
+                  <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+                    <input type="submit" name="button" class="add clearfix add-to-cart js-ajax-submit {% if show_payment_button %} secondary-button{% endif %}" value="{{ 'products.product.add_to_cart' | t }}" disabled />
+                    <div class="clear"></div>
+                  </div>
+              {% when 'product_description' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+                {% unless product == blank %}
+                  <div class="rte">
+                    {% if product.description contains '[#' %}
+                      {% assign description = product.description | split: '[#' | first | strip_html %}
+                      {{ description | truncatewords: 50 }}
+                    {% else %}
+                      {% assign description = product.description | split: '<!-- split -->' | first | strip_html %}
+                      {{ description | truncatewords: 50 }}
+                    {% endif %}
+
+                    <a href="{{ product.url }}">{{ 'products.product.readmore' | t }}</a>
+                  </div><!-- /.rte -->
+                {% else %}
+                  <div class="rte">
+                    {% capture product_description %}
+                      This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made. <a href="#">{{ 'products.product.readmore' | t }}</a>
+                    {% endcapture %}
+                    <p>{{ product_description | truncatewords: 50 }}</p>
+                  </div><!-- /.rte -->
+                {% endunless %}
+                <div class="clear"></div>
+                </div>
+              {% when '@app' %}
+                <div class="product__section-details__inner product__section-details__inner--{{ block.type }}" {{ block.shopify_attributes }}>
+
+                <div class="product__section--app">
+                  {% render block %}
+                </div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        {% endif %}
+
+   </div>
+  </div>
+ </div>
+{%- if section.settings.show_social_share -%}
+{% render 'social' with product %}
+{%- endif -%}

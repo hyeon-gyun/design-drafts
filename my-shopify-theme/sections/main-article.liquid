@@ -1,0 +1,358 @@
+{%- liquid
+  assign loading = "eager"
+  assign fetchpriority = "auto"
+  if section.index == 1
+    assign fetchpriority = "high"
+  elsif section.index > 2
+    assign loading = "lazy"
+  endif
+
+  assign has_image = false
+  if article.image and section.settings.display_featured_image
+    assign has_image = true
+  endif
+
+-%}
+<section class="main__section" 
+  data-aos="{{ settings.scroll_animation }}"
+  data-section-id="{{ section.id }}">
+  <div class="row">
+    {% assign current = article.handle %}
+    <div class="main__article" id="blog-article-page">
+
+      <div class="articles blog__alternate">
+        <div class="single-article odd">
+          {% if has_image %}
+            <div class="article-image"
+              data-aos="{{ settings.scroll_animation }}"
+              data-aos-delay="100">
+                {% render 'basic-responsive-image', type: article, width: 800, loading: loading, fetchpriority: fetchpriority %}
+            </div>
+          {% endif %}
+          <div class="article-body{% unless has_image %} no--featured_image{% endunless %}" 
+            data-aos="{{ settings.scroll_animation }}" 
+            data-aos-delay="200">
+            <div class="article-inner">
+              <div class="section-title">
+                <h1>{{ article.title }}</h1>
+              </div>
+              <div class="post_meta">
+                {% assign published_at = article.published_at | date: "%b %d, %Y" %}
+                  <span class="posted">
+                    {{ 'blogs.article.posted_on_date_html' | t: date: published_at }}
+                  </span>
+                  {% if section.settings.show_author %}
+                  {% capture article_user_fullname %}
+                    {{ article.user.first_name }} {{ article.user.last_name }}
+                  {% endcapture %}
+                  <span class="posted_by">
+                    By {{ article_user_fullname }}
+                  </span>
+                {% endif %}
+                {% if article.tags.size > 0 and section.settings.post_tags %}
+                  <ul>
+                    {% for tag in article.tags %}
+                      <li class="tags">
+                        <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                          {{ tag }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </div>
+            {% if section.settings.social %}
+              {% render 'social' with article %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="grid__wrapper">
+
+        <div class="main__article-content {% if section.blocks.size >= 1 %}span-8{% else %}span-10{% endif %} push-1 auto sm-span-12" 
+          data-aos="{{ settings.scroll_animation }}">
+          <div class="rte">
+            {{ article.content }}
+          </div>
+        </div>
+
+        {% if section.blocks.size >= 1 %}
+          <div class="page__sidebar main__article-sidebar span-3 auto sm-span-12"
+            data-aos="{{ settings.scroll_animation }}">
+            {% for block in section.blocks %}
+              {% if block.type == 'collection' %}
+              <div class="blog-widget collection_side_block"
+                data-aos="{{ settings.scroll_animation }}">
+                {%- assign prod_limit = block.settings.limit -%}
+                <h4>{{ block.settings.collection.title }}</h4>
+                {% for product in block.settings.collection.products limit: prod_limit %}
+                  <div class="product-index" data-alpha="{{ product.title }}" data-price="{{ product.price }}">
+                    {% render 'product-listing', product: product %}
+                  </div>
+                {% endfor %}
+              </div>
+              {% elsif block.type == 'menu' %}
+                <div class="blog-widget sidebar_menu rte-accordion"
+                  data-aos="{{ settings.scroll_animation }}">
+                  <h4>{{ block.settings.title }}</h4>
+                  {% for link in linklists[block.settings.side_nav].links %}
+                    {% if link.links != blank %}
+                      <div class="extend has_sub_menu item" aria-haspopup="true" aria-expanded="false">
+                        <input class="trigger" id="item-{{ forloop.index }}" type="checkbox" name="items">
+                        <label class="accordion-label" for="item-{{ forloop.index }}"><span class="item-heading"><a href="{{ link.url }}">{{ link.title }}</a></span></label>
+                        <div class="item-content">
+                          {% for sub_link in link.links %}
+                          <span class="item-heading"><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></span>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% else %}
+                      <span class="item-heading">{{ link.title | link_to: link.url }}</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% elsif block.type == 'image' %}
+                <div class="blog-widget image_container" {% if forloop.index == 1 %}style="margin-top:0;"{% endif %}
+                  data-aos="{{ settings.scroll_animation }}">
+                  <a href="{{ block.settings.link }}">
+                    {% if block.settings.image != blank %}
+                      {% render 'basic-responsive-image', type: block.settings.image, width: 450 %}
+                    {% else %}
+                      {{ 'collection-3' | placeholder_svg_tag }}
+                    {% endif %}
+                  </a>
+                </div>
+              {% elsif block.type == 'text_note' %}
+                <div class="blog-widget textnote_container"
+                  data-aos="{{ settings.scroll_animation }}">
+                  {% if block.settings.textbox_heading != blank %}<h4>{{ block.settings.textbox_heading }}</h4>{% endif %}
+                  {% if block.settings.textbox_subheading != blank %}
+                    <div class="subheading">
+                      {{ block.settings.textbox_subheading }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if blog.comments_enabled? %}
+          {% paginate article.comments by 20 %}
+          <div class="article__comments grid__wrapper grid__wrapper-nest span-12 auto" data-aos="{{ settings.scroll_animation }}">
+            {% assign number_of_comments = article.comments_count %}
+
+            <div class="span-7 sm-span-12 auto">
+              <h3>
+                {{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}
+              </h3>
+              <ul id="commentlist">
+                {% for comment in article.comments %}
+                  <li>
+                    <div class="comment-details">
+                      {{ comment.author }}: {{ comment.created_at | date: "%B %d, %Y" }}
+                    </div>
+                    <div class="gravatar desktop-1 mobile-1">
+                      <img src="//www.gravatar.com/avatar/{{ comment.email | remove: ' ' | strip_newlines | downcase | md5 }}" alt="Author image"/>
+                    </div>
+                    <div class="comment desktop-11 mobile-2">
+                      {{ comment.content }}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+              <!-- Comment Form -->
+            <div id="comment-form" class="span-5 sm-span-12 auto">
+              {% form article %}
+                <div class="section-title">
+                  <h3>{{ 'blogs.comments.title' | t }}</h3>
+                </div>
+                <!-- Check if a comment has been submitted in the last request, and if yes display an appropriate message -->
+                {% if form.posted_successfully? %}
+                  {% if blog.moderated? %}
+                    <div class="notice">
+                      {{ 'blogs.comments.success_moderated' | t }}
+                    </div>
+                  {% else %}
+                    <div class="notice">{{ 'blogs.comments.success' | t }}</div>
+                  {% endif %}
+                {% endif %}
+
+                {% if form.errors %}
+                  <div class="notice error">
+                    <p>{{ 'general.forms.post_error' | t }}</p>
+                    <ul class="disc">
+                      {% for field in form.errors %}
+                        {% if field == 'form' %}
+                          <li>
+                            {{ form.errors.messages[field] }}
+                          </li>
+                        {% else %}
+                          <li>
+                            <strong>{{ field | replace: 'body', 'Message' }}</strong> {{ form.errors.messages[field] }}
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                <dl>
+                  <dt class="{% if form.errors contains 'author' %}error{% endif %}">
+                    <label for="comment_author">{{ 'blogs.comments.name' | t }}</label>
+                  </dt>
+                  <dd>
+                    <input type="text" id="comment_author" name="comment[author]" size="40" value="{{ form.author }}" class="{% if form.errors contains 'author' %}input-error{% endif %}" />
+                  </dd>
+
+                  <dt class="{% if form.errors contains 'email' %}error{% endif %}">
+                    <label for="comment_email">{{ 'blogs.comments.email' | t }}</label>
+                  </dt>
+                  <dd>
+                    <input type="text" id="comment_email" name="comment[email]" size="40" value="{{ form.email }}" class="{% if form.errors contains 'email' %}input-error{% endif %}" />
+                  </dd>
+
+                  <dt class="{% if form.errors contains 'body' %}error{% endif %}">
+                    <label for="comment_body">{{ 'blogs.comments.message' | t }}</label>
+                  </dt>
+                  <dd>
+                    <textarea id="comment_body" name="comment[body]" cols="40" rows="5" class="{% if form.errors contains 'body' %}input-error{% endif %}">{{ form.body }}</textarea>
+                  </dd>
+                </dl>
+
+                {% if blog.moderated? %}
+                  <p class="hint">{{ 'blogs.comments.moderated' | t }}</p>
+                {% endif %}
+                <label class="visually-hidden" for="comment_submit">{{ 'blogs.comments.post' | t }}</label>
+                <input id="comment_submit" type="submit" value="{{ 'blogs.comments.post' | t }}" />
+              {% endform %}
+              </div>
+              {% render 'pagination', paginate: paginate %}
+            </div> {% comment %} End comments {% endcomment %}
+          {% endpaginate %}
+        {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="clear"></div>
+  </div><!-- /.row -->
+</section>
+{% schema %}
+{
+  "name": "Article",
+  "max_blocks": 10,
+  "settings":
+  [
+    {
+      "type": "checkbox",
+      "id": "display_featured_image",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "post_tags",
+      "label": "Show tags",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show post author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "social",
+      "label": "Show social icons",
+      "default": true
+    }
+  ],
+  "blocks":
+  [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings":
+      [
+        {
+          "type": "link_list",
+          "id": "side_nav",
+          "label": "Sidebar menu",
+          "info": "This menu has limited support for dropdown items"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Menu title",
+          "default": "Explore"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings":
+      [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "label": "Number of products",
+          "default": 4
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings":
+      [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional"
+        }
+      ]
+    },
+    {
+      "type": "text_note",
+      "name": "Text",
+      "settings":
+      [
+        {
+          "type": "text",
+          "id": "textbox_heading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "textbox_subheading",
+          "label": "Text content",
+          "default": "<p>Additional content</p>"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

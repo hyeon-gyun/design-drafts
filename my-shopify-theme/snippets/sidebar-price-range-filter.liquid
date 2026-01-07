@@ -1,0 +1,102 @@
+{% comment %}
+snippets/sidebar-price-range.liquid
+
+Render sidebar price range.
+
+Accepts:
+- filter: {Object} - Filter Liquid object
+- block: {Object} - Section block Liquid object
+- unique_id: {String} - A unique identifier
+- cart: {Object} - Cart Liquid object
+- forloop: {Object} - Forloop Liquid object
+
+Usage:
+{%
+  render 'sidebar-price-range-filter',
+  filter: filter,
+  block: block,
+  unique_id: unique_id,
+  cart: cart,
+  forloop: forloop
+%}
+{% endcomment %}
+{%- liquid
+  assign currencies_using_comma_decimals = "ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND" | split: ','
+  assign uses_comma_decimals = false
+
+  if currencies_using_comma_decimals contains cart.currency.iso_code
+    assign uses_comma_decimals = true
+  endif
+-%}
+
+<div class="sidebar-filter filter--price-range" data-collection-filters-price-range data-search-filters-price-range>
+  <div class="filter-range__boxes js-price-range">
+    <div class="filter-range__field">
+      <label class="filter-range__field__label visually-hidden" for="Filter-{{ filter.label | escape }}-{{ forloop.index }}--{{ unique_id }}--from">{{ 'collections.filters.from' | t }}</label>
+      <span class="filter-range__field__currency">{{ cart.currency.symbol }}</span>
+      <input class="filter-range__field__input js-filter-range-input js-price-min-output"
+        name="{{ filter.min_value.param_name }}"
+        id="Filter-{{ filter.label | escape }}-{{ forloop.index }}--{{ unique_id }}--from"
+        {%- if filter.min_value.value -%}
+          {%- if uses_comma_decimals -%}
+            value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+          {%- else -%}
+            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+          {% endif %}
+        {%- endif -%}
+        type="number"
+        placeholder="{{ 'collections.filters.from' | t }}"
+        min="0"
+        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+    </div>
+    <div class="filter-range__field">
+      <label class="filter-range__field__label visually-hidden" for="Filter-{{ filter.label | escape }}-{{ forloop.index }}--{{ unique_id }}--to">{{ 'collections.filters.to' | t }}</label>
+      <span class="filter-range__field__currency">{{ cart.currency.symbol }}</span>
+      <input class="filter-range__field__input js-filter-range-input js-price-max-output"
+        name="{{ filter.max_value.param_name }}"
+        id="Filter-{{ filter.label | escape }}-{{ forloop.index }}--{{ unique_id }}--to"
+        {%- if filter.max_value.value -%}
+          {%- if uses_comma_decimals -%}
+            value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+          {%- else -%}
+            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+          {% endif %}
+        {%- endif -%}
+        type="number"
+        placeholder="{{ 'collections.filters.to' | t }}"
+        min="0"
+        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+    </div>
+
+    <div class="filter-range__slider--wrapper span-2 auto">
+      <input class="filter-range__slider--input"
+        {%- if filter.min_value.value -%}
+          {%- if uses_comma_decimals -%}
+            value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+          {%- else -%}
+            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+          {% endif %}
+        {%- else -%}
+          value="0"
+        {%- endif -%}
+        min="0"
+        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+        step="1.00"
+        type="range"/>
+      <input class="filter-range__slider--input"
+        {%- if filter.max_value.value -%}
+          {%- if uses_comma_decimals -%}
+            value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+          {%- else -%}
+            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+          {% endif %}
+        {%- else -%}
+          value="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+        {%- endif -%}
+        min="0"
+        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+        step="1.00"
+        type="range"/>
+    </div>
+  </div>
+</div>

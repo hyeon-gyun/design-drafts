@@ -1,0 +1,137 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "additional_content_AKFQCD": {
+          "type": "additional_content",
+          "settings": {
+            "ac_text": "{{ product.vendor }} {{ product.metafields.custom.gender.value }} {{ product.metafields.custom.pim_category.value }}",
+            "ac_link": "",
+            "ac_icon": "none"
+          }
+        },
+        "product_info": {
+          "type": "product_info",
+          "settings": {}
+        },
+        "product_variants": {
+          "type": "product_variants",
+          "settings": {}
+        },
+        "product_quantity": {
+          "type": "product_quantity",
+          "settings": {}
+        },
+        "additional_content_VWfXU8": {
+          "type": "additional_content",
+          "settings": {
+            "ac_text": "사이즈 가이드",
+            "ac_link": "/pages/사이즈-가이드",
+            "ac_icon": "none"
+          }
+        },
+        "product_buttons": {
+          "type": "product_buttons",
+          "settings": {
+            "back_in_stock": false,
+            "back_in_stock_text": "<p>Email me when this is available</p>",
+            "show_gift_card_recipient": false
+          }
+        },
+        "product_availability": {
+          "type": "product_availability",
+          "settings": {}
+        },
+        "product_description": {
+          "type": "product_description",
+          "settings": {}
+        },
+        "additional_content_kxQePr": {
+          "type": "additional_content",
+          "disabled": true,
+          "settings": {
+            "ac_text": "Style: {{ product.metafields.custom.plu.value }}",
+            "ac_link": "",
+            "ac_icon": "none"
+          }
+        },
+        "additional_content_mkEjYw": {
+          "type": "additional_content",
+          "disabled": true,
+          "settings": {
+            "ac_text": "Composition: {{ product.metafields.custom.custom_fabric.value }}",
+            "ac_link": "",
+            "ac_icon": "none"
+          }
+        },
+        "additional_content_exTaw7": {
+          "type": "additional_content",
+          "disabled": true,
+          "settings": {
+            "ac_text": "Care: {{ product.metafields.custom.care.value }}",
+            "ac_link": "",
+            "ac_icon": "none"
+          }
+        },
+        "metafield_popup_4K9aFT": {
+          "type": "metafield_popup",
+          "disabled": true,
+          "settings": {
+            "popup_label": "Shipping & Returns",
+            "popup_metafield_content": "<p>Customs duties and sales taxes are non-refundable through INT.BAPE.COM. However, you may be able to recover these by contacting your local customs bureau or by hiring a customs broker.</p><p><a href=\"/pages/shipping-return\" title=\"Shipping & Return\">Read more </a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "additional_content_AKFQCD",
+        "product_info",
+        "product_variants",
+        "product_quantity",
+        "additional_content_VWfXU8",
+        "product_buttons",
+        "product_availability",
+        "product_description",
+        "additional_content_kxQePr",
+        "additional_content_mkEjYw",
+        "additional_content_exTaw7",
+        "metafield_popup_4K9aFT"
+      ],
+      "settings": {
+        "click_to_enlarge": true,
+        "image_section_size": "medium",
+        "image_options": "static",
+        "thumbnail_position": "left",
+        "slide_controls": "arrows",
+        "adaptive_height": true,
+        "enable_video_looping": false,
+        "show_policies": false,
+        "show_social_share": false,
+        "product_description_position": "below",
+        "lower_description": "small",
+        "section_background": "",
+        "lower_description_background": ""
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "product_recommendations_heading": "You may also like",
+        "items_shown": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations"
+  ]
+}

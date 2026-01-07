@@ -1,0 +1,131 @@
+{{ 'section-image-with-text-overlay.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% comment %} 
+  Product banner image section.
+  Shares setup and CSS with image-with-text-overlay.liquid
+{% endcomment %}
+
+{%- liquid
+
+  if section.settings.image
+    assign scale = section.settings.scale
+    assign section_padding = ''
+    if section.settings.section_padding == 'top'
+      assign section_padding = 'mb0'
+    elsif section.settings.section_padding == 'bottom'
+      assign section_padding = 'mt0'
+    elsif section.settings.section_padding == 'none'
+      assign section_padding = 'mt0 mb0'
+    endif
+  else
+    assign section_padding = 'mt0 mb0'
+  endif
+
+-%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --desktop-section-height: {{ section.settings.desktop_height }}px;
+    --mobile-section-height: {{ section.settings.mobile_height }}px;
+    --section-overlay-color: {{ section.settings.overlay_color | color_modify: 'alpha', block_opacity }};
+  }
+  .no-js .parallax--section-{{ section.id }} {
+    background-image: url('{{ section.settings.image | image_url: width: 2800 }}');
+  }
+{% endstyle %}
+
+{% if section.settings.image %}
+  <section
+    class="parallax--section-{{ section.id }} parallax parallax--section global__section global__section--margin {{ section_padding }}"
+    data-section-type="iwto-section"
+    data-scale="1.{{ scale }}"
+    data-section-id="{{ section.id }}"
+    data-aos="{{ settings.scroll_animation }}">
+
+      <article class="section--image">
+        {% render 'basic-responsive-image', type: section.settings.image, width: 2000 %}
+      </article>
+
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product banner image",
+  "settings":
+  [
+    {
+      "type": "paragraph",
+      "content": "Add a banner image specific to each product using [metafields](https:\/\/www.weareunderground.com/blogs/icon-support/using-metafields-for-product-content), or override metafields by adding an image that will be commonly shared by all products."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "2880px x 1200px recommended"
+    },
+    {
+      "type": "range",
+      "id": "scale",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "label": "Image scale",
+      "default": 2,
+      "info": "Increases / decreases parallax scrolling intensity"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 200,
+      "max": 1000,
+      "step": 100,
+      "label": "Desktop image height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 200,
+      "max": 800,
+      "step": 100,
+      "label": "Mobile image height",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "section_padding",
+      "label": "Section spacing",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "both"
+    }
+  ],
+  "presets":
+  [
+    {
+      "name": "Product banner image"
+    }
+  ],
+  "templates":
+  [
+    "product"
+  ]
+}
+{% endschema %}

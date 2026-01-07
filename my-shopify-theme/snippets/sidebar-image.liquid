@@ -1,0 +1,39 @@
+{% comment %}
+snippets/sidebar-image.liquid
+
+Renders an image in the sidebar.
+
+Accepts:
+
+- Block {Object} - Section block.
+- Forloop {Object} - Forloop object.
+- Loading {String} - Loading attribute value.
+- Fetchpriority {String} - Fetchpriority attribute value.
+
+Usage:
+{%
+  render 'sidebar-image',
+  block: block,
+  forloop: forloop,
+  loading: loading,
+  fetchpriority: fetch_priority
+%}
+{% endcomment %}
+{% if block.settings.image != blank %}
+  <div class="collection__sidebar--image-wrapper image_container" 
+    {% if forloop.index == 1 %}style="margin-top:0;"{% endif %} 
+    data-aos="{{ settings.scroll_animation }}"
+    data-loading="{{ loading }}"
+    data-fetchpriority="{{ fetchpriority }}"
+    {{ block.shopify_attributes }}>
+
+      {% if block.settings.link != blank %}
+        <a href="{{ block.settings.link }}">
+      {% endif %}
+      {% render 'basic-responsive-image', type: block.settings.image, width: 400, loading: loading, fetchpriority: fetchpriority %}
+      {% if block.settings.link != blank %}
+        </a>
+      {% endif %}
+
+  </div>
+{% endif %}

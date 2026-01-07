@@ -1,0 +1,111 @@
+{% comment %}
+
+  snippets/product-grid-add.liquid
+
+  This snippet is used to display the add to cart form for a product in a grid layout. It is used in the product grid and product recommendations sections.
+
+  Accepts:
+    - product: The product object to display
+
+  Usage:
+  {% render 'product-grid-add', product: product %}
+
+{% endcomment %}
+
+{% if product.options.size <= 1 and product.available %}
+  <div class="product--grid_add" data-section-type="product-grid-add">
+    {% capture product_form_config %}
+      {
+        "money_format": {{ shop.money_format | json }},
+        "enable_history": false,
+        "sold_out": {{ "products.product.sold_out" | t | json }},
+        "button": {{ 'products.product.add_to_cart' | t | json }},
+        "unavailable": {{ 'products.product.unavailable' | t | json }},
+        "swatches": "swatches"
+      }
+    {% endcapture %}
+
+    {%- liquid
+      assign product_form_id = 'product-form-' | append: product.id
+      assign current_variant = product.selected_or_first_available_variant
+    -%}
+
+    {% if product.variants.size <= 1 %}
+
+      {% form 'product', product,
+        id: product_form_id,
+        data-product-form: product_form_config,
+        data-product-id: product.id %}
+        <input  type="hidden" id="{{ current_variant.id }}" name="id" value="{{ current_variant.id }}" />
+        <div class="product-add">
+          <button
+            class="js-ajax-submit quick--add_button" 
+            type="submit"
+            name="button">
+            {% render 'snip-icons',
+              wrapper: '.product_listing_options',
+              type: 'icon-theme',
+              icon: 'bag',
+              classes: 'details--closed',
+              size: '18px',
+              fill: 'var(--text-color)',
+              hover: 'var(--text-color)' %}
+          </button>
+        </div>
+      {% endform %}
+
+    {% else %}
+
+      <wau-quick-add>
+        <details
+          data-product-form-id="{{ product_form_id }}"
+          data-product-id="{{ product.id }}"
+        >
+          {% render 'product-json', product: product %}
+          <summary>
+            {% render 'snip-icons',
+              wrapper: '.product_listing_options',
+              type: 'icon-theme',
+              icon: 'bag',
+              classes: 'details--closed',
+              size: '18px',
+              fill: 'var(--text-color)',
+              hover: 'var(--text-color)' %}
+
+            <div class="icn-close details--open"></div>
+          </summary>
+
+          {% form 'product', product,
+            id: product_form_id,
+            class: 'js-prod-form-submit',
+            data-product-form: product_form_config,
+            data-product-id: product.id %}
+
+              <div class="product--grid_variants">
+
+                {% for option in product.options_with_values %}
+                  {% render "swatch",
+                    option: option,
+                    current_variant: product.selected_or_first_available_variant,
+                    product: product,
+                    show_color_swatches: settings.show_color_swatches,
+                    color_swatch_shape: settings.color_swatch_shape,
+                    color_swatch_style: settings.color_swatch_style,
+                    omit_form_attribute: true %}
+                {% endfor %}
+
+                <input class="formVariantId" name="id" type="hidden" value="{{ product.variants.first.id }}">
+                <input type="button" class="button add add-to-cart js-ajax-submit" name="button" value="{{ 'products.product.add_to_cart' | t }}">
+                <div class="note note-error js-error-msg" style="display: none">
+                  <p>{{ 'cart.general.cart_error' | t }} {{ 'cart.general.update_qty_error' | t }}</p>
+                </div>
+
+              </div><!-- product variants -->
+          {% endform %}
+
+        </details>
+      </wau-quick-add>
+
+    {% endif %}
+  </div>
+{% endif %}

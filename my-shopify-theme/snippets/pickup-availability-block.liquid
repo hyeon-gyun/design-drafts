@@ -1,0 +1,19 @@
+{% comment %}
+    Renders the Pickup Availability product block on the Product page and Featured Product section.
+
+    Accepts:
+    - current_variant_id: {String} Current variant ID.
+    - product_title: {String} Product title.
+    - root_url: {String} Root URL string.
+    - product_id: {Number} Product ID
+    Usage:
+    {% render 'pickup-availability-block', current_variant_id: current_variant.id, product_title: product.title, root_url: routes.root_url %}
+{% endcomment %}
+<div class="product-single__store-availability-container"
+  data-variant-id="{{ current_variant_id }}"
+  data-product-id="{{ product_id }}"
+  data-product-title="{{ product_title | escape }}"
+  style="visibility:hidden; min-height: 120px;"
+  data-store-availability-container
+  data-root-url="{{ root_url}}">
+</div><!-- /.product-single__store-availability-container -->

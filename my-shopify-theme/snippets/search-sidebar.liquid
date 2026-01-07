@@ -1,0 +1,185 @@
+{% comment %}
+snippets/search-sidebar.liquid
+
+Sidebar for the search page.
+
+Accepts:
+- Section {Object} Section Liquid object automatically passed.
+
+Usage:
+{%
+  render 'search-sidebar'
+%}
+{% endcomment %}
+{% liquid
+  assign unique_id = section.id | slice: -7, 7
+%}
+<div class="collection__sidebar--wrapper sidebar search-sidebar">
+  <form id="CollectionSidebarFiltersForm">
+    <div class="collection__sidebar--sidebar__inner-wrapper {% if section.settings.is_sticky %}is_sticky{% endif %}">
+
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="collection__sidebar-block" {{ block.shopify_attributes }}>
+
+            {% liquid
+              assign loading = 'lazy'
+              assign fetch_priority = 'auto'
+              if section.index == 1 and forloop.first
+                assign loading = 'eager'
+                assign fetch_priority = 'high'
+              endif
+            %}
+
+            {% case block.type %}
+              {% when 'sidebar_filter' %}
+                {% assign color_swatch_options = settings.swatch_option_names | replace: ' ,', ',' | replace: ', ', ',' | split: ',' | downcase %}
+                <!-- Filters -->
+
+                  {%- for filter in search.filters -%}
+
+                    {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+
+                    <div
+                      class="js-accordion c-accordion c-accordion--{{ unique_id }} c-accordion--custom-page"
+                      id="c-accordion--{{ unique_id }}"
+                      data-accordion-allow-multiple
+                    >
+
+                      <button
+                        class="button-as-link js-accordion-header c-accordion__header js-accordion-is-open"
+                        aria-expanded="true"
+                        aria-controls="{{ accordion_content_id }}"
+                        data-toggle="accordion"
+                      >
+                        <h4>{{ filter.label | escape }} {% if filter.operator == 'AND' %}<small>(Match All)</small>{% endif %}</h4>
+                        <span class="dropdown-arrow">
+                          {% render 'snip-icons',
+                            wrapper: '.accordion__section-content .c-accordion__header',
+                            type: 'apollo',
+                            icon: 'down-carrot',
+                            classes: 'c-accordion__header--icon vib-center',
+                            size: '6px',
+                            fill: 'var(--text-color)',
+                            hover: 'var(--text-color)'
+                          %}
+                        </span>
+                      </button>
+
+                      <div
+                        class="clearfix filter c-accordion__panel is-active {{ accordion_content_id }}"
+                        id="{{ accordion_content_id }}"
+                        data-parent="#c-accordion--{{ unique_id }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        <div class="c-accordion__inner">
+                          {% case filter.type %}
+
+                            {% when 'list' %}
+                              {%
+                                render 'sidebar-list-filter',
+                                filter: filter,
+                                block: block,
+                                unique_id: "search-sidebar-mobile",
+                                color_swatch_options: color_swatch_options
+                              %}
+
+                            {% when 'price_range' %}
+                              {%
+                                render 'sidebar-price-range-filter',
+                                filter: filter,
+                                block: block,
+                                unique_id: "search-sidebar-mobile",
+                                cart: cart,
+                                forloop: forloop
+                              %}
+
+                          {% endcase %}
+
+                        </div>
+                      </div>
+                    </div>
+
+                  {%- endfor -%}
+
+
+              <!-- Menu -->
+              {% when 'menu' %}
+
+                {% liquid
+
+                  assign unique_id = 'menu-' | append: forloop.index
+                  assign accordion_content_class = 'c-accordion__panel--'
+                  assign accordion_content_id = accordion_content_class | append: unique_id | append: '-' | append: forloop.index
+
+                %}
+
+                <div
+                  class="js-accordion c-accordion c-accordion--{{ unique_id }} c-accordion--custom-page"
+                  id="c-accordion--{{ unique_id }}"
+                  data-accordion-allow-multiple
+                >
+
+                  <button
+                    class="button-as-link js-accordion-header c-accordion__header js-accordion-is-open"
+                    aria-expanded="true"
+                    aria-controls="{{ accordion_content_id }}"
+                    data-toggle="accordion"
+                  >
+                    <h4>{{ block.settings.title }}</h4>
+                    <span class="dropdown-arrow">
+                      {% render 'snip-icons',
+                        wrapper: '.accordion__section-content .c-accordion__header',
+                        type: 'apollo',
+                        icon: 'down-carrot',
+                        classes: 'c-accordion__header--icon vib-center',
+                        size: '6px',
+                        fill: 'var(--text-color)',
+                        hover: 'var(--text-color)'
+                      %}
+                    </span>
+                  </button>
+
+                  <div
+                    class="clearfix filter c-accordion__panel is-active {{ accordion_content_id }}"
+                    id="{{ accordion_content_id }}"
+                    data-parent="#c-accordion--{{ unique_id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="c-accordion__inner">
+
+                      {%
+                        render: 'sidebar-menu',
+                        block: block
+                      %}
+
+                    </div>
+                  </div>
+                </div>
+
+              <!-- Image -->
+              {% when 'image' %}
+                {%
+                  render 'sidebar-image',
+                  block: block,
+                  forloop: forloop,
+                  loading: loading,
+                  fetchpriority: fetch_priority
+                %}
+
+              <!-- Text note -->
+              {% when 'text_note' %}
+                {%
+                  render 'sidebar-text',
+                  block: block
+                %}
+            {% endcase %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Error. No section blocks.</p>
+      {% endif %}
+
+    </div><!-- /.collection__sidebar--sidebar__inner-wrapper -->
+  </form>
+</div><!-- /.sidebar -->

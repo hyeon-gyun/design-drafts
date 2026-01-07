@@ -1,0 +1,297 @@
+{*** 패밀리 세일 | proc/familysale.php ***} { # header }
+<style>
+    /*.btn_search {
+		display: none !important;
+	}*/
+    .btn_goods_down_more {
+    }
+    .hot_keyword a {
+        font-size: 0; /* 기존 텍스트 안 보이게 */
+        position: relative;
+    }
+    .hot_keyword a::after {
+        content: "회원 구매 시 즉시 사용 가능한 최대 10% 장바구니 쿠폰 증정";
+        font-size: 12px;
+        color: #fff;
+    }
+    .hot_keyword a {
+        animation: smoothBlink 1.5s infinite;
+        transition: opacity 0.5s ease-in-out;
+        /*text-shadow: 0 0 5px rgba(255,255,255,0.4);*/
+    }
+    @keyframes smoothBlink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    #familySaleBtns {
+        overflow-x: auto;
+        -ms-overflow-style: none; /* IE */
+        scrollbar-width: none; /* Firefox */
+    }
+    #familySaleBtns::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    /* 기존 스타일 */
+    #header .h_sec02.fixed {
+        position: initial;
+    }
+    .right_fixed {
+        display: none !important;
+    }
+    .hot_keyword {
+    }
+    .item_gallery_type ul li {
+        margin: 0 0 50px 0;
+        /*width: 20% !important;*/
+    }
+    .family-sale-wrapper {
+        padding: 20px;
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    .family-banner {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .tab-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 10px;
+        margin: 30px 0;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 1000;
+        padding: 12px 0;
+        overflow-x: scroll;
+    }
+    .tab-buttons button {
+        padding: 10px 16px;
+        background: #f0f0f0;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: #131635;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+        border-radius: 20px;
+        font-family: "knockoutnormal", "knockoutbold", "Noto Sans KR", sans-serif;
+        transform: scale(1);
+    }
+    .tab-buttons button:hover {
+        background: #e0e0e0;
+    }
+    .tab-buttons button:active {
+        transform: scale(0.96);
+    }
+    .tab-buttons button.active {
+        background: #131635;
+        color: #fff;
+    }
+    .family-info {
+        background: #f8f8f8;
+        padding: 40px 50px 30px;
+        margin-bottom: 30px;
+    }
+    .family-info h3 {
+        margin-top: 0;
+        font-size: 20px;
+        padding-bottom: 30px;
+    }
+    .family-info li {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .goods-display-area .goods-tab {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .goods-display-area .goods-tab.active {
+        display: block;
+        opacity: 1;
+    }
+    #loading {
+        display: none;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #666;
+    }
+    @media (max-width: 768px) {
+        .family-info h3 {
+            font-size: 16px;
+        }
+        .family-info li {
+            font-size: 13px;
+        }
+        .tab-buttons button {
+            font-size: 13px;
+            padding: 8px 12px;
+        }
+    }
+    /* 모달 스타일 */
+    #entryModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+    }
+    .entry-box {
+        background: #fff;
+        padding: 40px 30px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    .entry-box h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .entry-box p {
+        margin: 6px 0;
+        font-size: 14px;
+    }
+    .entry-box input {
+        margin-top: 20px;
+        padding: 10px;
+        width: 80%;
+        max-width: 200px;
+        font-size: 12px;
+    }
+    .entry-box button {
+        margin-top: 16px;
+        padding: 10px 20px;
+        background-color: #131635;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+    }
+</style>
+
+<!-- 입장 코드 모달 -->
+<div id="entryModal">
+    <div class="entry-box">
+        <h2>Champion Family Sale</h2>
+        <p>
+            4.14 - 4.28
+            <br />
+            (UP TO 90%)
+        </p>
+        <p style="margin-top: 12px; font-weight: 600">임직원 전용 입장 코드</p>
+        <p>코드를 입력 후 하단 입장하기 버튼을 눌러주세요.</p>
+        <input type="password" id="entryCode" placeholder="입장 코드를 입력해 주세요." />
+        <br />
+        <button onclick="checkEntry()">입장하기</button>
+    </div>
+</div>
+<!-- 패밀리 세일 영역 -->
+<div class="family-sale-wrapper" style="display: none">
+    <img src="https://champitr6563.cdn-nhncommerce.com/data/skin/front/desktop/img/banner/slider_3040312042/f3ccdd27d2000e3f9255a7e3e2c48800_47551.jpg" alt="패밀리세일 배너" class="family-banner" />
+    <div id="familySaleBtns" class="tab-buttons">
+        <button class="active" data-sno="294">ALL</button>
+        <button data-sno="295">균일가</button>
+        <button data-sno="302">Spring Season Off</button>
+        <button data-sno="296">Up To 90%</button>
+        <button data-sno="297">Up To 80%</button>
+        <button data-sno="298">Up To 70%</button>
+        <button data-sno="299">Up To 60%</button>
+        <button data-sno="300">Up To 50%</button>
+    </div>
+    <div class="family-info">
+        <h3>
+            Champion Family Sale
+            <span style="color: #e2383f; font-size: 16px">~ 4/28 23:59 까지</span>
+        </h3>
+        <ul>
+            <li style="padding: 0 0 10px 0"><span style="border: 1px solid; padding: 3px 6px">NOTICE</span></li>
+            <li>- 패밀리 세일 상품의 단순 변심에 의한 교환/환불은 불가합니다. (*상품 불량/하자로 인한 반품은 1:1문의를 통해서 처리가 가능)</li>
+            <li>- 행사 기간 판매량 급증으로 구매한 상품이 품절되어 자동 취소/환불 처리가 될 수 있습니다.</li>
+            <li>- 주문량에 따라 배송이 지연될 수 있으며 결제일로부터 2~5일 이후 순차 발송됩니다.</li>
+            <li>- 주문 전 반드시 가격 일치 여부를 확인해 주시기 바랍니다.</li>
+            <li>- 장바구니에 담지 않은 상품 결제를 위해 회원가입 후 로그인 시, 해당 상품은 자동으로 장바구니에 담기지 않습니다.</li>
+            <li>
+                - 패밀리 세일 링크 접속 후 배너를 클릭하여 일반 페이지로 넘어갈 경우
+                <strong>패밀리 세일 링크로 재접속</strong>
+                이 가능합니다.
+            </li>
+            <li style="padding: 30px 0 10px 0"><span style="border: 1px solid; padding: 3px 6px">MEMBERSHIP BENEFIT</span></li>
+            <li>- 기존/신규 회원 구매 금액별 장바구니 쿠폰 증정</li>
+            <li>- 8만원 이상 10% 즉시 할인 / 5만원 이상 5% 즉시 할인</li>
+        </ul>
+    </div>
+
+    <div id="loading">Loading...</div>
+    <div id="goodsDisplayArea" class="goods-display-area">
+        <div class="goods-tab active" data-sno="294">{=includeWidget('goods/_goods_display_main.html','sno','294')}</div>
+        <div class="goods-tab" data-sno="295">{=includeWidget('goods/_goods_display_main.html','sno','295')}</div>
+        <div class="goods-tab" data-sno="302">{=includeWidget('goods/_goods_display_main.html','sno','302')}</div>
+        <div class="goods-tab" data-sno="296">{=includeWidget('goods/_goods_display_main.html','sno','296')}</div>
+        <div class="goods-tab" data-sno="297">{=includeWidget('goods/_goods_display_main.html','sno','297')}</div>
+        <div class="goods-tab" data-sno="298">{=includeWidget('goods/_goods_display_main.html','sno','298')}</div>
+        <div class="goods-tab" data-sno="299">{=includeWidget('goods/_goods_display_main.html','sno','299')}</div>
+        <div class="goods-tab" data-sno="300">{=includeWidget('goods/_goods_display_main.html','sno','300')}</div>
+    </div>
+</div>
+
+<script>
+    // 입장 코드 검증
+    function checkEntry() {
+        const code = document.getElementById("entryCode").value.trim().toLowerCase();
+        if (code === "champion2025") {
+            sessionStorage.setItem("familySaleAccess", "true");
+            document.getElementById("entryModal").style.display = "none";
+            document.querySelector(".family-sale-wrapper").style.display = "block";
+        } else {
+            alert("입장 코드가 올바르지 않습니다.");
+        }
+    }
+    // 입장 여부 확인
+    window.addEventListener("DOMContentLoaded", () => {
+        if (sessionStorage.getItem("familySaleAccess") === "true") {
+            document.getElementById("entryModal").style.display = "none";
+            document.querySelector(".family-sale-wrapper").style.display = "block";
+        }
+    });
+    // 탭 버튼 동작
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll("#familySaleBtns button");
+        const tabs = document.querySelectorAll(".goods-tab");
+        const tabWrapper = document.querySelector(".tab-buttons");
+        buttons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const sno = this.getAttribute("data-sno");
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                this.classList.add("active");
+                tabs.forEach((tab) => {
+                    tab.classList.toggle("active", tab.getAttribute("data-sno") === sno);
+                });
+                const scrollTarget = document.querySelector(".goods-display-area");
+                const offset = tabWrapper.offsetHeight;
+                const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - offset - 470;
+                window.scrollTo({ top: top, behavior: "smooth" });
+            });
+        });
+    });
+</script>
+
+{ # footer }

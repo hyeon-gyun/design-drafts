@@ -1,0 +1,134 @@
+{{ 'section-announcement-bar.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+snippets/announcement-bar.liquid
+Renders the announcement bar.
+Accepts:
+- section: {Object} Section settings
+
+Usage:
+{% render 'announcement-bar', section: section %}
+{% endcomment %}
+{%- liquid
+
+  assign ab_is_empty = true
+  if section.blocks.size > 0
+    assign ab_is_empty = false
+  endif
+  if section.settings.top_nav != blank
+    assign ab_is_empty = false
+  endif
+  if section.settings.social_icons
+    assign ab_is_empty = false
+  endif
+
+-%}
+
+{% style %}
+  .announcement__bar-section {
+    --font-size: {{ section.settings.announcement_text_size }}px;
+    --text-color: {{ settings.announcement_bar_text_color }};
+    --text-color-light: {{ settings.announcement_bar_text_color | color_lighten: 30 }};
+    --background: {{ settings.announcement_bar_background }};
+  }
+{% endstyle %}
+
+{% unless ab_is_empty %}
+  <section class="announcement__bar-section topbar gridlock-fluid js-top-bar relative a-center pt10 pb10"
+    data-section-id="{{ section.id }}"
+    data-section-type="announcement-bar-section">
+
+    <div class="grid__wrapper full rg0">
+
+      {% if section.settings.top_nav != blank %}
+        <ul class="announcement__bar-nav span-3 auto sm-hide mt0 mb0 a-left">
+          {% for link in linklists[section.settings.top_nav].links %}
+            <li class="pr10"><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+        {% if section.blocks.size != 0 %}
+          {% assign is_carousel = false %}
+          {% if section.blocks.size > 1 %}
+            {% capture slideshow_config %}{
+              "wrapAround":true,
+              "dragThreshold":"15",
+              "pauseAutoPlayOnHover":false,
+              "autoPlay": 5000,
+              "fade": true,
+              "pageDots":false,
+              "prevNextButtons": true
+            }{% endcapture %}
+            {% assign is_carousel = true %}
+          {% endif %}
+
+          <div class="announcement--carousel span-6 auto sm-span-12{% if section.settings.top_nav == blank %} push-3{% endif %}{% if is_carousel %} flickity__section js-announcement-carousel{% endif %} is-hidden"{% if is_carousel %} data-flickity-config='{{ slideshow_config }}'{% endif %}>
+            {% for block in section.blocks %}
+              <div class="announcement__carousel-item" {{ block.shopify_attributes }} data-slider-index="{{ forloop.index0 }}">
+                <div class="rte mt0 mb0">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+        {% endif %}
+
+
+      {% if section.settings.social_icons %}
+        {% render 'social-icons', classes: 'span-3 auto sm-hide mt0 mb0 a-right' %}
+      {% endif %}
+
+    </div>
+
+  </section>
+{% endunless %}
+
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings":
+  [
+    {
+      "type": "range",
+      "id": "announcement_text_size",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 14
+    },
+    {
+      "type": "link_list",
+      "id": "top_nav",
+      "label": "Menu links",
+      "info":"Display links from a menu, we recommend a small number of 2-3 links at most."
+    },
+    {
+      "type": "checkbox",
+      "id": "social_icons",
+      "label": "Display social icons"
+    }
+  ],
+  "blocks":
+  [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings":
+      [
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Text",
+          "default": "<p>Add content to a sliding text message bar</p>"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}
