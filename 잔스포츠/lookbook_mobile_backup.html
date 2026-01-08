@@ -1,0 +1,430 @@
+<!--@layout(/layout/basic/main.html)-->
+
+<div class="lookbook_layout">
+    <section class="brand_lookbook">
+        <div><img src="/web/2026/lookbook/26ss/01.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/02.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/03.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/04.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/05.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/06.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/07.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/08.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/09.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/10.jpg" alt="" /></div>
+
+        <!-- <div><img src="/web/2026/lookbook/26ss/11.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/12.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/13.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/14.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/15.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/16.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/17.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/18.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/19.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/20.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/21.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/22.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/23.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/24.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/25.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/26.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/27.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/28.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/29.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/30.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/31.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/32.jpg" alt="" /></div>
+        <div><img src="/web/2026/lookbook/26ss/33.jpg" alt="" /></div> -->
+    </section>
+
+    <div class="bnr_sec bnr_grid_02">
+        <div class="cate_text_wrap">
+            <div class="cate_name">2026년 봄, 새학기 캠페인</div>
+            <div class="cate_name_sub">잔스포츠와 함께하는 새로운 시작</div>
+        </div>
+        <ul>
+            <li onclick="location.href='/product/list.html?cate_no=44&sort_method=6#Product_ListMenu'" style="cursor: pointer">
+                <div module="product_listmain_12" class="productItem ec-base-product">
+                    <!--
+                    $count = 100
+                    $basket_result = /product/add_basket.html
+                    $basket_option = /product/basket_option.html
+                    $moreview = yes
+                    $cache = no
+                -->
+                    <ul class="prdList">
+                        <!--@import(/layout/basic/prdList_item.html)-->
+                        <!--@import(/layout/basic/prdList_item.html)-->
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+    #contents {
+        font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+    #contents section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .lookbook_layout {
+        display: grid;
+        grid-template-columns: 3fr 7fr;
+        grid-template-rows: 1fr;
+        gap: 20px;
+        width: 100%;
+        height: 100vh;
+        align-items: stretch;
+        overflow: hidden;
+    }
+    .lookbook_layout .bnr_sec {
+        max-width: none;
+        margin: 0;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .lookbook_layout .brand_lookbook {
+        background: #f1f1f1;
+        position: relative;
+        height: 100%;
+        overflow-y: auto;
+        align-self: start;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        gap: 100px;
+        padding-bottom: 100px;
+    }
+    .lookbook_layout .brand_lookbook::-webkit-scrollbar {
+        display: none;
+    }
+    .brand_logo div img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 50%;
+    }
+    .brand_lookbook div {
+        margin: 0;
+        position: relative;
+        display: block;
+        z-index: 2;
+        width: fit-content;
+        max-width: 100%;
+    }
+    .brand_lookbook div img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    .brand_lookbook div:nth-child(3n + 1) {
+        align-self: stretch;
+        width: 100%;
+    }
+    .brand_lookbook div:nth-child(3n + 2) {
+        align-self: flex-start;
+        width: 60%;
+    }
+    .brand_lookbook div:nth-child(3n + 3) {
+        align-self: flex-end;
+        width: 45%;
+    }
+    .brand_lookbook div:nth-child(n + 2) {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        will-change: opacity, transform;
+    }
+    .brand_lookbook div.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .bnr_sec {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        padding: 50px 20px 50px 10px;
+    }
+    .bnr_sec img {
+        background: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .bnr_sec .cate_text_wrap {
+        margin-bottom: 40px;
+        font-size: 16px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .bnr_sec .cate_name {
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+    .bnr_sec .txt {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .bnr_sec .txtline {
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: 600;
+    }
+    .bnr_sec .txtline span {
+        padding: 3px 0;
+        z-index: 11;
+        position: relative;
+    }
+    .bnr_sec .txt_btn {
+        font-size: 16px;
+        z-index: 11;
+        position: relative;
+    }
+    .bnr_sec .txt_btn span {
+        background: #fff;
+        color: #000;
+        padding: 0.8em 1.8em;
+        text-transform: uppercase;
+        display: block;
+        text-align: center;
+    }
+    .txt_span1 {
+        width: 35%;
+    }
+    .txt_span2 {
+        width: 35%;
+    }
+    .txt_span3 {
+        width: 40%;
+    }
+    .bnr_sec li {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .bnr_sec li div:first-child img {
+        transition: all 0.4s ease;
+        mix-blend-mode: darken;
+    }
+    .bnr_grid_02 li .product_listimg {
+        aspect-ratio: 3.8 / 5;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        border-radius: 5px;
+    }
+    .bnr_grid_02 li .product_listimg > div:first-child {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+    .bnr_grid_02 li .product_listimg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        pointer-events: none;
+    }
+    .bnr_grid_02 li .product_listimg .txt {
+        z-index: 2;
+    }
+    .bnr_grid_02 ul {
+        display: flex;
+        flex-direction: column;
+    }
+    .ec-base-product {
+        margin: 0;
+    }
+    .ec-base-product .spec li {
+        text-align: left;
+    }
+    .ec-base-product .prdList {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 1.75;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        padding: 0;
+        list-style: none;
+        box-sizing: border-box;
+        min-width: initial;
+    }
+    .ec-base-product .prdList > li {
+        position: relative;
+        display: block;
+        margin: 0;
+        color: #000;
+        vertical-align: top;
+        border-radius: 0;
+        min-width: 0;
+    }
+    .ec-base-product .prdList .prdList__item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .ec-base-product .prdList .thumbnail {
+        width: 100%;
+        margin: 0;
+        background: #f1f1f1;
+        padding: 20px 0;
+        border-radius: 5px;
+    }
+    .ec-base-product .prdList .description {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        line-height: 1.75;
+        text-align: left;
+    }
+    .ec-base-product .prdList .description .name {
+        display: block;
+        text-align: left;
+        font-weight: normal;
+    }
+    .ec-base-product .description .name a {
+        font-size: 13px;
+        line-height: 1.5em;
+    }
+    .ec-base-product .spec {
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .ec-base-product .prdList .thumbnail a img {
+        max-width: 100%;
+        box-sizing: border-box;
+        mix-blend-mode: darken;
+    }
+
+    @media (max-width: 640px) {
+        .lookbook_layout {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            height: auto;
+            align-items: start;
+            overflow: visible;
+        }
+        .lookbook_layout .brand_lookbook {
+            position: static;
+            height: auto;
+            overflow-y: visible;
+        }
+        .lookbook_layout .bnr_sec {
+            width: 100%;
+            padding: 30px 16px 40px;
+            height: auto;
+            overflow: visible;
+            overflow-x: hidden;
+        }
+        .bnr_grid_02 ul {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .bnr_sec .ec-base-product .prdList {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px;
+            width: 100%;
+            margin: 0;
+        }
+        .bnr_sec .ec-base-product .prdList > li {
+            width: auto !important;
+            float: none !important;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var container = document.querySelector(".brand_lookbook");
+        if (!container) return;
+
+        var items = container.querySelectorAll("div:nth-child(n + 2)");
+        if (!("IntersectionObserver" in window)) {
+            items.forEach(function (item) {
+                item.classList.add("is-visible");
+            });
+            return;
+        }
+
+        var media = window.matchMedia("(max-width: 640px)");
+        var observer;
+        var resizeRaf = null;
+
+        function scheduleObserver() {
+            if (resizeRaf) cancelAnimationFrame(resizeRaf);
+            resizeRaf = requestAnimationFrame(function () {
+                resizeRaf = null;
+                setupObserver();
+            });
+        }
+
+        function setupObserver() {
+            if (observer) observer.disconnect();
+            var isMobile = media.matches;
+            var isScrollable = !isMobile && container.scrollHeight > container.clientHeight + 1;
+            observer = new IntersectionObserver(
+                function (entries, obs) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    root: isScrollable ? container : null,
+                    threshold: 0.15,
+                    rootMargin: isScrollable ? "0px 0px -10% 0px" : "0px",
+                }
+            );
+
+            items.forEach(function (item) {
+                if (!item.classList.contains("is-visible")) {
+                    observer.observe(item);
+                }
+            });
+        }
+
+        setupObserver();
+        if (media.addEventListener) {
+            media.addEventListener("change", scheduleObserver);
+        } else {
+            media.addListener(scheduleObserver);
+        }
+        window.addEventListener("resize", scheduleObserver);
+        window.addEventListener("load", scheduleObserver);
+    });
+</script>
